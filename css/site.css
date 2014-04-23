@@ -1,0 +1,81 @@
+body {
+    background-color: silver;
+    font-family: Arial;
+    margin: 0;
+}
+
+#header{
+    height: 150px;
+    width: 100%;
+    background-color: brown;
+    position: relative;
+}
+
+#user-bar {
+    position: absolute;
+    right: 0;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    top: 50px;
+    
+    
+}
+
+#menu-bar {
+    width: 100%;
+    height: 30px;
+    border-top: 3px solid black;
+    background-color: coral;
+}
+
+#menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+#menu-bar ul li {
+    display: inline;
+}
+
+
+#content {
+    margin: auto;
+    margin-top: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    
+}
+
+#tabs {
+    background-color: grey;
+    
+}
+
+.tab {
+    float: left;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 10px;
+    background-color: silver;
+    margin-left: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.tab-content {
+
+}
+
+.tab-content table {
+    color: white;
+}
+
+#create-table-button {
+    background-color: gray;
+    width: 150px;
+    padding: 5px;
+    cursor: pointer;
+}

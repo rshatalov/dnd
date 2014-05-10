@@ -4,7 +4,7 @@
 <div style="clear: both"></div>
 </div>
 <div class='tab-content' id="tables-content">
-    <a href='index.php?a=create_table' id='create-table-button'>Crea nuovo tavolo</a>
+    <a href='?a=create_table' id='create-table-button'>Crea nuovo tavolo</a>
     
     <table>
         <tr>
@@ -14,14 +14,8 @@
             <th>Candidati</th> 
             <th>Stato</th> 
         </tr>
-        <tr>
-            <td></td>
-            <td><a href='battle.php'>ENTRA!</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <?php echo $content; ?>
     </table>
-    <?php echo $content; ?>
+    
 </div> <!-- tables-content -->
 <div class='tab-content' id="monsters-tab"></div>

@@ -11,11 +11,32 @@
     text-align: center;
     cursor: arrow;
     position: relative;
-    margin-left: 400px;
+    
     margin-right: 200px;
 }
+
+
+.player {
+    background-color: black;
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+#players {
+   position: absolute;
+   width: 775px;
+   height: 475px;
+   top: 0;
+   z-index: 2;
+}
+
 body{
 
+    margin: 0;
 }
 .button{
     padding: 3px;

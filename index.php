@@ -8,25 +8,13 @@ $js = "";
 $css = "";
 $debug = "";
 
-/*
-if (isset($_GET['p']) && $_GET['p'] == 'tables_list')
-{
-    $template = "games.php";
-    require_once "tables.php";
-}
-else
-{
-$template = "battle.php";
-}
-*/
-
 //$_SERVER['REQUEST_URI']
 //print_r ($_SERVER);
 //$path = substr($_SERVER['REQUEST_URI'],1);
 if (isset($_SERVER['REDIRECT_URL']))
     $path = substr($_SERVER['REDIRECT_URL'],1);
 else
-    $path = 'index.php';
+    $path = 'main.php';
 //echo $path;
 
 $debug .= "Address: $path<br/>";

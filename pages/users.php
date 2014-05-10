@@ -24,8 +24,8 @@ if (isset($_SESSION['email'])) {
             $tid = uniqid();
             $dm = $_SESSION['email'];
             mkdir("tables/$tid");
-            fopen("tables/$tid/players.txt",'w');
-            fopen("tables/$tid/battle_grid.txt",'w');
+            fopen("tables/$tid/players.txt",'wb');
+            fopen("tables/$tid/battle_grid.txt",'wb');
             $r = $db->exec("INSERT INTO `tables` SET dm='$dm', tid='$tid';");
             header("Location: users.php");
             exit();
@@ -39,15 +39,17 @@ if (isset($_SESSION['email'])) {
             {
                 $p = preg_split("/;/",$player);
                 $status = 0;
-                if ($p[1] == '0')
+                if ($p[1] == '0' && $p[0] == $email)
                 {
                     $status = 1;
                 }
                 $s .= $p[0]. ";$status\n";
             }
-            $fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/$tid/players.txt",'w');
+            $fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/$tid/players.txt",'wb');
             fwrite ($fh, $s);
-            //echo $s;
+            $fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/$tid/$email.txt",'wb');
+            $s = "25;25";
+            fwrite ($fh, $s);
             header("Location: users.php");
             exit();
                     

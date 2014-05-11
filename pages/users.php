@@ -43,7 +43,11 @@ if (isset($_SESSION['email'])) {
                 {
                     $status = 1;
                 }
-                $s .= $p[0]. ";$status\n";
+                else
+                {
+                    $status=$p[1];
+                }
+                $s .= $p[0]. ";$status;".$p[2].";".$p[3]."\n";
             }
             $fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/$tid/players.txt",'wb');
             fwrite ($fh, $s);
@@ -103,7 +107,7 @@ if (isset($_SESSION['email'])) {
     {
         if (isset($_GET['a']) && $_GET['a'] == 'ask_for_enter') {
             $fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/".$_GET['table']."/players.txt",'ab');
-            fwrite($fh,$_SESSION['email'].";0\n");
+            fwrite($fh,$_SESSION['email'].";0;25;25\n");
             header("Location: users.php");
             exit();
         }

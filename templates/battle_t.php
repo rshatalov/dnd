@@ -1,6 +1,6 @@
 <div id="wrapper">
     <div id="container">
-        <div style="position: relative; width: 780px; height: 480px;">
+        <div id='battle-container' style="position: relative; width: 780px; height: 480px;">
             <canvas id="grid" width="775" height="475"
                     style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
 
@@ -9,7 +9,7 @@
                 
             </canvas>
             
-<div class="player" id="p1"></div>
+<!--<div class="player" id="p1"></div>-->
 
         </div>
         <div class="button">None</div>

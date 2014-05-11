@@ -11,9 +11,11 @@ var clickY = new Array();
 var clickDrag = new Array();
 var clickColor = new Array();
 
-var playerColors = new Array("#ff0000","00ff00","#0000ff");
+var playerColors = new Array("#ff0000", "00ff00", "#0000ff");
 
 var draggedPlayer = "";
+var players = new Array();
+
 
 window.onload = function()
 {
@@ -26,9 +28,33 @@ window.onload = function()
 
 
 
-    $.get("/tables/"+table+"/players.txt",function (data)
+    $.get("/tables/" + table + "/players.txt", function(data)
     {
-        console.log(data);
+
+        var pf = data;
+        pf = pf.split('\n');
+        for (var i = 0; i < pf.length; i++)
+        {
+            var t = pf[i].split(';');
+            if (t[1] != null) {
+                players[i] = new Array(t[0],t[1],t[2],t[3],playerColors[i]);
+            }
+        }
+        //console.log(players);
+        //console.log (players['b']);
+      for (var i =0; i<players.length;i++)
+      {
+          if (players[i][1]=='1')
+          {
+              var p = document.createElement("div");
+              p.setAttribute('class','player');
+              p.setAttribute('id',players[i][0]);
+              p.style.backgroundColor= players[i][4];
+              $_("battle-container").appendChild(p);
+          }
+      }
+      registerEventsforPlayers();
+      //console.log(players);
     });
 
 }

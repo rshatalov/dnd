@@ -64,6 +64,37 @@ window.onload = function()
       //console.log(players);
     });
 
+$.get('/tables/'+ table + '/monsters.txt',function(data)
+{
+  var m = data.split("\n");
+  for (var i=0; i<m.length; i++)
+  {
+      if(m[i].length<3)
+      {
+          continue;
+      }
+      var t = m[i].split(';');
+      monsters[i]=new Array();
+      monsters[i][0]=t[0];
+      monsters[i][1]=t[1];
+      monsters[i][2]=t[2];
+      monsters[i][3]=t[3];
+       var p = document.createElement("div");
+              p.setAttribute('class','monster');
+              p.setAttribute('id',monsters[i][0]);
+             p.innerHTML=monsters[i][1];
+              p.style.top=monsters[i][3]-12+'px';
+              p.style.left=monsters[i][2]-12+'px';
+              $_("battle-container").appendChild(p);
+              
+              p = document.createElement("div");
+             
+            
+              p.innerHTML =monsters[i][0];
+              $_("users-list").appendChild(p);
+  }
+  registerEventsforMonsters();
+});
 }
 
 

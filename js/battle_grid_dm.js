@@ -130,12 +130,12 @@ function registerEventsforPlayers()
             {
                 if (draggedPlayer != "")
                 {
-                    var x=e.x;
-                    var y =e.y;
-                    var p=e.target.id;
-                    $.get('/ajax/changePlayerPosition.php?player='+p+'&x='+x+'&y='+y+'&table='+table,function (data)
+                    var x = e.x;
+                    var y = e.y;
+                    var p = e.target.id;
+                    $.get('/ajax/changePlayerPosition.php?player=' + p + '&x=' + x + '&y=' + y + '&table=' + table, function(data)
                     {
-                      console.log('!!!');  
+                        console.log('!!!');
                     });
                     draggedPlayer = "";
                 }
@@ -178,3 +178,42 @@ function registerEventsforPlayers()
      // console.log(e);
      //}, false);
      */}
+
+function registerEventsforMonsters()
+{
+ for (var i = 0; i < monsters.length; i++)
+    {
+        var p = $_(monsters[i][0]);
+
+        if (p)
+        {
+            p.addEventListener('mousedown', function(e)
+            {
+                draggedPlayer = e.target;
+            }, false);
+            p.addEventListener('mousemove', function(e)
+            {
+                if (draggedPlayer != "")
+                {
+                    draggedPlayer.style.top = e.y - 12 +px;
+                    draggedPlayer.style.left = e.x - 12 +px;
+                }
+            }, false);
+            p.addEventListener('mouseup', function(e)
+            {
+                if (draggedPlayer != "")
+                {
+                    var x = e.x;
+                    var y = e.y;
+                    var p = e.target.id;
+                    $.get('/ajax/change_monster_position.php?monster=' + p + '&x=' + x + '&y=' + y + '&table=' + table, function(data)
+                    {
+                        console.log('!!!');
+                    });
+                    draggedPlayer = "";
+                }
+            }, false);
+        }
+    }
+
+}

@@ -27,6 +27,19 @@
     border: 1px solid black;
 }
 
+
+.monster {
+    background-color: black;
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    border: 1px solid black;
+    color: white;
+}
+
 #players {
    position: absolute;
    width: 775px;

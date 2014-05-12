@@ -87,3 +87,8 @@ function registerEventsforPlayers()
 {
     getPlayer();
 }
+
+function registerEventsforMonsters()
+{
+    
+}

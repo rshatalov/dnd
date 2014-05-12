@@ -28,26 +28,49 @@ function loadBattleFromServer(table)
         window.setInterval(refreshBattleOnServer, 1000);
 
         $_('battle-grid').addEventListener('mousedown', function(e) {
-            console.log(e);
-            e = e || window.event;
-            //var mouseX = e.pageX - this.offsetLeft;
-            var mouseY = e.offsetY || e.pageY - this.offsetTop;
-            var mouseX = e.offsetX || e.pageX - this.offsetLeft;
-            //console.log(e.pageX);
+            if (draggedPlayer == "")
+            {
+                e = e || window.event;
+                var mouseY = e.offsetY || e.pageY - this.offsetTop;
+                var mouseX = e.offsetX || e.pageX - this.offsetLeft;
 
-            paint = true;
-            addClick(mouseX, mouseY, false);
-            redraw();
-            //battleGridIsChanged = true;
-        }, false);
-        $_('battle-grid').addEventListener('mousemove', function(e) {
-            e = e || window.event;
-
-            if (paint) {
-                addClick(e.offsetX, e.offsetY, true);
+                paint = true;
+                addClick(mouseX, mouseY, false);
                 redraw();
-                //battleGridIsChanged = true;
             }
+
+        }, false);
+        $_('battle-grid').addEventListener('mousemove', function(e)
+        {
+            e = e || window.event;
+            if (draggedPlayer == "")
+            {
+
+                if (paint) {
+                    addClick(e.offsetX, e.offsetY, true);
+                    redraw();
+                    //battleGridIsChanged = true;
+                }
+            }
+            else
+            {
+                if (e.offsetX)
+                {
+                    draggedPlayer.style.top = (e.offsetY) - 12 + 'px';
+                    draggedPlayer.style.left = (e.offsetX) - 12 + 'px';
+                    console.log("!!");
+                }
+                else
+                {
+                    draggedPlayer.style.top = (e.pageY - this.offsetTop) - 12 + 'px';
+                    draggedPlayer.style.left = (e.pageX - this.offsetLeft) - 12 + 'px';
+                    //console.log("!!");
+                }
+                //console.log("!!");
+                //console.log(draggedPlayer);
+            }
+            
+            //console.log(e);
         }, false);
 
         $_('battle-grid').addEventListener('mouseup', function(e) {
@@ -63,16 +86,17 @@ function loadBattleFromServer(table)
         $_('pencil').onclick = function() {
             curColor = colorBlack;
         }
-         $_('clear-all').onclick = function() {
-          
-           $.get("/ajax/clear_battle_grid.php?table="+table,function(data){
-               clickX = new Array();
-           clickY = new Array();
-           clickDrag = new Array();
-           clickColor = new Array(); 
-           });
+        $_('clear-all').onclick = function() {
+
+            $.get("/ajax/clear_battle_grid.php?table=" + table, function(data) {
+                clickX = new Array();
+                clickY = new Array();
+                clickDrag = new Array();
+                clickColor = new Array();
+                redraw();
+            });
         }
-        
+
 
 
     }); // load battle grid
@@ -126,18 +150,23 @@ function registerEventsforPlayers()
         {
             p.addEventListener('mousedown', function(e)
             {
+                e.stopPropagation();
                 draggedPlayer = e.target;
+                console.log(e);
             }, false);
             p.addEventListener('mousemove', function(e)
             {
+                e.stopPropagation();
                 if (draggedPlayer != "")
                 {
-                    draggedPlayer.style.top = e.y - 12+'px';
-                    draggedPlayer.style.left = e.x - 12+'px';
+                    //draggedPlayer.style.top = e.y - 12 + 'px';
+                    //draggedPlayer.style.left = e.x - 12 + 'px';
+                    
                 }
             }, false);
             p.addEventListener('mouseup', function(e)
             {
+                e.stopPropagation();
                 if (draggedPlayer != "")
                 {
                     var x = e.x;
@@ -152,46 +181,11 @@ function registerEventsforPlayers()
             }, false);
         }
     }
-
-    /*
-     document.getElementsByClassName('player').addEventListener('mousedown', function(e)
-     {
-     //if (e.target.className == 'player')
-     //{
-     console.log('!!!');
-     draggedPlayer = e.target;
-     //$_('players').style.backgroundColor = 'rgba(0,0,0,0.1)';
-     //
-     
-     }, false);
-     /*
-     $_('p1').addEventListener('mousemove', function(e)
-     {
-     if (draggedPlayer != "")
-     {
-     draggedPlayer.style.top = e.y - 12;
-     draggedPlayer.style.left = e.x - 12;
-     }
-     }, false);
-     $_('p1').addEventListener('mouseup', function(e)
-     {
-     if (draggedPlayer != "")
-     {
-     //$_('players').style.backgroundColor = 'transparent';
-     //draggedPlayer.top = parseInt(e.y / 25) *25 + 'px';
-     draggedPlayer = "";
-     }
-     }, false);
-     //$_('players').addEventListener('mouseout', function(e)
-     //{
-     //draggedPlayer = "";
-     // console.log(e);
-     //}, false);
-     */}
+}
 
 function registerEventsforMonsters()
 {
- for (var i = 0; i < monsters.length; i++)
+    for (var i = 0; i < monsters.length; i++)
     {
         var p = $_(monsters[i][0]);
 
@@ -205,8 +199,8 @@ function registerEventsforMonsters()
             {
                 if (draggedPlayer != "")
                 {
-                    draggedPlayer.style.top = e.y - 12 +'px';
-                    draggedPlayer.style.left = e.x - 12 +'px';
+                    draggedPlayer.style.top = e.y - 12 + 'px';
+                    draggedPlayer.style.left = e.x - 12 + 'px';
                 }
             }, false);
             p.addEventListener('mouseup', function(e)

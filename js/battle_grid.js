@@ -93,6 +93,7 @@ $.get('/tables/'+ table + '/monsters.txt',function(data)
               p.innerHTML =monsters[i][0];
               $_("users-list").appendChild(p);
   }
+  
   registerEventsforMonsters();
 });
 }

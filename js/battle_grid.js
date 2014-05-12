@@ -82,7 +82,7 @@ $.get('/tables/'+ table + '/monsters.txt',function(data)
        var p = document.createElement("div");
               p.setAttribute('class','monster');
               p.setAttribute('id',monsters[i][0]);
-             p.innerHTML=monsters[i][1];
+             //p.innerHTML=monsters[i][1];
               p.style.top=monsters[i][3]-12+'px';
               p.style.left=monsters[i][2]-12+'px';
               $_("battle-container").appendChild(p);

@@ -15,6 +15,7 @@
         <div class="button">None</div>
         <div id="pencil" class="button">Pencil</div>
         <div id="eraser" class="button">Eraser</div>
+         <div id="clear-all" class="button">Clear</div>
 
         <div id="ads"></div>
         <div id="chat"></div>

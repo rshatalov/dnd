@@ -63,6 +63,16 @@ function loadBattleFromServer(table)
         $_('pencil').onclick = function() {
             curColor = colorBlack;
         }
+         $_('clear-all').onclick = function() {
+          
+           $.get("/ajax/clear_battle_grid.php?table="+table,function(data){
+               clickX = new Array();
+           clickY = new Array();
+           clickDrag = new Array();
+           clickColor = new Array(); 
+           });
+        }
+        
 
 
     }); // load battle grid
@@ -122,8 +132,8 @@ function registerEventsforPlayers()
             {
                 if (draggedPlayer != "")
                 {
-                    draggedPlayer.style.top = e.y - 12;
-                    draggedPlayer.style.left = e.x - 12;
+                    draggedPlayer.style.top = e.y - 12+'px';
+                    draggedPlayer.style.left = e.x - 12+'px';
                 }
             }, false);
             p.addEventListener('mouseup', function(e)
@@ -195,8 +205,8 @@ function registerEventsforMonsters()
             {
                 if (draggedPlayer != "")
                 {
-                    draggedPlayer.style.top = e.y - 12 +px;
-                    draggedPlayer.style.left = e.x - 12 +px;
+                    draggedPlayer.style.top = e.y - 12 +'px';
+                    draggedPlayer.style.left = e.x - 12 +'px';
                 }
             }, false);
             p.addEventListener('mouseup', function(e)

@@ -19,6 +19,6 @@
         <div id="ads"></div>
         <div id="chat"></div>
     </div><!--container-->
-    <!--<div id="scroll"></div>
-    <div id="users-list"></div>-->
+    <!--<div id="scroll"></div>-->
+    <div id="users-list"></div>
 </div> <!--wrapper-->

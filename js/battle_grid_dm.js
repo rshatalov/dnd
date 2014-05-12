@@ -130,8 +130,13 @@ function registerEventsforPlayers()
             {
                 if (draggedPlayer != "")
                 {
-                    //$_('players').style.backgroundColor = 'transparent';
-                    //draggedPlayer.top = parseInt(e.y / 25) *25 + 'px';
+                    var x=e.x;
+                    var y =e.y;
+                    var p=e.target.id;
+                    $.get('/ajax/changePlayerPosition.php?player='+p+'&x='+x+'&y='+y+'&table='+table,function (data)
+                    {
+                      console.log('!!!');  
+                    });
                     draggedPlayer = "";
                 }
             }, false);

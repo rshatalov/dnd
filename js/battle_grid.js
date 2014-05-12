@@ -40,8 +40,7 @@ window.onload = function()
                 players[i] = new Array(t[0],t[1],t[2],t[3],playerColors[i]);
             }
         }
-        //console.log(players);
-        //console.log (players['b']);
+        
       for (var i =0; i<players.length;i++)
       {
           if (players[i][1]=='1')
@@ -50,7 +49,18 @@ window.onload = function()
               p.setAttribute('class','player');
               p.setAttribute('id',players[i][0]);
               p.style.backgroundColor= players[i][4];
+              p.style.top=players[i][3]-12+'px';
+              p.style.left=players[i][2]-12+'px';
               $_("battle-container").appendChild(p);
+              
+              p = document.createElement("div");
+             // p.setAttribute('class','player');
+              p.setAttribute('id',players[i][0]+"-in-list");
+              p.style.color= players[i][4];
+              //p.style.top=players[i][3]-12+'px';
+              //p.style.left=players[i][2]-12+'px';
+              p.innerHTML =players[i][0];
+              $_("users-list").appendChild(p);
           }
       }
       registerEventsforPlayers();

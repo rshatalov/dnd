@@ -9,7 +9,7 @@
                 
             </canvas>
             
-<!--<div class="player" id="p1"></div>-->
+
 
         </div>
         <div class="button">None</div>

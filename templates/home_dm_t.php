@@ -18,4 +18,12 @@
     </table>
     
 </div> <!-- tables-content -->
-<div class='tab-content' id="monsters-tab"></div>
+<div class='tab-content' id="monsters-content">
+    <form method="post" action="users.php">
+        <input type="text" placeholder="name" name="name"></br>
+        <input type="text" placeholder="size" name="size"></br>
+        <select name="table"><option>536dcddf3d05f</option></select>
+         <input type="submit">
+         <input type="hidden" name="a" value="create_monster">
+    </form>
+</div>

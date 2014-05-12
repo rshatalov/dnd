@@ -15,7 +15,7 @@ var playerColors = new Array("#ff0000", "00ff00", "#0000ff");
 
 var draggedPlayer = "";
 var players = new Array();
-
+var monsters = new Array();
 
 window.onload = function()
 {
@@ -54,11 +54,8 @@ window.onload = function()
               $_("battle-container").appendChild(p);
               
               p = document.createElement("div");
-             // p.setAttribute('class','player');
               p.setAttribute('id',players[i][0]+"-in-list");
               p.style.color= players[i][4];
-              //p.style.top=players[i][3]-12+'px';
-              //p.style.left=players[i][2]-12+'px';
               p.innerHTML =players[i][0];
               $_("users-list").appendChild(p);
           }

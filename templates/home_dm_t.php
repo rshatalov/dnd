@@ -22,7 +22,9 @@
     <form method="post" action="users.php">
         <input type="text" placeholder="name" name="name"></br>
         <input type="text" placeholder="size" name="size"></br>
-        <select name="table"><option>536dcddf3d05f</option></select>
+        <select name="table">
+           <?php echo $tables_list; ?> 
+            </select>
          <input type="submit">
          <input type="hidden" name="a" value="create_monster">
     </form>

@@ -10,8 +10,15 @@
     <ul>
         <li><a href='/'>Home</a></li>
         <li>How it works</li>
-        <li><a href='/users.php?a=login'>Login</a>/<a href='/users.php?a=register'>Register</a></li>
+        <li>
+            <?php if(isset($_SESSION['email'])): ?>
+            <a href='/users.php?a=tables'>User's page</a>
+            <?php else: ?>
+            <a href='/users.php?a=login'>Login</a>/<a href='/users.php?a=register'>Register</a>
+            <?php endif;?>
+        </li>
         <li>Contact us</li>
+        <li><a href='/admin.php'>Admin</a></li>
     </ul>
 </div>
 

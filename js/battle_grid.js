@@ -85,6 +85,10 @@ $.get('/tables/'+ table + '/monsters.txt',function(data)
              //p.innerHTML=monsters[i][1];
               p.style.top=monsters[i][3]-12+'px';
               p.style.left=monsters[i][2]-12+'px';
+              p.innerHTML = monsters[i][1];
+              p.style.width = monsters[i][1]*10+'px';
+              p.style.height = monsters[i][1]*10+'px';
+              p.style.borderRadius = monsters[i][1]*5+'px';
               $_("battle-container").appendChild(p);
               
               p = document.createElement("div");

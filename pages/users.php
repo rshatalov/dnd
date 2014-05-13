@@ -8,7 +8,7 @@ $js .= "<script src='js/site.js'></script>";
 if (isset($_SESSION['email'])) {
     if (isset($_GET['a']) && $_GET['a'] == 'logout') {
         session_destroy();
-        header("Location: users.php");
+        header("Location: users.php?tab=login");
         exit();
     }
     if (isset($_GET['a']) && $_GET['a'] == 'remove') {
@@ -72,9 +72,10 @@ if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
         $query = "SELECT * FROM `tables` WHERE dm='$email';";
 
-
+$tables_list="";
         foreach ($db->query($query) as $r) {
             $tid = $r['tid'];
+            $tables_list.= "<option>$tid</option>";
             $players = file($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", FILE_IGNORE_NEW_LINES);
             $s = "";
             $candidates = "";
@@ -163,7 +164,7 @@ if (isset($_SESSION['email'])) {
         $_SESSION['email'] = $email;
         $_SESSION['type'] = $st['type'];
     }
-    header("Location: users.php");
+    header("Location: users.php?tab=tables");
     exit();
 } else {
     $inner_template = "users_t.php";

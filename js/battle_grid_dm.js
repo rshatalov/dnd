@@ -62,8 +62,8 @@ function loadBattleFromServer(table)
                 }
                 else
                 {
-                    draggedPlayer.style.top = (e.pageY - this.offsetTop) - 12 + 'px';
-                    draggedPlayer.style.left = (e.pageX - this.offsetLeft) - 12 + 'px';
+                    draggedPlayer.style.top = (e.pageY - this.offsetTop) - draggedPlayer.offsetHeight/2 + 'px';
+                    draggedPlayer.style.left = (e.pageX - this.offsetLeft) - draggedPlayer.offsetWidht/2 + 'px';
                     //console.log("!!");
                 }
                 //console.log("!!");
@@ -199,8 +199,8 @@ function registerEventsforMonsters()
             {
                 if (draggedPlayer != "")
                 {
-                    draggedPlayer.style.top = e.y - 12 + 'px';
-                    draggedPlayer.style.left = e.x - 12 + 'px';
+                    draggedPlayer.style.top = e.y - draggedPlayer.offsetHeight/2 + 'px';
+                    draggedPlayer.style.left = e.x - draggedPlayer.offsetWidth/2 + 'px';
                 }
             }, false);
             p.addEventListener('mouseup', function(e)

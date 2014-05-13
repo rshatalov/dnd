@@ -6,17 +6,18 @@
 
             <canvas id="battle-grid" width="775" height="475"
                     style="position: relative; z-index: 1;">
-                
-            </canvas>
-            
 
+            </canvas>
+            <?php if ($_SESSION['type'] == 'dm'): ?>
+                <div id="pencil" class="button-on-grid">P</div>
+                <div id="eraser" class="button-on-grid">E</div> 
+            <?php endif; ?>
 
         </div>
-        <div class="button">None</div>
-        <div id="pencil" class="button">Pencil</div>
-        <div id="eraser" class="button">Eraser</div>
-         <div id="clear-all" class="button">Clear</div>
 
+        <?php if ($_SESSION['type'] == 'dm'): ?>
+            <div id="clear-all" class="button">Clear</div>
+        <?php endif; ?>
         <div id="ads"></div>
         <div id="chat"></div>
     </div><!--container-->

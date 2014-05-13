@@ -9,7 +9,6 @@ var unitType = "";
 
 function loadBattleFromServer(table)
 {
-
     $.get("ajax/dm_load_battle_grid.php?table=" + table, function(data)
     {
 
@@ -82,7 +81,6 @@ function loadBattleFromServer(table)
 
 }
 
-
 function addClick(x, y, dragging)
 {
     clickX.push(x);
@@ -116,25 +114,22 @@ function refreshBattleOnServer()
         });
     }
     //battleGridIsChanged = false;
-
 }
 function registerEventsforPlayers()
 {
-
     for (var i = 0; i < players.length; i++)
     {
-        var p = $_(players[i][0]);
-        if (p)
-            p.addEventListener('mousedown', moveUnitStart, false);
+        var u = $_(players[i][0]);
+        if (u)
+            u.addEventListener('mousedown', moveUnitStart, false);
     }
 }
-
 function registerEventsforMonsters()
 {
     for (var i = 0; i < monsters.length; i++)
     {
-        var p = $_(monsters[i][0]);
-        if (p) p.addEventListener('mousedown', moveUnitStart, false);
+        var u = $_(monsters[i][0]);
+        if (u) u.addEventListener('mousedown', moveUnitStart, false);
     }
 }
 
@@ -144,7 +139,6 @@ function moveUnitStart(e)
     e.preventDefault();
     e.stopPropagation();
     unitType = e.target.className;
-    console.log(unitType);
     $_('layer-for-moving').style.display = 'block';
     draggedPlayer = e.target;
 }
@@ -168,8 +162,8 @@ function moveUnitFinish(e)
         var y = e.offsetY;
         draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
         draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
-        var p = e.target.id;
-        $.get('/ajax/change_unit_position.php?'+unitType+'=' + p + '&x=' + x + '&y=' + y + '&table=' + table,function(){});
+        var u = draggedPlayer.getAttribute('id');
+        $.get('/ajax/change_unit_position.php?unit_type='+unitType+'&unit=' + u + '&x=' + x + '&y=' + y + '&table=' + table,function(data){console.log(data);});
         $_('layer-for-moving').style.display = 'none';
         draggedPlayer = "";
     }
@@ -186,8 +180,6 @@ function drawLayerForMoving(x,y)
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
      context.beginPath();
       context.arc(x, y, 10, 0, 2 * Math.PI, false);
-      //context.fillStyle = 'green';
-      //context.fill();
       context.lineWidth = 1;
       context.strokeStyle = '#ffffff';
       context.stroke();

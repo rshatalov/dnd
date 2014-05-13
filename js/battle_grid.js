@@ -25,7 +25,9 @@ window.onload = function()
     drawGrid(c);
     loadBattleFromServer(table);
 
-
+    $_('layer-for-moving').addEventListener('mousemove',moveUnit,false);
+    $_('layer-for-moving').addEventListener('mouseup',moveUnitFinish,false);
+    $_('layer-for-moving').addEventListener('mouseout',moveUnitCancel,false);
 
 
     $.get("/tables/" + table + "/players.txt", function(data)
@@ -151,3 +153,4 @@ function drawGrid(c)
     c.lineWidth = 1;
     c.stroke();
 }
+

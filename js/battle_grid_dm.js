@@ -4,6 +4,7 @@ var battleGridIsChanged = false;
 var nextClickIndex = 0;
 var lastSavedClick = 0;
 var clickSaving = false;
+var unitType = "";
 
 
 function loadBattleFromServer(table)
@@ -38,7 +39,6 @@ function loadBattleFromServer(table)
                 addClick(mouseX, mouseY, false);
                 redraw();
             }
-
         }, false);
         $_('battle-grid').addEventListener('mousemove', function(e)
         {
@@ -52,25 +52,6 @@ function loadBattleFromServer(table)
                     //battleGridIsChanged = true;
                 }
             }
-            else
-            {
-                if (e.offsetX)
-                {
-                    draggedPlayer.style.top = (e.offsetY) - 12 + 'px';
-                    draggedPlayer.style.left = (e.offsetX) - 12 + 'px';
-                    console.log("!!");
-                }
-                else
-                {
-                    draggedPlayer.style.top = (e.pageY - this.offsetTop) - draggedPlayer.offsetHeight/2 + 'px';
-                    draggedPlayer.style.left = (e.pageX - this.offsetLeft) - draggedPlayer.offsetWidht/2 + 'px';
-                    //console.log("!!");
-                }
-                //console.log("!!");
-                //console.log(draggedPlayer);
-            }
-            
-            //console.log(e);
         }, false);
 
         $_('battle-grid').addEventListener('mouseup', function(e) {
@@ -80,7 +61,8 @@ function loadBattleFromServer(table)
             paint = false;
         }, false);
 
-        $_('eraser').onclick = function() {
+        $_('eraser').onclick = function(e) {
+            e.preventDefault();
             curColor = colorWhite;
         }
         $_('pencil').onclick = function() {
@@ -96,9 +78,6 @@ function loadBattleFromServer(table)
                 redraw();
             });
         }
-
-
-
     }); // load battle grid
 
 }
@@ -145,41 +124,8 @@ function registerEventsforPlayers()
     for (var i = 0; i < players.length; i++)
     {
         var p = $_(players[i][0]);
-
         if (p)
-        {
-            p.addEventListener('mousedown', function(e)
-            {
-                e.stopPropagation();
-                draggedPlayer = e.target;
-                console.log(e);
-            }, false);
-            p.addEventListener('mousemove', function(e)
-            {
-                e.stopPropagation();
-                if (draggedPlayer != "")
-                {
-                    //draggedPlayer.style.top = e.y - 12 + 'px';
-                    //draggedPlayer.style.left = e.x - 12 + 'px';
-                    
-                }
-            }, false);
-            p.addEventListener('mouseup', function(e)
-            {
-                e.stopPropagation();
-                if (draggedPlayer != "")
-                {
-                    var x = e.x;
-                    var y = e.y;
-                    var p = e.target.id;
-                    $.get('/ajax/changePlayerPosition.php?player=' + p + '&x=' + x + '&y=' + y + '&table=' + table, function(data)
-                    {
-                        console.log('!!!');
-                    });
-                    draggedPlayer = "";
-                }
-            }, false);
-        }
+            p.addEventListener('mousedown', moveUnitStart, false);
     }
 }
 
@@ -188,36 +134,61 @@ function registerEventsforMonsters()
     for (var i = 0; i < monsters.length; i++)
     {
         var p = $_(monsters[i][0]);
-
-        if (p)
-        {
-            p.addEventListener('mousedown', function(e)
-            {
-                draggedPlayer = e.target;
-            }, false);
-            p.addEventListener('mousemove', function(e)
-            {
-                if (draggedPlayer != "")
-                {
-                    draggedPlayer.style.top = e.y - draggedPlayer.offsetHeight/2 + 'px';
-                    draggedPlayer.style.left = e.x - draggedPlayer.offsetWidth/2 + 'px';
-                }
-            }, false);
-            p.addEventListener('mouseup', function(e)
-            {
-                if (draggedPlayer != "")
-                {
-                    var x = e.x;
-                    var y = e.y;
-                    var p = e.target.id;
-                    $.get('/ajax/change_monster_position.php?monster=' + p + '&x=' + x + '&y=' + y + '&table=' + table, function(data)
-                    {
-                        console.log('!!!');
-                    });
-                    draggedPlayer = "";
-                }
-            }, false);
-        }
+        if (p) p.addEventListener('mousedown', moveUnitStart, false);
     }
+}
 
+function moveUnitStart(e)
+{
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+    unitType = e.target.className;
+    console.log(unitType);
+    $_('layer-for-moving').style.display = 'block';
+    draggedPlayer = e.target;
+}
+function moveUnit(e)
+{
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+    drawLayerForMoving(e.offsetX,e.offsetY);
+}
+
+function moveUnitFinish(e)
+{
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+    if (draggedPlayer != "")
+    {
+        var ml = window.getComputedStyle($_('wrapper'), null).getPropertyValue("margin-left");
+        var x = e.offsetX;
+        var y = e.offsetY;
+        draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
+        draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
+        var p = e.target.id;
+        $.get('/ajax/change_unit_position.php?'+unitType+'=' + p + '&x=' + x + '&y=' + y + '&table=' + table,function(){});
+        $_('layer-for-moving').style.display = 'none';
+        draggedPlayer = "";
+    }
+}
+
+function moveUnitCancel(e)
+{
+ $_('layer-for-moving').style.display = 'none';   
+}
+
+function drawLayerForMoving(x,y)
+{
+    var context = $_('layer-for-moving').getContext('2d');
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+     context.beginPath();
+      context.arc(x, y, 10, 0, 2 * Math.PI, false);
+      //context.fillStyle = 'green';
+      //context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = '#ffffff';
+      context.stroke();
 }

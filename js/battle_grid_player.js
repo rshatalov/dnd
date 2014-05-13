@@ -1,4 +1,4 @@
-var curPlayer="";
+var curPlayer = "";
 
 function loadBattleFromServer(table)
 {
@@ -49,46 +49,80 @@ function refreshBattleinBrowser()
 
 function getPlayer()
 {
-   $.get("/ajax/get_player.php",function(data){
-       curPlayer = data;
-       console.log(curPlayer);
-       $_(curPlayer+"-in-list").innerHTML+=" - you";
-       var p=$_(curPlayer);
-        p.addEventListener('mousedown', function(e)
-            {
-                draggedPlayer = e.target;
-            }, false);
-            p.addEventListener('mousemove', function(e)
-            {
-                if (draggedPlayer != "")
-                {
-                    draggedPlayer.style.top = e.y - 12;
-                    draggedPlayer.style.left = e.x - 12;
-                }
-            }, false);
-            p.addEventListener('mouseup', function(e)
-            {
-                if (draggedPlayer != "")
-                {
-                    var x=e.x;
-                    var y =e.y;
-                    var p=e.target.id;
-                    $.get('/ajax/changePlayerPosition.php?player='+p+'&x='+x+'&y='+y+'&table='+table,function (data)
-                    {
-                      console.log('!!!');  
-                    });
-                    draggedPlayer = "";
-                }
-            }, false);
-   }) 
+    $.get("/ajax/get_player.php", function(data) {
+        curPlayer = data;
+        console.log(curPlayer);
+        $_(curPlayer + "-in-list").innerHTML += " - you";
+        var p = $_(curPlayer);
+        p.addEventListener('mousedown', moveUnitStart, false);
+       
+       
+    })
 }
 
 function registerEventsforPlayers()
 {
     getPlayer();
+   
+    window.setInterval(refreshPlayersinBrowser, 2000);
 }
 
 function registerEventsforMonsters()
 {
-    
+    window.setInterval(refreshMonstersinBrowser, 2000);
+}
+
+function refreshMonstersinBrowser()
+{
+
+    $.get('/tables/' + table + '/monsters.txt', function(data)
+    {
+     refreshUnitsinBrowser(monsters,data);  
+    });
+}
+
+function refreshPlayersinBrowser()
+{
+    $.get('/tables/' + table + '/players.txt', function(data)
+    {
+        units=players;
+      var m = data.split("\n");
+        for (var i = 0; i < m.length; i++)
+        {
+            if (m[i].length < 3)
+            {
+                continue;
+            }
+            var t = m[i].split(';');
+
+            units[i][2] = t[2];
+            units[i][3] = t[3];
+            var unit = $_(units[i][0]);
+            unit.style.top = units[i][3] - unit.offsetHeight/2 + 'px';
+            unit.style.left = units[i][2] - unit.offsetWidth/2 + 'px';
+
+        } 
+    });
+}
+
+function refreshUnitsinBrowser(units,data)
+{
+    var m = data.split("\n");
+        for (var i = 0; i < m.length; i++)
+        {
+            if (m[i].length < 3)
+            {
+                continue;
+            }
+            var t = m[i].split(';');
+
+            units[i][2] = t[2];
+            units[i][3] = t[3];
+            var unit = $_(units[i][0]);
+            unit.style.width = units[i][1] * 10 + 'px';
+            unit.style.height = units[i][1] * 10 + 'px';
+            unit.style.top = units[i][3] - unit.offsetHeight/2 + 'px';
+            unit.style.left = units[i][2] - unit.offsetWidth/2 + 'px';
+
+        } 
 }

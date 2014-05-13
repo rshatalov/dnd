@@ -51,9 +51,10 @@ window.onload = function()
               p.setAttribute('class','player');
               p.setAttribute('id',players[i][0]);
               p.style.backgroundColor= players[i][4];
-              p.style.top=players[i][3]-12+'px';
-              p.style.left=players[i][2]-12+'px';
-              $_("battle-container").appendChild(p);
+               $_("battle-container").appendChild(p);
+              p.style.top=players[i][3]-p.offsetHeight/2+'px';
+              p.style.left=players[i][2]-p.offsetWidth/2+'px';
+             
               
               p = document.createElement("div");
               p.setAttribute('id',players[i][0]+"-in-list");
@@ -84,19 +85,18 @@ $.get('/tables/'+ table + '/monsters.txt',function(data)
        var p = document.createElement("div");
               p.setAttribute('class','monster');
               p.setAttribute('id',monsters[i][0]);
-             //p.innerHTML=monsters[i][1];
-              p.style.top=monsters[i][3]-12+'px';
-              p.style.left=monsters[i][2]-12+'px';
-              p.innerHTML = monsters[i][1];
-              p.style.width = monsters[i][1]*10+'px';
+               p.style.width = monsters[i][1]*10+'px';
               p.style.height = monsters[i][1]*10+'px';
+                $_("battle-container").appendChild(p);
+              p.style.top= monsters[i][3]-p.offsetHeight/2+'px';
+              p.style.left= monsters[i][2]-p.offsetWidth/2+'px';
+              p.innerHTML = monsters[i][1];
+             
               p.style.borderRadius = monsters[i][1]*5+'px';
-              $_("battle-container").appendChild(p);
+            
               
               p = document.createElement("div");
-             
-            
-              p.innerHTML =monsters[i][0];
+             p.innerHTML = monsters[i][0];
               $_("users-list").appendChild(p);
   }
   
@@ -153,4 +153,54 @@ function drawGrid(c)
     c.lineWidth = 1;
     c.stroke();
 }
+function moveUnitStart(e)
+{
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+    unitType = e.target.className;
+    $_('layer-for-moving').style.display = 'block';
+    draggedPlayer = e.target;
+}
+function moveUnit(e)
+{
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+    drawLayerForMoving(e.offsetX,e.offsetY);
+}
 
+function moveUnitFinish(e)
+{
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+    if (draggedPlayer != "")
+    {
+        var ml = window.getComputedStyle($_('wrapper'), null).getPropertyValue("margin-left");
+        var x = e.offsetX;
+        var y = e.offsetY;
+        draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
+        draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
+        var u = draggedPlayer.getAttribute('id');
+        $.get('/ajax/change_unit_position.php?unit_type='+unitType+'&unit=' + u + '&x=' + x + '&y=' + y + '&table=' + table,function(data){console.log(data);});
+        $_('layer-for-moving').style.display = 'none';
+        draggedPlayer = "";
+    }
+}
+
+function moveUnitCancel(e)
+{
+ $_('layer-for-moving').style.display = 'none';   
+}
+
+function drawLayerForMoving(x,y)
+{
+    var context = $_('layer-for-moving').getContext('2d');
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+     context.beginPath();
+      context.arc(x, y, 10, 0, 2 * Math.PI, false);
+      context.lineWidth = 1;
+      context.strokeStyle = '#ffffff';
+      context.stroke();
+}

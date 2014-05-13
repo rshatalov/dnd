@@ -46,7 +46,9 @@ function loadBattleFromServer(table)
             {
 
                 if (paint) {
-                    addClick(e.offsetX, e.offsetY, true);
+                     var mouseY = e.offsetY || e.pageY - this.offsetTop;
+                var mouseX = e.offsetX || e.pageX - this.offsetLeft;
+                    addClick(mouseX,mouseY, true);
                     redraw();
                     //battleGridIsChanged = true;
                 }
@@ -123,6 +125,7 @@ function registerEventsforPlayers()
         if (u)
             u.addEventListener('mousedown', moveUnitStart, false);
     }
+    window.setInterval(refreshPlayersinBrowser,2000);
 }
 function registerEventsforMonsters()
 {
@@ -131,56 +134,53 @@ function registerEventsforMonsters()
         var u = $_(monsters[i][0]);
         if (u) u.addEventListener('mousedown', moveUnitStart, false);
     }
+      window.setInterval(refreshMonstersinBrowser,2000);
 }
 
-function moveUnitStart(e)
+function refreshPlayersinBrowser()
 {
-    e = e || window.event;
-    e.preventDefault();
-    e.stopPropagation();
-    unitType = e.target.className;
-    $_('layer-for-moving').style.display = 'block';
-    draggedPlayer = e.target;
-}
-function moveUnit(e)
-{
-    e = e || window.event;
-    e.preventDefault();
-    e.stopPropagation();
-    drawLayerForMoving(e.offsetX,e.offsetY);
-}
-
-function moveUnitFinish(e)
-{
-    e = e || window.event;
-    e.preventDefault();
-    e.stopPropagation();
-    if (draggedPlayer != "")
+    $.get('/tables/' + table + '/players.txt', function(data)
     {
-        var ml = window.getComputedStyle($_('wrapper'), null).getPropertyValue("margin-left");
-        var x = e.offsetX;
-        var y = e.offsetY;
-        draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
-        draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
-        var u = draggedPlayer.getAttribute('id');
-        $.get('/ajax/change_unit_position.php?unit_type='+unitType+'&unit=' + u + '&x=' + x + '&y=' + y + '&table=' + table,function(data){console.log(data);});
-        $_('layer-for-moving').style.display = 'none';
-        draggedPlayer = "";
-    }
+        units=players;
+      var m = data.split("\n");
+        for (var i = 0; i < m.length; i++)
+        {
+            if (m[i].length < 3)
+            {
+                continue;
+            }
+            var t = m[i].split(';');
+
+            units[i][2] = t[2];
+            units[i][3] = t[3];
+            var unit = $_(units[i][0]);
+            unit.style.top = units[i][3] - unit.offsetHeight/2 + 'px';
+            unit.style.left = units[i][2] - unit.offsetWidth/2 + 'px';
+
+        } 
+    });
 }
 
-function moveUnitCancel(e)
+function refreshMonstersinBrowser()
 {
- $_('layer-for-moving').style.display = 'none';   
-}
+    $.get('/tables/' + table + '/monsters.txt', function(data)
+    {
+        units=monsters;
+      var m = data.split("\n");
+        for (var i = 0; i < m.length; i++)
+        {
+            if (m[i].length < 3)
+            {
+                continue;
+            }
+            var t = m[i].split(';');
 
-function drawLayerForMoving(x,y)
-{
-    var context = $_('layer-for-moving').getContext('2d');
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-     context.beginPath();
-      context.arc(x, y, 10, 0, 2 * Math.PI, false);
-      context.lineWidth = 1;
-      context.strokeStyle = '#ffffff';
-      context.stroke();
+            units[i][2] = t[2];
+            units[i][3] = t[3];
+            var unit = $_(units[i][0]);
+            unit.style.top = units[i][3] - unit.offsetHeight/2 + 'px';
+            unit.style.left = units[i][2] - unit.offsetWidth/2 + 'px';
+
+        } 
+    });
 }

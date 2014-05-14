@@ -3,35 +3,29 @@
 $outer_template = "site.php";
 $inner_template = "users_t.php";
 $css .= "<link rel='stylesheet' href='/css/site.css'>";
+$css .= "<link rel='stylesheet' href='/css/character.css'>";
 $js .= "<script src='js/site.js'></script>";
 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['uid'])) {
     if (isset($_GET['a']) && $_GET['a'] == 'logout') {
         session_destroy();
-        header("Location: users.php?tab=login");
-        exit();
-    }
-    if (isset($_GET['a']) && $_GET['a'] == 'remove') {
-        $tid = $_GET['table'];
-        rmdir("tables/$tid");
-        $db->exec("DELETE FROM `tables` WHERE tid='$tid'");
-        header("Location: users.php");
+        header("Location: index.php");
         exit();
     }
 
 
     if ($_SESSION['type'] == 'dm') {
         if (isset($_GET['a']) && $_GET['a'] == 'create_table') {
-            $tid = uniqid();
-            $dm = $_SESSION['email'];
-            mkdir("tables/$tid");
-            fopen("tables/$tid/players.txt", 'wb');
-            fopen("tables/$tid/monsters.txt", 'wb');
-            fopen("tables/$tid/battle_grid.txt", 'wb');
-            $r = $db->exec("INSERT INTO `tables` SET dm='$dm', tid='$tid';");
-            header("Location: users.php");
+            dm_create_table($db);
+        }
+        if (isset($_GET['a']) && $_GET['a'] == 'remove_table') {
+            $tid = $_GET['tid'];
+            deleteDirectory("tables/$tid");
+            $db->exec("DELETE FROM `tables` WHERE tid='$tid'");
+            header("Location: users.php?tab=tables");
             exit();
         }
+
         if (isset($_GET['a']) && $_GET['a'] == 'accept_player') {
             $email = $_GET['player'];
             $tid = $_GET['tid'];
@@ -40,27 +34,27 @@ if (isset($_SESSION['email'])) {
             foreach ($players as $player) {
                 $p = preg_split("/;/", $player);
                 $status = 0;
-                if ($p[1] == '0' && $p[0] == $email) {
+                if ($p[3] == '0' && $p[2] == $email) {
                     $status = 1;
                 } else {
-                    $status = $p[1];
+                    $status = $p[3];
                 }
-                $s .= $p[0] . ";$status;" . $p[2] . ";" . $p[3] . "\n";
+                $s .= $p[0].';'.$p[1].';'.$p[2] . ";$status;" . $p[4] . ";" . $p[5] . "\n";
             }
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'wb');
             fwrite($fh, $s);
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/$email.txt", 'wb');
             $s = "25;25";
             fwrite($fh, $s);
-            header("Location: users.php");
+            header("Location: users.php?tab=tables");
             exit();
         }
         if (isset($_POST['a']) && $_POST['a'] == 'create_monster') {
-            if (strlen($_POST['name'])>0 && strlen($_POST['size'])>0) {
-            $s = $_POST['name']. ';'.$_POST['size'].";25;25\n" ;
-            $tid =$_POST['table'];
-          $fh = fopen("tables/$tid/monsters.txt","ab");
-          fwrite($fh, $s);
+            if (strlen($_POST['name']) > 0 && strlen($_POST['size']) > 0) {
+                $s = $_POST['name'] . ';' . $_POST['size'] . ";25;25\n";
+                $tid = $_POST['table'];
+                $fh = fopen("tables/$tid/monsters.txt", "ab");
+                fwrite($fh, $s);
             } else {
                 echo 'fields are not set';
             }
@@ -72,7 +66,7 @@ if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
         $query = "SELECT * FROM `tables` WHERE dm='$email';";
 
-$tables_list="";
+        $tables_list = "";
         foreach ($db->query($query) as $r) {
             $tid = $r['tid'];
             $tables_list.= "<option>$tid</option>";
@@ -82,15 +76,15 @@ $tables_list="";
             $participants = "";
             foreach ($players as $player) {
                 $p = preg_split("/;/", $player);
-                $email = $p[0];
+                $email = $p[2];
                 $status = 0;
-                if ($p[1] == '0') {
-                    $candidates .= $p[0];
+                if ($p[3] == '0') {
+                    $candidates .= $p[2];
                     $candidates .= " <a href='?a=accept_player&player=$email&tid=$tid'>Accept</a> ";
-                    $candidates .= "<a href='?a=decline_player&player=$email''>No</a>";
+                    $candidates .= "<a href='?a=decline_player&player=$email'>No</a>";
                     $candidates .= "<br/>";
-                } else if ($p[1] == '1') {
-                    $participants .= $p[0];
+                } else if ($p[3] == '1') {
+                    $participants .= $p[2];
                     $participants .= "<br/>";
                 }
                 //$s .= $p[0]. ";$status\n";
@@ -102,20 +96,29 @@ $tables_list="";
                     "<a href='battle.php?table={$r['tid']}'>Entra</a></td>" .
                     "<td>Description</td>" . "<td>$participants</td>" .
                     "<td>$candidates</td>" .
-                    "<td><a href='?a=remove&table={$r['tid']}'>Remove</a></td>";
+                    "<td><a href='?a=remove_table&tid={$r['tid']}'>Remove</a></td>";
             $content .= "</tr>";
         }
         $content .= "";
     } else if ($_SESSION['type'] == 'player') {
         if (isset($_GET['a']) && $_GET['a'] == 'ask_for_enter') {
-            
+
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/" . $_GET['table'] . "/players.txt", 'ab');
-            fwrite($fh, $_SESSION['email'] . ";0;25;25\n");
-            header("Location: users.php");
+            fwrite($fh, $_SESSION['type'].';'.$_SESSION['uid'].';'.$_SESSION['email'] . ";0;25;25\n");
+            header("Location: users.php?tab=tables");
             exit();
         }
+        if (isset($_POST['a']) && $_POST['a'] == 'file_upload') {
+            if ($_FILES["file"]["error"] > 0) {
+                echo "Error: " . $_FILES["file"]["error"] . "<br>";
+            } else {
+                $ext = pathinfo($_FILES["file"]['name'], PATHINFO_EXTENSION);
+                 move_uploaded_file($_FILES["file"]["tmp_name"],
+       "images/characters/" . $_SESSION['uid'] .".".$ext );
+            }
+        }
+
         $inner_template = "home_player_t.php";
-        //$email = $_SESSION['email'];
         $query = "SELECT * FROM `tables`;";
         foreach ($db->query($query) as $r) {
             $tid = $r['tid'];
@@ -128,12 +131,12 @@ $tables_list="";
             foreach ($tables as $t) {
                 $user = preg_split("/;/", $t);
 
-                if ($user[0] == $_SESSION['email']) {
+                if ($user[2] == $_SESSION['email']) {
                     $is_part = true;
                 }
             }
             if ($is_part == true) {
-                if ($user[1] == 1) {
+                if ($user[3] == 1) {
                     $content .= "<a href='battle.php?table=$tid'>Entra</a><br/>";
                 } else {
                     $content .= "DM is not added you to this table yet";
@@ -143,30 +146,52 @@ $tables_list="";
             }
             $content .= "<br/>";
         }
+        $ch_info['avatar']="";
+        $image='images/characters/'.$_SESSION['uid'].'.jpg';
+        if(file_exists($image))
+                $ch_info['avatar']=$image;
     }
 } else if (isset($_POST['a'])) {
     $a = $_POST['a'];
     if ($a == 'register') {
-
+        $uid = uniqid();
         $email = $_POST['email'];
         $pswd = $_POST['pswd'];
         $type = $_POST['type'];
-        $debug .= $_POST['a'] . "<br/>" . $email . "<br/>" . $pswd . "<br/>" . $type;
-        $r = $db->exec("INSERT INTO users SET email='$email', pswd='" . md5($pswd) . "', type='$type';");
-        $debug .= "<hr/>$r";
+        $r = $db->exec("INSERT INTO users SET uid='$uid', email='$email', pswd='" . md5($pswd) . "', type='$type';");
+        header("Location: users.php?tab=login");
     } else if ($a == 'login') {
         $email = $_POST['email'];
         $pswd = md5($_POST['pswd']);
         $st = $db->query("SELECT * FROM users WHERE email='$email' && pswd='$pswd';");
-        $debug .= $_POST['a'] . "<br/>" . $pswd . "<br/>";
         $st = $st->fetch();
         $debug .= $st['type'];
+        $_SESSION['uid'] = $st['uid'];
         $_SESSION['email'] = $email;
         $_SESSION['type'] = $st['type'];
+        header("Location: users.php?tab=tables");
     }
-    header("Location: users.php?tab=tables");
     exit();
 } else {
     $inner_template = "users_t.php";
 }
+
+function dm_create_table($db) {
+    $tid = uniqid();
+    $dm = $_SESSION['email'];
+    $type = $_SESSION['type'];
+    if ($type != "dm") {
+        header("Location: users.php?tab=tables");
+        exit();
+    }
+    mkdir("tables/$tid");
+    fopen("tables/$tid/players.txt", 'w');
+    fopen("tables/$tid/monsters.txt", 'w');
+    fopen("tables/$tid/battle_grid.txt", 'w');
+    fopen("tables/$tid/chat.txt", 'w');
+    $r = $db->exec("INSERT INTO `tables` SET dm='$dm', tid='$tid';");
+    header("Location: users.php?tab=tables");
+    exit();
+}
+
 ?>

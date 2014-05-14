@@ -1,3 +1,0 @@
-cing;2;469;92
-goblin;1;159;194
-volf;4;undefined;undefined

@@ -22,9 +22,10 @@
         <div id="chat">
             <div id="chat-messages"></div>
             <div id="dices">
-                <img src="/images/dice4.png" class="dice">
-                <img src="/images/dice6.png" class="dice">
-                <img src="/images/dice8.png" class="dice">
+                <img id="dise4" src="/images/dice4.png" class="dice">
+                <img id="dise6" src="/images/dice6.png" class="dice">
+                <img id="dise8" src="/images/dice8.png" class="dice">
+                <img src="/images/loader.gif" id="loader">
             </div>
            
                 <input type="text"id="chat-input">
@@ -35,3 +36,4 @@
     <!--<div id="scroll"></div>-->
     <div id="users-list"></div>
 </div> <!--wrapper-->
+

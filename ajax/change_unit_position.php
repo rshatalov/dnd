@@ -12,12 +12,12 @@ for ($i = 0; $i < count($file); $i++) {
     $s = $file[$i];
     if ($s != "") {
         $unit = preg_split('/;/', $s);
-        if ($u == $unit[0]) {
-            $unit[2] = $x;
-            $unit[3] = $y;
+        if ($u == $unit[1]) {
+            $unit[4] = $x;
+            $unit[5] = $y;
         }
-        $string.= $unit[0] . ';' . $unit[1] . ';' . $unit[2] . ';' . $unit[3] . "\n";
+        $string.= $unit[0] . ';' . $unit[1] . ';' . $unit[2] . ';' . $unit[3] .";" . $unit[4] .";" .$unit[5] ."\n";
     }
 }
-$fh =  fopen($_SERVER['DOCUMENT_ROOT'] . '/tables/' . $table . '/'.$utype.'s.txt',"wb");
+$fh =  fopen($_SERVER['DOCUMENT_ROOT'] . '/tables/' . $table . '/'.$utype.'s.txt',"w");
 fwrite($fh, $string);

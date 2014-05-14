@@ -117,22 +117,31 @@ body{
     margin-top: 10px;
     position: relative;
 }
+#chat-messages{
+    text-align: left;
+   overflow: scroll;
+    height:  200px;
+}
 #dices{
     position: absolute;
     left: 0;
     bottom: 30px;
+    height: 50px;
+    width: 100%;
     
     
 }
 
 .dice{
    cursor: pointer; 
+   float: left;
 }
 #chat-message{
     position: relative;
+    
 }
 #chat-input{
-    width: 100%;
+    width: 80%;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -160,4 +169,18 @@ body{
     top: 0;
     width: 190px;
     height: 500px;  
+}
+
+.unit-in-list{
+    border: 1px solid black;
+    
+}
+
+.avatar-thumbnail{
+    width: 100px;
+    height: 100px;
+}
+#loader{
+    display: none;
+    float: left;
 }

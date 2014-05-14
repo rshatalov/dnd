@@ -11,12 +11,13 @@ var clickY = new Array();
 var clickDrag = new Array();
 var clickColor = new Array();
 
-var playerColors = new Array("#ff0000", "00ff00", "#0000ff");
+var playerColors = new Array("#ff00ff", "005548", "#0000ff","#ffa800","#33cc45");
 
 var draggedPlayer = "";
 var players = new Array();
 var monsters = new Array();
 var curPlayer = "";
+var chat = new Array();
 
 window.onload = function()
 {
@@ -39,28 +40,36 @@ window.onload = function()
         for (var i = 0; i < pf.length; i++)
         {
             var t = pf[i].split(';');
-            if (t[1] != null) {
-                players[i] = new Array(t[0],t[1],t[2],t[3],playerColors[i]);
+            if (t[3] != null) {
+                var k=t[0];
+                t=new Array(t[0],t[1],t[2],t[3],t[4],t[5],playerColors[i]);
+                players [i] = t;
             }
         }
+      
         
       for (var i =0; i<players.length;i++)
       {
-          if (players[i][1]=='1')
+          if (players[i][3]=='1')
           {
               var p = document.createElement("div");
               p.setAttribute('class','player');
-              p.setAttribute('id',players[i][0]);
-              p.style.backgroundColor= players[i][4];
+              p.setAttribute('id',players[i][1]);
+              p.style.backgroundColor= players[i][6];
                $_("battle-container").appendChild(p);
-              p.style.top=players[i][3]-p.offsetHeight/2+'px';
-              p.style.left=players[i][2]-p.offsetWidth/2+'px';
+              p.style.top=players[i][5]-p.offsetHeight/2+'px';
+              p.style.left=players[i][4]-p.offsetWidth/2+'px';
              
               
               p = document.createElement("div");
-              p.setAttribute('id',players[i][0]+"-in-list");
-              p.style.color= players[i][4];
-              p.innerHTML =players[i][0];
+                p.setAttribute('class',"unit-in-list");
+                p.style.backgroundColor=players[i][6];
+                p.style.color='black';
+              p.setAttribute('id',players[i][3]+"-in-list");
+              p.style.color= players[i][6];
+              p.innerHTML =players[i][2];
+              p.innerHTML="<div>"+players[i][2]+"</div>";
+              p.innerHTML+="<div><img src='/images/characters/"+players[i][1]+".jpg' class='avatar-thumbnail'></div>"
               $_("users-list").appendChild(p);
           }
       }
@@ -211,12 +220,69 @@ function drawLayerForMoving(x,y)
 function getPlayer()
 {
     $.get("/ajax/get_player.php", function(data) {
-        curPlayer = data;
-        console.log(curPlayer);
+        data=data.split(';');
+        curPlayer = data[0];
+        var type= data[1];
+      if (type=='player')
+      {
         $_(curPlayer + "-in-list").innerHTML += " - you";
+    
         var p = $_(curPlayer);
         p.addEventListener('mousedown', moveUnitStart, false);
+    }
+        $_('chat-send').addEventListener('click',function()
+        {
+            
+        var  message=$_('chat-input').value;
+            $.get("/ajax/add_message_to_chat.php?tid="+table+"&message="+message,function(data)
+            {
+               
+                //chat.push(m);
+            });
+        
+           
+            $_('chat-input').value="";
+        }, false);
+        window.setInterval(refreshChat,2000);
+        
+        $_('dices').addEventListener('click',function(e){
+            $_('loader').style.display='block'
+           $.get("/ajax/get_dice_number.php?dice="+e.target.id,function(data){
+               console.log(data);
+               $_('loader').style.display='none' 
+           })
+        },false);
        
        
     })
+}
+
+function refreshChat()
+{
+    $.get("/tables/"+table+"/chat.txt",function(data){
+        data=data.split("\n");
+      var s="";
+    for (var i=0;i<data.length;i++)
+    {
+        if (data[i]=="")
+        {
+            continue;
+        }
+        var t = data[i].split("\t");
+        var color="red";
+       s+="<div><div style='color: "+color+"; display:inline'>"
+        if (t[1]=='dm')
+        {
+            s+= 'DM: ';
+        }
+        else
+        {
+            s+= t[0]+': ';
+        }
+       s+= "</div>" + t[2];
+       s+="</div>"
+    }
+    $_('chat-messages').innerHTML=s;  
+    });
+   
 }

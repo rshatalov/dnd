@@ -22,7 +22,6 @@ function loadBattleFromServer(table)
             if (c[2] == "false")
                 clickDrag[i] = false;
             clickColor[i] = c[3];
-
         }
         redraw();
         window.setInterval(refreshBattleOnServer, 1000);
@@ -33,7 +32,6 @@ function loadBattleFromServer(table)
                 e = e || window.event;
                 var mouseY = e.offsetY || e.pageY - this.offsetTop;
                 var mouseX = e.offsetX || e.pageX - this.offsetLeft;
-
                 paint = true;
                 addClick(mouseX, mouseY, false);
                 redraw();
@@ -42,19 +40,15 @@ function loadBattleFromServer(table)
         $_('battle-grid').addEventListener('mousemove', function(e)
         {
             e = e || window.event;
-            if (draggedPlayer == "")
+            if (draggedPlayer == "" && paint)
             {
-
-                if (paint) {
-                     var mouseY = e.offsetY || e.pageY - this.offsetTop;
-                var mouseX = e.offsetX || e.pageX - this.offsetLeft;
-                    addClick(mouseX,mouseY, true);
+                    var mouseY = e.offsetY || e.pageY - this.offsetTop;
+                    var mouseX = e.offsetX || e.pageX - this.offsetLeft;
+                    addClick(mouseX, mouseY, true);
                     redraw();
                     //battleGridIsChanged = true;
-                }
             }
         }, false);
-
         $_('battle-grid').addEventListener('mouseup', function(e) {
             paint = false;
         }, false);
@@ -70,8 +64,7 @@ function loadBattleFromServer(table)
             curColor = colorBlack;
         }
         $_('clear-all').onclick = function() {
-
-            $.get("/ajax/clear_battle_grid.php?table=" + table, function(data) {
+            $.get("/ajax/clear_battle_grid.php?tid=" + table, function(data) {
                 clickX = new Array();
                 clickY = new Array();
                 clickDrag = new Array();
@@ -80,11 +73,12 @@ function loadBattleFromServer(table)
             });
         }
     }); // load battle grid
-
 }
 
 function addClick(x, y, dragging)
 {
+    if(x=="")
+        return;
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
@@ -121,28 +115,29 @@ function registerEventsforPlayers()
 {
     for (var i = 0; i < players.length; i++)
     {
-        var u = $_(players[i][0]);
+        var u = $_(players[i][1]);
         if (u)
             u.addEventListener('mousedown', moveUnitStart, false);
     }
-    window.setInterval(refreshPlayersinBrowser,2000);
+    window.setInterval(refreshPlayersinBrowser, 2000);
 }
 function registerEventsforMonsters()
 {
     for (var i = 0; i < monsters.length; i++)
     {
         var u = $_(monsters[i][0]);
-        if (u) u.addEventListener('mousedown', moveUnitStart, false);
+        if (u)
+            u.addEventListener('mousedown', moveUnitStart, false);
     }
-      window.setInterval(refreshMonstersinBrowser,2000);
+    window.setInterval(refreshMonstersinBrowser, 2000);
 }
 
 function refreshPlayersinBrowser()
 {
     $.get('/tables/' + table + '/players.txt', function(data)
     {
-        units=players;
-      var m = data.split("\n");
+       var units = players;
+        var m = data.split("\n");
         for (var i = 0; i < m.length; i++)
         {
             if (m[i].length < 3)
@@ -151,13 +146,13 @@ function refreshPlayersinBrowser()
             }
             var t = m[i].split(';');
 
-            units[i][2] = t[2];
-            units[i][3] = t[3];
-            var unit = $_(units[i][0]);
-            unit.style.top = units[i][3] - unit.offsetHeight/2 + 'px';
-            unit.style.left = units[i][2] - unit.offsetWidth/2 + 'px';
+            units[i][4] = t[4];
+            units[i][5] = t[5];
+            var unit = $_(units[i][1]);
+            unit.style.top = units[i][5] - unit.offsetHeight / 2 + 'px';
+            unit.style.left = units[i][4] - unit.offsetWidth / 2 + 'px';
 
-        } 
+        }
     });
 }
 
@@ -165,8 +160,8 @@ function refreshMonstersinBrowser()
 {
     $.get('/tables/' + table + '/monsters.txt', function(data)
     {
-        units=monsters;
-      var m = data.split("\n");
+        units = monsters;
+        var m = data.split("\n");
         for (var i = 0; i < m.length; i++)
         {
             if (m[i].length < 3)
@@ -178,9 +173,9 @@ function refreshMonstersinBrowser()
             units[i][2] = t[2];
             units[i][3] = t[3];
             var unit = $_(units[i][0]);
-            unit.style.top = units[i][3] - unit.offsetHeight/2 + 'px';
-            unit.style.left = units[i][2] - unit.offsetWidth/2 + 'px';
+            unit.style.top = units[i][3] - unit.offsetHeight / 2 + 'px';
+            unit.style.left = units[i][2] - unit.offsetWidth / 2 + 'px';
 
-        } 
+        }
     });
 }

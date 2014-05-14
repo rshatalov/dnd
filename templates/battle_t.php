@@ -19,7 +19,18 @@
             <div id="clear-all" class="button">Clear</div>
         <?php endif; ?>
         <div id="ads"></div>
-        <div id="chat"></div>
+        <div id="chat">
+            <div id="chat-messages"></div>
+            <div id="dices">
+                <img src="/images/dice4.png" class="dice">
+                <img src="/images/dice6.png" class="dice">
+                <img src="/images/dice8.png" class="dice">
+            </div>
+           
+                <input type="text"id="chat-input">
+                <div id="chat-send">Send</div>          
+            
+        </div>
     </div><!--container-->
     <!--<div id="scroll"></div>-->
     <div id="users-list"></div>

@@ -16,6 +16,7 @@ var playerColors = new Array("#ff0000", "00ff00", "#0000ff");
 var draggedPlayer = "";
 var players = new Array();
 var monsters = new Array();
+var curPlayer = "";
 
 window.onload = function()
 {
@@ -64,6 +65,7 @@ window.onload = function()
           }
       }
       registerEventsforPlayers();
+      getPlayer();
       //console.log(players);
     });
 
@@ -205,4 +207,16 @@ function drawLayerForMoving(x,y)
       context.lineWidth = 1;
       context.strokeStyle = '#ffffff';
       context.stroke();
+}
+function getPlayer()
+{
+    $.get("/ajax/get_player.php", function(data) {
+        curPlayer = data;
+        console.log(curPlayer);
+        $_(curPlayer + "-in-list").innerHTML += " - you";
+        var p = $_(curPlayer);
+        p.addEventListener('mousedown', moveUnitStart, false);
+       
+       
+    })
 }

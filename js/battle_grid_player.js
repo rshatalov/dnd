@@ -1,4 +1,4 @@
-var curPlayer = "";
+
 
 function loadBattleFromServer(table)
 {
@@ -47,22 +47,11 @@ function refreshBattleinBrowser()
 
 }
 
-function getPlayer()
-{
-    $.get("/ajax/get_player.php", function(data) {
-        curPlayer = data;
-        console.log(curPlayer);
-        $_(curPlayer + "-in-list").innerHTML += " - you";
-        var p = $_(curPlayer);
-        p.addEventListener('mousedown', moveUnitStart, false);
-       
-       
-    })
-}
+
 
 function registerEventsforPlayers()
 {
-    getPlayer();
+    
    
     window.setInterval(refreshPlayersinBrowser, 2000);
 }

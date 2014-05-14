@@ -167,7 +167,9 @@ function moveUnit(e)
     e = e || window.event;
     e.preventDefault();
     e.stopPropagation();
-    drawLayerForMoving(e.offsetX,e.offsetY);
+    var mouseX = e.offsetX || e.layerX;
+    var mouseY = e.offsetY || e.layerY;
+    drawLayerForMoving(mouseX,mouseY);
 }
 
 function moveUnitFinish(e)
@@ -178,8 +180,8 @@ function moveUnitFinish(e)
     if (draggedPlayer != "")
     {
         var ml = window.getComputedStyle($_('wrapper'), null).getPropertyValue("margin-left");
-        var x = e.offsetX;
-        var y = e.offsetY;
+        var x = e.offsetX || e.layerX;
+        var y = e.offsetY || e.layerY;
         draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
         draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
         var u = draggedPlayer.getAttribute('id');

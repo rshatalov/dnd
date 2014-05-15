@@ -1,3 +1,6 @@
+body{
+    font-family: Arial;
+}
 #wrapper{
     position: relative;
     width: 1200px;
@@ -162,28 +165,108 @@ body{
     width: 390px;
     height: 500px;
 }
-#users-list{
-    border: 1px solid black;
+#right-column{
+ 
     position: absolute;
     right: 0;
-    top: 0;
-    width: 190px;
-    height: 500px;  
+    top: 10;
+    width: 200px;
+    height: 500px;     
+}
+#users-list{
+ overflow: auto;
+ height: 500px;
 }
 
 .unit-in-list{
     border: 1px solid black;
+    margin-bottom: 10px;
+    width: 170px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
     
 }
 .unit-in-list-head {
-    height: 20px;
+    height: 25px;
+    padding-left: 5px;
 }
 
 .avatar-thumbnail{
     width: 100px;
     height: 100px;
 }
+
+.up-arrow{
+ position: absolute;
+ left: 110px;
+ top: 40px;
+}
+
+.up-2arrow{
+ position: absolute;
+ left: 130px;
+ top: 40px;
+}
+.down-arrow{
+ position: absolute;
+ left: 110px;
+ top: 60px;
+}
+.down-2arrow{
+ position: absolute;
+ left: 130px;
+ top: 60px;
+}
+#add-monster{
+    border: 1px solid black;
+    position: absolute;
+    bottom: -60px;
+    left:  5px;
+    padding: 15px;
+    cursor: pointer;
+}
 #loader{
     display: none;
     float: left;
+}
+#popup-container{
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    z-index: 10;
+}
+#popup{
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 500px;
+    min-height: 200px;
+    margin: auto;
+    padding: 10px;
+    max-height: 400px;
+    overflow: auto;
+    
+}
+.monster-in-stack{
+    float: left;
+    width: 200px;
+    margin-right: 20px;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid red;
+    position: relative;
+}
+.add-monster-from-stack{
+    width: 50%;
+    background-color: graytext;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    right: 0;
+    text-align: center;
 }

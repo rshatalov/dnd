@@ -6,11 +6,11 @@ $css .= "<link rel='stylesheet' href='/css/site.css'>";
 $css .= "<link rel='stylesheet' href='/css/character.css'>";
 $js .= "<script src='js/site.js'></script>";
 
-    if (isset($_GET['a']) && $_GET['a'] == 'logout') {
-        session_destroy();
-        header("Location: index.php");
-        exit();
-    }
+if (isset($_GET['a']) && $_GET['a'] == 'logout') {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
 
 if (isset($_SESSION['uid'])) {
     if ($_SESSION['type'] == 'dm') {
@@ -38,7 +38,7 @@ if (isset($_SESSION['uid'])) {
                 } else {
                     $status = $p[3];
                 }
-                $s .= $p[0].';'.$p[1].';'.$p[2] . ";$status;" . $p[4] . ";" . $p[5] . "\n";
+                $s .= $p[0] . ';' . $p[1] . ';' . $p[2] . ";$status;" . $p[4] . ";" . $p[5] . "\n";
             }
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'wb');
             fwrite($fh, $s);
@@ -50,17 +50,25 @@ if (isset($_SESSION['uid'])) {
         }
         if (isset($_POST['a']) && $_POST['a'] == 'create_monster') {
             if (strlen($_POST['name']) > 0 && strlen($_POST['size']) > 0) {
-                $s = "monster;".  uniqid().";". $_POST['name'] . ';' . $_POST['size'] . ";25;25\n";
-                $tid = $_POST['table'];
-                $fh = fopen("tables/$tid/players.txt", "a");
-                fwrite($fh, $s);
+                if ($_FILES["file"]["error"] > 0) {
+                    echo "Error: " . $_FILES["file"]["error"] . "<br>";
+                } else {
+                    $mid = $_POST['mid'];
+                    $ext = pathinfo($_FILES["file"]['name'], PATHINFO_EXTENSION);
+                    move_uploaded_file($_FILES["file"]["tmp_name"], "images/monsters/" . $mid . "." . $ext);
+                    $size = $_POST['size'];
+
+                    $name = $_POST['name'];
+                    $db->exec("insert into monsters set mid='$mid', name='$name', size='$size'");
+                    header("Location: users.php?tab=monsters");
+                }
             } else {
                 echo 'fields are not set';
             }
             exit();
         }
         $inner_template = "home_dm_t.php";
-        //$tables = $db->query()
+//$tables = $db->query()
         $tables = "";
         $email = $_SESSION['email'];
         $query = "SELECT * FROM `tables` WHERE dm='$email';";
@@ -86,10 +94,10 @@ if (isset($_SESSION['uid'])) {
                     $participants .= $p[2];
                     $participants .= "<br/>";
                 }
-                //$s .= $p[0]. ";$status\n";
+//$s .= $p[0]. ";$status\n";
             }
-            //$fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/$tid/players.txt",'w');
-            //fwrite ($fh, $s);
+//$fh = fopen($_SERVER['DOCUMENT_ROOT']."/tables/$tid/players.txt",'w');
+//fwrite ($fh, $s);
             $content .= "<tr><td>";
             $content .= $r['tid'] .
                     "<a href='battle.php?table={$r['tid']}'>Entra</a></td>" .
@@ -99,11 +107,31 @@ if (isset($_SESSION['uid'])) {
             $content .= "</tr>";
         }
         $content .= "";
+
+        if (isset($_GET['a']) && $_GET['a'] == 'create_monster') {
+            $mid = uniqid();
+            // $db->exec("insert into monsters set mid='$mid'");
+            $monsters = "mid: $mid<br/>";
+            $monsters.=<<<M
+               <form method="post" action="users.php" enctype="multipart/form-data">
+        <input type="text" placeholder="name" name="name"></br>
+        <input type="text" placeholder="size" name="size"></br>
+       <input type="file" name="file"><br/>
+                    <input type="hidden" name="a" value="create_monster">
+                    <input type="hidden" name="mid" value="$mid">
+         <input type="submit">
+         <input type="hidden" name="a" value="create_monster">
+    </form>
+M;
+        } else {
+            $monsters = "";
+            $monsters.="<a href='users.php?a=create_monster&tab=monsters'>Create monster</a>";
+        }
     } else if ($_SESSION['type'] == 'player') {
         if (isset($_GET['a']) && $_GET['a'] == 'ask_for_enter') {
 
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/" . $_GET['table'] . "/players.txt", 'ab');
-            fwrite($fh, $_SESSION['type'].';'.$_SESSION['uid'].';'.$_SESSION['email'] . ";0;25;25\n");
+            fwrite($fh, $_SESSION['type'] . ';' . $_SESSION['uid'] . ';' . $_SESSION['email'] . ";0;25;25\n");
             header("Location: users.php?tab=tables");
             exit();
         }
@@ -112,8 +140,7 @@ if (isset($_SESSION['uid'])) {
                 echo "Error: " . $_FILES["file"]["error"] . "<br>";
             } else {
                 $ext = pathinfo($_FILES["file"]['name'], PATHINFO_EXTENSION);
-                 move_uploaded_file($_FILES["file"]["tmp_name"],
-       "images/characters/" . $_SESSION['uid'] .".".$ext );
+                move_uploaded_file($_FILES["file"]["tmp_name"], "images/characters/" . $_SESSION['uid'] . "." . $ext);
             }
         }
 
@@ -145,10 +172,10 @@ if (isset($_SESSION['uid'])) {
             }
             $content .= "<br/>";
         }
-        $ch_info['avatar']="";
-        $image='images/characters/'.$_SESSION['uid'].'.jpg';
-        if(file_exists($image))
-                $ch_info['avatar']=$image;
+        $ch_info['avatar'] = "";
+        $image = 'images/characters/' . $_SESSION['uid'] . '.jpg';
+        if (file_exists($image))
+            $ch_info['avatar'] = $image;
     }
 } else if (isset($_POST['a'])) {
     $a = $_POST['a'];

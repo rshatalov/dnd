@@ -19,13 +19,7 @@
     
 </div> <!-- tables-content -->
 <div class='tab-content' id="monsters-content">
-    <form method="post" action="users.php">
-        <input type="text" placeholder="name" name="name"></br>
-        <input type="text" placeholder="size" name="size"></br>
-        <select name="table">
-           <?php echo $tables_list; ?> 
-            </select>
-         <input type="submit">
-         <input type="hidden" name="a" value="create_monster">
-    </form>
+    <?php echo $monsters;?>
+    <hr/>
+   
 </div>

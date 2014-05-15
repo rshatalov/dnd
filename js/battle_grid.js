@@ -64,14 +64,24 @@ window.onload = function()
                 $_("battle-container").appendChild(u);
                 u.style.top = units[i][5] - u.offsetHeight / 2 + 'px';
                 u.style.left = units[i][4] - u.offsetWidth / 2 + 'px';
-
+                var utype = units[i][0];
+                utype == "player" ? utype = "characters" : utype = 'monsters';
                 u = document.createElement("div");
                 u.setAttribute('class', "unit-in-list");
-                u.style.color = 'black';
+                if (units[i][0] == 'player')
+                    u.style.color = 'black';
+                else
+                    u.style.color = 'white';
                 u.setAttribute('id', units[i][1] + "-in-list");
                 u.innerHTML = units[i][2];
                 u.innerHTML = "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>" + units[i][2] + "</div>";
-                u.innerHTML += "<div><img src='/images/characters/" + units[i][1] + ".jpg' class='avatar-thumbnail'></div>"
+                u.innerHTML += "<div><img src='/images/" + utype + "/" + units[i][1] + ".jpg' class='avatar-thumbnail'>";
+                u.innerHTML += "\
+<img class='up-arrow' src='/images/up_arrow.png'>\n\
+<img class='up-2arrow' src='/images/up_2arrow.png'>\n\
+<img class='down-arrow' src='/images/down_arrow.png'>\n\
+<img class='down-2arrow' src='/images/down_2arrow.png'>\n\
+</div>"
                 $_("users-list").appendChild(u);
             }
         }
@@ -202,7 +212,8 @@ function getPlayer()
         {
             var message = $_('chat-input').value;
             $.get("/ajax/add_message_to_chat.php?tid=" + table + "&message=" + message, function(data)
-            {            });
+            {
+            });
             $_('chat-input').value = "";
         }, false);
         window.setInterval(refreshChat, 2000);

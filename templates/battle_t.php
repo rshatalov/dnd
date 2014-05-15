@@ -34,6 +34,13 @@
         </div>
     </div><!--container-->
     <!--<div id="scroll"></div>-->
-    <div id="users-list"></div>
+    <div id="right-column"> 
+       <div id="users-list"></div>
+       <div id="add-monster">+</div>
+           
+   </div>
 </div> <!--wrapper-->
+<div id="popup-container">
+    <div id="popup"></div>
+</div>
 

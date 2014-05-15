@@ -1,3 +1,1 @@
 player;5373848768ead;b;1;524;211
-monster;53738b451ab08;orc;2;389;71
-monster;53738b58e5205;dragon;5;271;272

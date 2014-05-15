@@ -16,3 +16,4 @@ function deleteDirectory($dirPath) {
     rmdir($dirPath);
     }
 }
+

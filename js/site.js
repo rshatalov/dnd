@@ -6,7 +6,14 @@ function $_(e) {
 
 window.addEventListener('load', function()
 {
-    curTab = window.location.search.split("=")[1];
+    var tab=window.location.search.split("&");
+    for (var i=0; i<tab.length; i++)
+    {
+        var t=tab[i].split('=');
+        if(t[0]=='tab')
+            curTab=t[1];
+    }
+    
     checkTab(curTab);
     $_('tabs').addEventListener('click', function(e) {
         var tab = e.target.id.split('-');

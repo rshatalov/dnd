@@ -73,6 +73,32 @@ function loadBattleFromServer(table)
             });
         }
     }); // load battle grid
+$_('add-monster').addEventListener('click',function(){
+    $_('popup-container').style.display="block";
+    $.get("/ajax/get_monsters.php",function(data){
+        $_('popup').innerHTML=data;
+    })
+},false);
+
+$_('users-list').addEventListener('click',function(e){
+    var c=e.target.className;
+    if(c=='up-arrow')
+        console.log(e.target.parentNode);
+},false);
+
+$_('popup').addEventListener('click',function(e){
+    if(e.target.className=='add-monster-from-stack'){
+        var mid= e.target.id.split('-')[0];
+       $.get("/ajax/add_monster.php?tid="+table+"&mid="+mid,function(data){
+           console.log(data);
+       })
+    }
+},false);
+
+$_('popup-container').addEventListener('click',function(e){
+    if (e.target.id=='popup-container')
+    $_('popup-container').style.display="none";
+},false);
 }
 
 function addClick(x, y, dragging)

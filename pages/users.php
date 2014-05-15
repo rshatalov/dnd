@@ -6,14 +6,13 @@ $css .= "<link rel='stylesheet' href='/css/site.css'>";
 $css .= "<link rel='stylesheet' href='/css/character.css'>";
 $js .= "<script src='js/site.js'></script>";
 
-if (isset($_SESSION['uid'])) {
     if (isset($_GET['a']) && $_GET['a'] == 'logout') {
         session_destroy();
         header("Location: index.php");
         exit();
     }
 
-
+if (isset($_SESSION['uid'])) {
     if ($_SESSION['type'] == 'dm') {
         if (isset($_GET['a']) && $_GET['a'] == 'create_table') {
             dm_create_table($db);
@@ -51,9 +50,9 @@ if (isset($_SESSION['uid'])) {
         }
         if (isset($_POST['a']) && $_POST['a'] == 'create_monster') {
             if (strlen($_POST['name']) > 0 && strlen($_POST['size']) > 0) {
-                $s = $_POST['name'] . ';' . $_POST['size'] . ";25;25\n";
+                $s = "monster;".  uniqid().";". $_POST['name'] . ';' . $_POST['size'] . ";25;25\n";
                 $tid = $_POST['table'];
-                $fh = fopen("tables/$tid/monsters.txt", "ab");
+                $fh = fopen("tables/$tid/players.txt", "a");
                 fwrite($fh, $s);
             } else {
                 echo 'fields are not set';

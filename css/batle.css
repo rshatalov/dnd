@@ -175,6 +175,9 @@ body{
     border: 1px solid black;
     
 }
+.unit-in-list-head {
+    height: 20px;
+}
 
 .avatar-thumbnail{
     width: 100px;

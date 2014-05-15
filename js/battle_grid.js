@@ -11,12 +11,14 @@ var clickY = new Array();
 var clickDrag = new Array();
 var clickColor = new Array();
 
-var playerColors = new Array("#ff00ff", "005548", "#0000ff","#ffa800","#33cc45");
+var playerColors = new Array("#ff00ff", "005548", "#0000ff", "#ffa800", "#33cc45");
 
 var draggedPlayer = "";
-var players = new Array();
-var monsters = new Array();
+//var players = new Array();
+//var monsters = new Array();
+var units = new Array();
 var curPlayer = "";
+var curPlayerType = "";
 var chat = new Array();
 
 window.onload = function()
@@ -27,98 +29,66 @@ window.onload = function()
     drawGrid(c);
     loadBattleFromServer(table);
 
-    $_('layer-for-moving').addEventListener('mousemove',moveUnit,false);
-    $_('layer-for-moving').addEventListener('mouseup',moveUnitFinish,false);
-    $_('layer-for-moving').addEventListener('mouseout',moveUnitCancel,false);
+    $_('layer-for-moving').addEventListener('mousemove', moveUnit, false);
+    $_('layer-for-moving').addEventListener('mouseup', moveUnitFinish, false);
+    $_('layer-for-moving').addEventListener('mouseout', moveUnitCancel, false);
 
 
     $.get("/tables/" + table + "/players.txt", function(data)
     {
-
-        var pf = data;
-        pf = pf.split('\n');
-        for (var i = 0; i < pf.length; i++)
+        data = data.split('\n');
+        for (var i = 0; i < data.length; i++)
         {
-            var t = pf[i].split(';');
-            if (t[3] != null) {
-                var k=t[0];
-                t=new Array(t[0],t[1],t[2],t[3],t[4],t[5],playerColors[i]);
-                players [i] = t;
+            if (data[i] == "")
+                continue
+            var u = data[i].split(';');
+            //var k=t[0];
+            if (u[0] == 'player')
+                t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], playerColors[i]);
+            else
+                t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], "#000000");
+            //players [i] = t;
+            units[i] = t;
+
+        }
+
+
+        for (var i = 0; i < units.length; i++)
+        {
+            if (units[i][3] != '0')
+            {
+                var u = document.createElement("div");
+                u.setAttribute('class', units[i][0]);
+                u.setAttribute('id', units[i][1]);
+                u.style.backgroundColor = units[i][6];
+                $_("battle-container").appendChild(u);
+                u.style.top = units[i][5] - u.offsetHeight / 2 + 'px';
+                u.style.left = units[i][4] - u.offsetWidth / 2 + 'px';
+
+                u = document.createElement("div");
+                u.setAttribute('class', "unit-in-list");
+                u.style.color = 'black';
+                u.setAttribute('id', units[i][1] + "-in-list");
+                u.innerHTML = units[i][2];
+                u.innerHTML = "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>" + units[i][2] + "</div>";
+                u.innerHTML += "<div><img src='/images/characters/" + units[i][1] + ".jpg' class='avatar-thumbnail'></div>"
+                $_("users-list").appendChild(u);
             }
         }
-      
-        
-      for (var i =0; i<players.length;i++)
-      {
-          if (players[i][3]=='1')
-          {
-              var p = document.createElement("div");
-              p.setAttribute('class','player');
-              p.setAttribute('id',players[i][1]);
-              p.style.backgroundColor= players[i][6];
-               $_("battle-container").appendChild(p);
-              p.style.top=players[i][5]-p.offsetHeight/2+'px';
-              p.style.left=players[i][4]-p.offsetWidth/2+'px';
-             
-              
-              p = document.createElement("div");
-                p.setAttribute('class',"unit-in-list");
-                p.style.backgroundColor=players[i][6];
-                p.style.color='black';
-              p.setAttribute('id',players[i][3]+"-in-list");
-              p.style.color= players[i][6];
-              p.innerHTML =players[i][2];
-              p.innerHTML="<div>"+players[i][2]+"</div>";
-              p.innerHTML+="<div><img src='/images/characters/"+players[i][1]+".jpg' class='avatar-thumbnail'></div>"
-              $_("users-list").appendChild(p);
-          }
-      }
-      registerEventsforPlayers();
-      getPlayer();
-      //console.log(players);
+        registerEventsforUnits();
+        getPlayer();
     });
 
-$.get('/tables/'+ table + '/monsters.txt',function(data)
-{
-  var m = data.split("\n");
-  for (var i=0; i<m.length; i++)
-  {
-      if(m[i].length<3)
-      {
-          continue;
-      }
-      var t = m[i].split(';');
-      monsters[i]=new Array();
-      monsters[i][0]=t[0];
-      monsters[i][1]=t[1];
-      monsters[i][2]=t[2];
-      monsters[i][3]=t[3];
-       var p = document.createElement("div");
-              p.setAttribute('class','monster');
-              p.setAttribute('id',monsters[i][0]);
-               p.style.width = monsters[i][1]*10+'px';
-              p.style.height = monsters[i][1]*10+'px';
-                $_("battle-container").appendChild(p);
-              p.style.top= monsters[i][3]-p.offsetHeight/2+'px';
-              p.style.left= monsters[i][2]-p.offsetWidth/2+'px';
-              p.innerHTML = monsters[i][1];
-             
-              p.style.borderRadius = monsters[i][1]*5+'px';
-            
-              
-              p = document.createElement("div");
-             p.innerHTML = monsters[i][0];
-              $_("users-list").appendChild(p);
-  }
-  
-  registerEventsforMonsters();
-});
 }
+//        p.style.width = monsters[i][1]*10+'px';
+//       p.style.height = monsters[i][1]*10+'px';
+//       p.innerHTML = monsters[i][1];
+//       p.style.borderRadius = monsters[i][1]*5+'px';
+
 
 
 function redraw() {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-    //drawGrid(context);
     context.lineJoin = "round";
     context.lineWidth = 3;
 
@@ -130,7 +100,6 @@ function redraw() {
             context.moveTo(clickX[i] - 1, clickY[i]);
         }
         context.lineTo(clickX[i], clickY[i]);
-        //context.closePath();
         context.strokeStyle = clickColor[i];
         var con = context.globalCompositeOperation;
         if (context.strokeStyle != colorBlack)
@@ -147,7 +116,6 @@ function redraw() {
 
     }
 }
-
 function drawGrid(c)
 {
     for (var x = 24.5; x < 774; x += 25)
@@ -164,6 +132,7 @@ function drawGrid(c)
     c.lineWidth = 1;
     c.stroke();
 }
+
 function moveUnitStart(e)
 {
     e = e || window.event;
@@ -180,7 +149,7 @@ function moveUnit(e)
     e.stopPropagation();
     var mouseX = e.offsetX || e.layerX;
     var mouseY = e.offsetY || e.layerY;
-    drawLayerForMoving(mouseX,mouseY);
+    drawLayerForMoving(mouseX, mouseY);
 }
 
 function moveUnitFinish(e)
@@ -190,13 +159,14 @@ function moveUnitFinish(e)
     e.stopPropagation();
     if (draggedPlayer != "")
     {
-        var ml = window.getComputedStyle($_('wrapper'), null).getPropertyValue("margin-left");
         var x = e.offsetX || e.layerX;
         var y = e.offsetY || e.layerY;
         draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
         draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
         var u = draggedPlayer.getAttribute('id');
-        $.get('/ajax/change_unit_position.php?unit_type='+unitType+'&unit=' + u + '&x=' + x + '&y=' + y + '&table=' + table,function(data){console.log(data);});
+        $.get('/ajax/change_unit_position.php?unit_type=' + draggedPlayer[0] + '&unit=' + u + '&x=' + x + '&y=' + y + '&table=' + table, function(data) {
+            console.log(data);
+        });
         $_('layer-for-moving').style.display = 'none';
         draggedPlayer = "";
     }
@@ -204,85 +174,75 @@ function moveUnitFinish(e)
 
 function moveUnitCancel(e)
 {
- $_('layer-for-moving').style.display = 'none';   
+    $_('layer-for-moving').style.display = 'none';
 }
 
-function drawLayerForMoving(x,y)
+function drawLayerForMoving(x, y)
 {
     var context = $_('layer-for-moving').getContext('2d');
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-     context.beginPath();
-      context.arc(x, y, 10, 0, 2 * Math.PI, false);
-      context.lineWidth = 1;
-      context.strokeStyle = '#ffffff';
-      context.stroke();
+    context.beginPath();
+    context.arc(x, y, 10, 0, 2 * Math.PI, false);
+    context.lineWidth = 1;
+    context.strokeStyle = draggedPlayer[6];
+    context.stroke();
 }
 function getPlayer()
 {
     $.get("/ajax/get_player.php", function(data) {
-        data=data.split(';');
+        data = data.split(';');
         curPlayer = data[0];
-        var type= data[1];
-      if (type=='player')
-      {
-        $_(curPlayer + "-in-list").innerHTML += " - you";
-    
-        var p = $_(curPlayer);
-        p.addEventListener('mousedown', moveUnitStart, false);
-    }
-        $_('chat-send').addEventListener('click',function()
+        curPlayerType = data[1];
+        if (type == 'player')
         {
-            
-        var  message=$_('chat-input').value;
-            $.get("/ajax/add_message_to_chat.php?tid="+table+"&message="+message,function(data)
-            {
-               
-                //chat.push(m);
-            });
-        
-           
-            $_('chat-input').value="";
+            var p = $_(curPlayer);
+            p.addEventListener('mousedown', moveUnitStart, false);
+        }
+        $_('chat-send').addEventListener('click', function()
+        {
+            var message = $_('chat-input').value;
+            $.get("/ajax/add_message_to_chat.php?tid=" + table + "&message=" + message, function(data)
+            {            });
+            $_('chat-input').value = "";
         }, false);
-        window.setInterval(refreshChat,2000);
-        
-        $_('dices').addEventListener('click',function(e){
-            $_('loader').style.display='block'
-           $.get("/ajax/get_dice_number.php?dice="+e.target.id,function(data){
-               console.log(data);
-               $_('loader').style.display='none' 
-           })
-        },false);
-       
-       
-    })
-}
+        window.setInterval(refreshChat, 2000);
+
+        $_('dices').addEventListener('click', function(e) {
+            $_('loader').style.display = 'block'
+            $.get("/ajax/get_dice_number.php?dice=" + e.target.id, function(data) {
+                console.log(data);
+                $_('loader').style.display = 'none'
+            })
+        }, false);
+    });
+} // getPlayer()
 
 function refreshChat()
 {
-    $.get("/tables/"+table+"/chat.txt",function(data){
-        data=data.split("\n");
-      var s="";
-    for (var i=0;i<data.length;i++)
-    {
-        if (data[i]=="")
+    $.get("/tables/" + table + "/chat.txt", function(data) {
+        data = data.split("\n");
+        var s = "";
+        for (var i = 0; i < data.length; i++)
         {
-            continue;
+            if (data[i] == "")
+            {
+                continue;
+            }
+            var t = data[i].split("\t");
+            var color = "red";
+            s += "<div><div style='color: " + color + "; display:inline'>"
+            if (t[1] == 'dm')
+            {
+                s += 'DM: ';
+            }
+            else
+            {
+                s += t[0] + ': ';
+            }
+            s += "</div>" + t[2];
+            s += "</div>"
         }
-        var t = data[i].split("\t");
-        var color="red";
-       s+="<div><div style='color: "+color+"; display:inline'>"
-        if (t[1]=='dm')
-        {
-            s+= 'DM: ';
-        }
-        else
-        {
-            s+= t[0]+': ';
-        }
-       s+= "</div>" + t[2];
-       s+="</div>"
-    }
-    $_('chat-messages').innerHTML=s;  
+        $_('chat-messages').innerHTML = s;
     });
-   
+
 }

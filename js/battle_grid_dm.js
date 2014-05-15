@@ -42,11 +42,11 @@ function loadBattleFromServer(table)
             e = e || window.event;
             if (draggedPlayer == "" && paint)
             {
-                    var mouseY = e.offsetY || e.pageY - this.offsetTop;
-                    var mouseX = e.offsetX || e.pageX - this.offsetLeft;
-                    addClick(mouseX, mouseY, true);
-                    redraw();
-                    //battleGridIsChanged = true;
+                var mouseY = e.offsetY || e.pageY - this.offsetTop;
+                var mouseX = e.offsetX || e.pageX - this.offsetLeft;
+                addClick(mouseX, mouseY, true);
+                redraw();
+                //battleGridIsChanged = true;
             }
         }, false);
         $_('battle-grid').addEventListener('mouseup', function(e) {
@@ -77,7 +77,7 @@ function loadBattleFromServer(table)
 
 function addClick(x, y, dragging)
 {
-    if(x=="")
+    if (x == "")
         return;
     clickX.push(x);
     clickY.push(y);
@@ -111,71 +111,37 @@ function refreshBattleOnServer()
     }
     //battleGridIsChanged = false;
 }
-function registerEventsforPlayers()
+
+function registerEventsforUnits()
 {
-    for (var i = 0; i < players.length; i++)
+    for (var i = 0; i < units.length; i++)
     {
-        var u = $_(players[i][1]);
+        var u = $_(units[i][1]);
         if (u)
             u.addEventListener('mousedown', moveUnitStart, false);
     }
-    window.setInterval(refreshPlayersinBrowser, 2000);
-}
-function registerEventsforMonsters()
-{
-    for (var i = 0; i < monsters.length; i++)
-    {
-        var u = $_(monsters[i][0]);
-        if (u)
-            u.addEventListener('mousedown', moveUnitStart, false);
-    }
-    window.setInterval(refreshMonstersinBrowser, 2000);
+    window.setInterval(refreshUnitsInBrowser, 2000);
 }
 
-function refreshPlayersinBrowser()
+
+function refreshUnitsInBrowser()
 {
     $.get('/tables/' + table + '/players.txt', function(data)
     {
-       var units = players;
-        var m = data.split("\n");
-        for (var i = 0; i < m.length; i++)
+        var data = data.split("\n");
+        for (var i = 0; i < data.length; i++)
         {
-            if (m[i].length < 3)
+            if (data[i].length < 3)
             {
                 continue;
             }
-            var t = m[i].split(';');
+            var u = data[i].split(';');
 
-            units[i][4] = t[4];
-            units[i][5] = t[5];
+            units[i][4] = u[4];
+            units[i][5] = u[5];
             var unit = $_(units[i][1]);
             unit.style.top = units[i][5] - unit.offsetHeight / 2 + 'px';
             unit.style.left = units[i][4] - unit.offsetWidth / 2 + 'px';
-
-        }
-    });
-}
-
-function refreshMonstersinBrowser()
-{
-    $.get('/tables/' + table + '/monsters.txt', function(data)
-    {
-        units = monsters;
-        var m = data.split("\n");
-        for (var i = 0; i < m.length; i++)
-        {
-            if (m[i].length < 3)
-            {
-                continue;
-            }
-            var t = m[i].split(';');
-
-            units[i][2] = t[2];
-            units[i][3] = t[3];
-            var unit = $_(units[i][0]);
-            unit.style.top = units[i][3] - unit.offsetHeight / 2 + 'px';
-            unit.style.left = units[i][2] - unit.offsetWidth / 2 + 'px';
-
         }
     });
 }

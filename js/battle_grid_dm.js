@@ -49,6 +49,7 @@ function loadBattleFromServer(table)
                 //battleGridIsChanged = true;
             }
         }, false);
+        
         $_('battle-grid').addEventListener('mouseup', function(e) {
             paint = false;
         }, false);

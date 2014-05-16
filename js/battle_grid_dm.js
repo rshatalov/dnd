@@ -85,24 +85,30 @@ $_('users-list').addEventListener('click',function(e){
     if(c=='up-arrow'){
        var uid=e.target.parentNode.id.split('-')[0];
        $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=up",function(data){
+           refreshUnitsList();
            console.log(data);
        })
     }
      if(c=='up-2arrow'){
+  
        var uid=e.target.parentNode.id.split('-')[0];
        $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=2up",function(data){
+           refreshUnitsList();
            console.log(data);
        })
     }
      if(c=='down-arrow'){
        var uid=e.target.parentNode.id.split('-')[0];
        $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=down",function(data){
+           refreshUnitsList();
            console.log(data);
        })
     }
      if(c=='down-2arrow'){
+
        var uid=e.target.parentNode.id.split('-')[0];
        $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=2down",function(data){
+           refreshUnitsList();
            console.log(data);
        })
     }
@@ -184,22 +190,5 @@ function registerEventsforUnits()
 
 function refreshUnitsInBrowser()
 {
-    $.get('/tables/' + table + '/players.txt', function(data)
-    {
-        var data = data.split("\n");
-        for (var i = 0; i < data.length; i++)
-        {
-            if (data[i].length < 3)
-            {
-                continue;
-            }
-            var u = data[i].split(';');
 
-            units[i][4] = u[4];
-            units[i][5] = u[5];
-            var unit = $_(units[i][1]);
-            unit.style.top = units[i][5] - unit.offsetHeight / 2 + 'px';
-            unit.style.left = units[i][4] - unit.offsetWidth / 2 + 'px';
-        }
-    });
 }

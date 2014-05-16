@@ -13,7 +13,7 @@ $us="";
 $s="";
 $t=NULL;
 
-for($i=0; $i<count($players)-1; $i++)
+for($i=0; $i<count($players); $i++)
 {
     $p=preg_split("/;/",$players[$i]);
     if($uid==$p[1])
@@ -25,7 +25,7 @@ for($i=0; $i<count($players)-1; $i++)
         
     }
 }
-for($i=0; $i<count($players)-1; $i++)
+for($i=0; $i<count($players); $i++)
 {
     if($dir=="up")
     {
@@ -74,8 +74,9 @@ for($i=0; $i<count($players)-1; $i++)
            
         }
     }
-for($i=0;$i<count($players)-1;$i++)
+for($i=0;$i<count($players);$i++)
 {
+    if ($players[$i] != "")
     $s.=$players[$i]."\n";
 }
 $fh=fopen($pf,"w");

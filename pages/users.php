@@ -26,25 +26,34 @@ if (isset($_SESSION['uid'])) {
         }
 
         if (isset($_GET['a']) && $_GET['a'] == 'accept_player') {
+            $colors = array("#00ff00", "#0000ff", "#ffff00", "#00ffff", "ff00ff", "#aa3478", "#33b945");
+
             $email = $_GET['player'];
             $tid = $_GET['tid'];
-            $players = file($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", FILE_IGNORE_NEW_LINES);
+            $players = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt");
+            $players = preg_split("/\n/", $players);
+            $c = 0;
             $s = "";
-            foreach ($players as $player) {
-                $p = preg_split("/;/", $player);
-                $status = 0;
-                if ($p[3] == '0' && $p[2] == $email) {
-                    $status = 1;
-                } else {
-                    $status = $p[3];
+            for ($i = 0; $i < count($players); $i++) {
+                if ($players[$i] == "")
+                    continue;
+                $t = preg_split("/;/", $players[$i]);
+                if ($t[3] == '0' && $t[2] == $email) {
+                    $p = $t;
+                    $t[3] = 1;
                 }
-                $s .= $p[0] . ';' . $p[1] . ';' . $p[2] . ";$status;" . $p[4] . ";" . $p[5] . "\n";
+                if (isset($t[6]))
+                    $c++;
+                if ($t[2] != $email)
+                    $s.= $players[$i] . "\n";
             }
+            $p[6] = $colors[$c];
+            $s.=$p[0] . ";" . $p[1] . ";" . $p[2] . ";" . $p[3] . ";" . $p[4] . ";" . $p[5] . ";" . $p[6] . "\n";
+
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'wb');
             fwrite($fh, $s);
-            $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/$email.txt", 'wb');
-            $s = "25;25";
-            fwrite($fh, $s);
+
+
             header("Location: users.php?tab=tables");
             exit();
         }

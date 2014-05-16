@@ -84,6 +84,16 @@ $_('users-list').addEventListener('click',function(e){
     var c=e.target.className;
     if(c=='up-arrow')
         console.log(e.target.parentNode);
+    if(c=='delete-monster')
+    {
+     var t=e.target.parentNode;
+     var mid=e.target.parentNode.id.split('-')[0];
+        console.log(mid);
+        t.parentNode.removeChild(t);
+        $.get("/ajax/delete_monster.php?tid="+table+"&mid="+mid,function(data){
+            
+        })
+    }
 },false);
 
 $_('popup').addEventListener('click',function(e){

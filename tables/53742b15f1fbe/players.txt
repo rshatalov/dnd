@@ -1,8 +1,5 @@
-player;537323e71eb77;b;1;185;315
 monster;53746e93e4936;fox;2;25;25
 monster;53746e83acbac;wolf;3;25;25
-monster;5374659f51bad;orc;3;25;25
-monster;5374659f51bad;orc;3;25;25
-monster;53746e68b790c;goblin;2;25;25
-player;537323f7dbe75;c;1;25;25
-player;537324003b99a;d;1;25;25
+
+
+

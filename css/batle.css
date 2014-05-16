@@ -218,6 +218,13 @@ body{
  left: 130px;
  top: 60px;
 }
+.delete-monster{
+    position: absolute;
+    color: red;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
 #add-monster{
     border: 1px solid black;
     position: absolute;

@@ -302,3 +302,5 @@
 564;419;true;#000000
 ;undefined;undefined;undefined
 300;237;false;#000000
+;undefined;undefined;undefined
+718;286;false;#000000

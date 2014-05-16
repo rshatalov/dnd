@@ -304,3 +304,6 @@
 300;237;false;#000000
 ;undefined;undefined;undefined
 718;286;false;#000000
+;undefined;undefined;undefined
+593;307;false;#000000
+593;307;true;#000000

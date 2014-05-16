@@ -82,8 +82,30 @@ $_('add-monster').addEventListener('click',function(){
 
 $_('users-list').addEventListener('click',function(e){
     var c=e.target.className;
-    if(c=='up-arrow')
-        console.log(e.target.parentNode);
+    if(c=='up-arrow'){
+       var uid=e.target.parentNode.id.split('-')[0];
+       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=up",function(data){
+           console.log(data);
+       })
+    }
+     if(c=='up-2arrow'){
+       var uid=e.target.parentNode.id.split('-')[0];
+       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=2up",function(data){
+           console.log(data);
+       })
+    }
+     if(c=='down-arrow'){
+       var uid=e.target.parentNode.id.split('-')[0];
+       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=down",function(data){
+           console.log(data);
+       })
+    }
+     if(c=='down-2arrow'){
+       var uid=e.target.parentNode.id.split('-')[0];
+       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=2down",function(data){
+           console.log(data);
+       })
+    }
     if(c=='delete-monster')
     {
      var t=e.target.parentNode;

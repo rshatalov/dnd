@@ -1,5 +1,4 @@
-monster;53746e93e4936;fox;2;25;25
+monster;53746e68b790c;goblin;2;25;25
+monster;53746e68b790c;goblin;2;25;25
 monster;53746e83acbac;wolf;3;25;25
-
-
 

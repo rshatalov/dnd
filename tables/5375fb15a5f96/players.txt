@@ -1,0 +1,6 @@
+monster;5375e93893a5b;fox;2;25;25;#000000
+monster;5375e8aa65fe0;dragon;5;25;25;#000000
+monster;5375e92717730;River goblin;3;25;25;#000000
+player;5373848ed5681;c;1;25;25;#0000ff
+player;53738495ce598;d;2;25;25;#ffff00
+player;5373848768ead;b;2;25;25;#00ff00

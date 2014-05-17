@@ -18,7 +18,7 @@ else
     $path = 'main.php';
 //echo $path;
 
-$debug .= "Address: $path<br/>";
+//$debug .= "Address: $path<br/>";
 $content = "";
 require_once("pages/" .$path);
 require_once 'templates/template.php';

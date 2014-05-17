@@ -1,27 +1,25 @@
 body{
     font-family: Arial;
+     margin: 0;
+     background-color: black;
 }
 #wrapper{
     position: relative;
-    width: 1200px;
-    margin: auto;
+    margin-top: 10px;
+    //width: 1200px;
+    //margin: auto;
 
 }
 #battle-grid{
-    border: 1px dashed black;
+    //border: 1px dashed black;
 }
 #container{
     width: 600px;
     text-align: center;
     cursor: arrow;
     position: relative;
+    margin-left: 400px;
     margin-right: 200px;
-        -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
 }
 #battle-container{
     -webkit-touch-callout: none;
@@ -30,6 +28,7 @@ user-select: none;
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
+background-color:  white;
 }
 
 
@@ -65,26 +64,11 @@ user-select: none;
 
 }
 
-#players {
-    position: absolute;
-    width: 775px;
-    height: 475px;
-    top: 0;
-    z-index: 2;
-}
-
-body{
-
-    margin: 0;
-}
 .button-on-grid{
-
     border: 1px solid black;
     cursor: pointer;
-  
     position: absolute;
     z-index: 3;
-
 }
 #pencil{
     right: 15px;
@@ -112,8 +96,10 @@ body{
     width: 100%;
     height: 40px;
     margin-top: 50px;
+    background-color: white;
 }  
 #chat{
+    background-color: white;
     border: 1px solid black;
     width: 100%;
     height: 250px;
@@ -122,8 +108,8 @@ body{
 }
 #chat-messages{
     text-align: left;
-   overflow: scroll;
-    height:  200px;
+   overflow: auto;
+    height:  1800px;
 }
 #dices{
     position: absolute;
@@ -131,8 +117,6 @@ body{
     bottom: 30px;
     height: 50px;
     width: 100%;
-    
-    
 }
 
 .dice{
@@ -157,29 +141,38 @@ body{
     bottom: 0;
     cursor: pointer;
 }
+
 #scroll{
-    background-color: orange;
+    background-color:coral;
     position: absolute;
-    left: 0;
+    right: 1220px;
     top: 0;
     width: 390px;
     height: 500px;
 }
+
+#scroll-form {
+    position: relative;
+    
+}
+
 #right-column{
- 
     position: absolute;
-    right: 0;
+    right: -400px;
     top: 10;
     width: 200px;
     height: 500px;     
 }
 #users-list{
+
  overflow: auto;
  height: 500px;
 }
 
 .unit-in-list{
-    border: 1px solid black;
+    text-align: left;
+    background-color: white;
+    border: 1px solid white;
     margin-bottom: 10px;
     width: 170px;
     border-top-left-radius: 5px;
@@ -188,6 +181,8 @@ body{
     
 }
 .unit-in-list-head {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     height: 25px;
     padding-left: 5px;
 }
@@ -201,23 +196,44 @@ body{
  position: absolute;
  left: 110px;
  top: 40px;
+ cursor: pointer;
 }
 
 .up-2arrow{
  position: absolute;
  left: 130px;
  top: 40px;
+ cursor: pointer;
 }
 .down-arrow{
  position: absolute;
  left: 110px;
  top: 60px;
+ cursor: pointer;
 }
 .down-2arrow{
  position: absolute;
  left: 130px;
  top: 60px;
+ cursor: pointer;
 }
+
+.disable-player {
+    color: red;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.enable-player {
+    color: green;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
 .delete-monster{
     position: absolute;
     color: red;
@@ -226,6 +242,7 @@ body{
     cursor: pointer;
 }
 #add-monster{
+    background-color: white;
     border: 1px solid black;
     position: absolute;
     bottom: -60px;
@@ -276,4 +293,5 @@ body{
     color: white;
     right: 0;
     text-align: center;
+    cursor: pointer;
 }

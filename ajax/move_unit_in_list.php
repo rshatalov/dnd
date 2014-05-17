@@ -81,4 +81,5 @@ for($i=0;$i<count($players);$i++)
 }
 $fh=fopen($pf,"w");
 fwrite($fh, $s);
+fclose($fh);
 print_r($s);

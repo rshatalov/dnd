@@ -173,8 +173,8 @@ function getPlayer()
                     $_('loader').style.display = 'none'
                 })
             }, false);
-            
-            window.setInterval(refreshUnitsList,3000);
+
+            window.setInterval(refreshUnitsList, 3000);
         });
 
     });
@@ -220,7 +220,7 @@ function fillUnitsList(data)
         var u = data[i].split(';');
         //var k=t[0];
         if (u[0] == 'player')
-            t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], playerColors[i]);
+            t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], u[6]);
         else
             t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], "#000000");
         units[i] = t;
@@ -244,10 +244,15 @@ function fillUnitsList(data)
             units[i][0] == "player" ? folder = "characters" : folder = 'monsters';
             var c = "";
             units[i][0] == "player" ? c = 'black' : c = 'white';
+            if (units[i][3]== '2'&&units[i][0]=='player') units[i][6] = '#c0c0c0';
             s += "<div class='unit-in-list' style='color: " + c + "' id='" + units[i][1] + "-in-list'>";
 
             s += "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>" + units[i][2] + "</div>";
-            s += "<img src='/images/" + folder + "/" + units[i][1] + ".jpg' class='avatar-thumbnail'>";
+            s += "<img ";
+            if (units[i][3]=='2'&&units[i][0]=='player')
+                s+= "style='-webkit-filter: grayscale(100%); -webkit-filter: grayscale(1);\n\
+filter: grayscale(100%); filter: gray; '";
+            s+= " src='/images/" + folder + "/" + units[i][1] + ".jpg' class='avatar-thumbnail'>";
             if (curPlayerType == 'dm') {
                 s += "\
 <img class='up-arrow' src='/images/up_arrow.png'>\n\
@@ -255,9 +260,19 @@ function fillUnitsList(data)
 <img class='down-arrow' src='/images/down_arrow.png'>\n\
 <img class='down-2arrow' src='/images/down_2arrow.png'>\n\
 ";
+
+
                 if (units[i][0] == 'monster')
                 {
                     s += "<div id='' class='delete-monster'>X</div>";
+                }
+                else {
+                    if (units[i][3] == '1')
+                        s += "<div class='disable-player'>&Oslash;</div>";
+                    else if (units[i][3] == '2')
+                        s += "<div class='enable-player'>&#x2713;</div>";
+
+
                 }
             }
             s += "</div>";
@@ -270,6 +285,6 @@ function refreshUnitsList()
 {
     $.get("/tables/" + table + "/players.txt", function(data)
     {
-    fillUnitsList(data);
+        fillUnitsList(data);
     });
 }

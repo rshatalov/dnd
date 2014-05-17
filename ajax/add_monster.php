@@ -10,9 +10,8 @@ $tid = $_GET['tid'];
        $name=$m['name'];
        $size=$m['size'];
        
-$s = "monster;" . $mid . ";" . $name . ';' . $size . ";25;25\n";
+$s = "monster;" . $mid . ";" . $name . ';' . $size . ";25;25;#000000\n";
 
 $fh = fopen("../tables/$tid/players.txt", "a");
 fwrite($fh, $s);
-
-print_r($m);
+fclose($fh);

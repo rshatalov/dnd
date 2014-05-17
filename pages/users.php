@@ -40,7 +40,7 @@ if (isset($_SESSION['uid'])) {
                 $t = preg_split("/;/", $players[$i]);
                 if ($t[3] == '0' && $t[2] == $email) {
                     $p = $t;
-                    $t[3] = 1;
+                    $p[3] = 1;
                 }
                 if (isset($t[6]))
                     $c++;
@@ -52,6 +52,7 @@ if (isset($_SESSION['uid'])) {
 
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'wb');
             fwrite($fh, $s);
+            fclose($fh);
 
 
             header("Location: users.php?tab=tables");

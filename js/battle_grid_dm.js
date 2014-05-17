@@ -113,6 +113,15 @@ $_('users-list').addEventListener('click',function(e){
            console.log(data);
        })
     }
+    if (c=='disable-player' || c=='enable-player')
+    {
+        var uid=e.target.parentNode.id.split('-')[0];
+        $.get("/ajax/disable_player.php?tid="+table+"&uid="+uid,function(data){
+           refreshUnitsList();
+           console.log(data);
+       });
+    }
+    
     if(c=='delete-monster')
     {
      var t=e.target.parentNode;

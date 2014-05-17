@@ -1,10 +1,10 @@
 <div id="wrapper">
     <div id="container">
         <div id='battle-container' style="position: relative; width: 780px; height: 480px;">
-            <canvas id="grid" width="775" height="475"
+            <canvas id="grid" width="775" height="425"
                     style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
 
-            <canvas id="battle-grid" width="775" height="475"
+            <canvas id="battle-grid" width="775" height="425"
                     style="position: relative; z-index: 1;">
             </canvas>
             <?php if ($_SESSION['type'] == 'dm'): ?>
@@ -32,13 +32,24 @@
                 <div id="chat-send">Send</div>          
             
         </div>
-    </div><!--container-->
-    <!--<div id="scroll"></div>-->
-    <div id="right-column"> 
+            <div id="right-column"> 
        <div id="users-list"></div>
        <div id="add-monster">+</div>
            
    </div>
+        
+    </div><!--container-->
+    <div id="scroll">
+        
+        <?php if($_SESSION['type'] == 'dm'): ?>
+        <form id="scroll-form">
+            <textarea></textarea>
+            
+        </form>
+        
+        <?php endif;?>
+    </div>
+
 </div> <!--wrapper-->
 <div id="popup-container">
     <div id="popup"></div>

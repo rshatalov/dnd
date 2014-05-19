@@ -49,7 +49,7 @@ function loadBattleFromServer(table)
                 //battleGridIsChanged = true;
             }
         }, false);
-        
+
         $_('battle-grid').addEventListener('mouseup', function(e) {
             paint = false;
         }, false);
@@ -74,79 +74,126 @@ function loadBattleFromServer(table)
             });
         }
     }); // load battle grid
-$_('add-monster').addEventListener('click',function(){
-    $_('popup-container').style.display="block";
-    $.get("/ajax/get_monsters.php",function(data){
-        $_('popup').innerHTML=data;
-    })
-},false);
 
-$_('users-list').addEventListener('click',function(e){
-    var c=e.target.className;
-    if(c=='up-arrow'){
-       var uid=e.target.parentNode.id.split('-')[0];
-       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=up",function(data){
-           refreshUnitsList();
-           console.log(data);
-       })
-    }
-     if(c=='up-2arrow'){
-  
-       var uid=e.target.parentNode.id.split('-')[0];
-       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=2up",function(data){
-           refreshUnitsList();
-           console.log(data);
-       })
-    }
-     if(c=='down-arrow'){
-       var uid=e.target.parentNode.id.split('-')[0];
-       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=down",function(data){
-           refreshUnitsList();
-           console.log(data);
-       })
-    }
-     if(c=='down-2arrow'){
+    $_("send-scroll-message").addEventListener("click", function() {
+        var m = $_("scroll-message").value;
+        if (m.length < 1)
+            return;
+        $.post("/ajax/new_message_in_scroll.php",
+                {
+                    tid: table,
+                    message: m
+                }, function(data) {
+            refreshScroll();
+        });
+        $_("scroll-message").value = "";
+    }, false);
 
-       var uid=e.target.parentNode.id.split('-')[0];
-       $.get("/ajax/move_unit_in_list.php?tid="+table+"&uid="+uid+"&dir=2down",function(data){
-           refreshUnitsList();
-           console.log(data);
-       })
-    }
-    if (c=='disable-player' || c=='enable-player')
+    $_("insert-image-in-scroll").addEventListener('click', function()
     {
-        var uid=e.target.parentNode.id.split('-')[0];
-        $.get("/ajax/disable_player.php?tid="+table+"&uid="+uid,function(data){
-           refreshUnitsList();
-           console.log(data);
-       });
-    }
-    
-    if(c=='delete-monster')
+        $('#hidden-image-for-scroll').click();
+    }, false);
+    $_("insert-image-in-scroll2").addEventListener('click', function()
     {
-     var t=e.target.parentNode;
-     var mid=e.target.parentNode.id.split('-')[0];
-        console.log(mid);
-        t.parentNode.removeChild(t);
-        $.get("/ajax/delete_monster.php?tid="+table+"&mid="+mid,function(data){
-            
+        $('#hidden-image-for-scroll').click();
+    }, false);
+    $_("hidden-image-for-scroll").addEventListener('change', function() {
+        $_("insert-image-in-scroll").style.display = 'none';
+        $_("insert-image-in-scroll2").style.display = 'block';
+        $_("send-image-for-scroll").style.display = 'block';
+    }, false);
+    $_("send-image-for-scroll").addEventListener("click", function() {
+        var file = $_('hidden-image-for-scroll').files[0];
+        //console.log($_('hidden-image-for-scroll'));
+        var fd = new FormData();
+        fd.append('file', file);
+        fd.append('tid',table);
+        $.ajax({
+            url: "/ajax/add_image_to_scroll.php",
+            type: "POST",
+            data: fd,
+            processData: false, // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            success: function(data){
+                console.log(data);
+            }
+        });
+
+    }, false);
+
+    $_('add-monster').addEventListener('click', function() {
+        $_('popup-container').style.display = "block";
+        $.get("/ajax/get_monsters.php", function(data) {
+            $_('popup').innerHTML = data;
         })
-    }
-},false);
+    }, false);
 
-$_('popup').addEventListener('click',function(e){
-    if(e.target.className=='add-monster-from-stack'){
-        var mid= e.target.id.split('-')[0];
-       $.get("/ajax/add_monster.php?tid="+table+"&mid="+mid,function(data){
-           console.log(data);
-       })
-    }
-},false);
+    $_('users-list').addEventListener('click', function(e) {
+        var c = e.target.className;
+        if (c == 'up-arrow') {
+            var uid = e.target.parentNode.id.split('-')[0];
+            $.get("/ajax/move_unit_in_list.php?tid=" + table + "&uid=" + uid + "&dir=up", function(data) {
+                refreshUnitsList();
+                console.log(data);
+            })
+        }
+        if (c == 'up-2arrow') {
 
-$_('popup-container').addEventListener('click',function(e){
-    if (e.target.id=='popup-container')
-    $_('popup-container').style.display="none";
-},false);
+            var uid = e.target.parentNode.id.split('-')[0];
+            $.get("/ajax/move_unit_in_list.php?tid=" + table + "&uid=" + uid + "&dir=2up", function(data) {
+                refreshUnitsList();
+                console.log(data);
+            })
+        }
+        if (c == 'down-arrow') {
+            var uid = e.target.parentNode.id.split('-')[0];
+            $.get("/ajax/move_unit_in_list.php?tid=" + table + "&uid=" + uid + "&dir=down", function(data) {
+                refreshUnitsList();
+                console.log(data);
+            })
+        }
+        if (c == 'down-2arrow') {
+
+            var uid = e.target.parentNode.id.split('-')[0];
+            $.get("/ajax/move_unit_in_list.php?tid=" + table + "&uid=" + uid + "&dir=2down", function(data) {
+                refreshUnitsList();
+                console.log(data);
+            })
+        }
+        if (c == 'disable-player' || c == 'enable-player')
+        {
+            var uid = e.target.parentNode.id.split('-')[0];
+            $.get("/ajax/disable_player.php?tid=" + table + "&uid=" + uid, function(data) {
+                refreshUnitsList();
+                console.log(data);
+            });
+        }
+
+        if (c == 'delete-monster')
+        {
+            var t = e.target.parentNode;
+            var mid = e.target.parentNode.id.split('-')[0];
+            console.log(mid);
+            t.parentNode.removeChild(t);
+            $.get("/ajax/delete_monster.php?tid=" + table + "&mid=" + mid, function(data) {
+
+            })
+        }
+    }, false);
+
+    $_('popup').addEventListener('click', function(e) {
+        if (e.target.className == 'add-monster-from-stack') {
+            var mid = e.target.id.split('-')[0];
+            $.get("/ajax/add_monster.php?tid=" + table + "&mid=" + mid, function(data) {
+                console.log(data);
+            })
+        }
+    }, false);
+
+    $_('popup-container').addEventListener('click', function(e) {
+        if (e.target.id == 'popup-container')
+            $_('popup-container').style.display = "none";
+    }, false);
 }
 
 function addClick(x, y, dragging)
@@ -184,21 +231,4 @@ function refreshBattleOnServer()
         });
     }
     //battleGridIsChanged = false;
-}
-
-function registerEventsforUnits()
-{
-    for (var i = 0; i < units.length; i++)
-    {
-        var u = $_(units[i][1]);
-        if (u)
-            u.addEventListener('mousedown', moveUnitStart, false);
-    }
-    window.setInterval(refreshUnitsInBrowser, 2000);
-}
-
-
-function refreshUnitsInBrowser()
-{
-
 }

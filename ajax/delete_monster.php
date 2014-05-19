@@ -6,6 +6,7 @@ $f=file_get_contents("../tables/$tid/players.txt");
 $f=  preg_split("/\n/", $f);
 $s="";
 foreach ($f as $unit){
+    if ($unit == "") continue;
     $u=preg_split("/;/", $unit);
     if($mid!=$u[1])
         $s.=$unit."\n";

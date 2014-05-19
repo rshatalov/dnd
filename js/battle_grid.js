@@ -11,11 +11,7 @@ var clickY = new Array();
 var clickDrag = new Array();
 var clickColor = new Array();
 
-var playerColors = new Array("#ff00ff", "005548", "#0000ff", "#ffa800", "#33cc45");
-
 var draggedPlayer = "";
-//var players = new Array();
-//var monsters = new Array();
 var units = new Array();
 var curPlayer = "";
 var curPlayerType = "";
@@ -23,22 +19,19 @@ var chat = new Array();
 
 window.onload = function()
 {
+    window.setInterval(refreshQueue, 1000);
     table = window.location.search.split("=")[1];
     context = $_('battle-grid').getContext('2d');
     var c = $_('grid').getContext('2d');
     drawGrid(c);
     loadBattleFromServer(table);
-
     $_('layer-for-moving').addEventListener('mousemove', moveUnit, false);
     $_('layer-for-moving').addEventListener('mouseup', moveUnitFinish, false);
     $_('layer-for-moving').addEventListener('mouseout', moveUnitCancel, false);
-
     getPlayer();
 
 }
 //       p.style.borderRadius = monsters[i][1]*5+'px';
-
-
 
 function redraw() {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
@@ -104,7 +97,6 @@ function moveUnit(e)
     var mouseY = e.offsetY || e.layerY;
     drawLayerForMoving(mouseX, mouseY);
 }
-
 function moveUnitFinish(e)
 {
     e = e || window.event;
@@ -117,14 +109,13 @@ function moveUnitFinish(e)
         draggedPlayer.style.left = x - draggedPlayer.offsetWidth / 2 + 'px';
         draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
         var u = draggedPlayer.getAttribute('id');
-        $.get('/ajax/change_unit_position.php?unit_type=' + draggedPlayer[0] + '&unit=' + u + '&x=' + x + '&y=' + y + '&table=' + table, function(data) {
+        $.get('/ajax/change_unit_position.php?uid=' + u + '&x=' + x + '&y=' + y + '&tid=' + table, function(data) {
             console.log(data);
         });
         $_('layer-for-moving').style.display = 'none';
         draggedPlayer = "";
     }
 }
-
 function moveUnitCancel(e)
 {
     $_('layer-for-moving').style.display = 'none';
@@ -140,27 +131,35 @@ function drawLayerForMoving(x, y)
     context.strokeStyle = draggedPlayer[6];
     context.stroke();
 }
+
 function getPlayer()
 {
     $.get("/ajax/get_player.php", function(data) {
         data = data.split(';');
         curPlayer = data[0];
         curPlayerType = data[1];
-        $.get("/tables/" + table + "/players.txt", function(data)
+        $.get("/tables/" + table + "/players.txt?" + new Date().getTime(), function(data)
         {
             fillUnitsList(data);
-            registerEventsforUnits();
+
+            $_('battle-container').addEventListener("mousedown", function(e) {
+                if (e.target.className == 'player' || e.target.className == 'monster')
+                    moveUnitStart(e);
+            }, false);
 
             if (curPlayerType == 'player')
             {
                 var p = $_(curPlayer);
-                p.addEventListener('mousedown', moveUnitStart, false);
+                //p.addEventListener('mousedown', moveUnitStart, false);
             }
             $_('chat-send').addEventListener('click', function()
             {
                 var message = $_('chat-input').value;
+                if (message.length < 1)
+                    return;
                 $.get("/ajax/add_message_to_chat.php?tid=" + table + "&message=" + message, function(data)
                 {
+                    refreshChat();
                 });
                 $_('chat-input').value = "";
             }, false);
@@ -175,6 +174,9 @@ function getPlayer()
             }, false);
 
             window.setInterval(refreshUnitsList, 3000);
+            if (curPlayerType == 'player')
+                window.setInterval(refreshStatus, 5000);
+            window.setInterval(refreshScroll, 3000);
         });
 
     });
@@ -182,9 +184,11 @@ function getPlayer()
 
 function refreshChat()
 {
-    $.get("/tables/" + table + "/chat.txt", function(data) {
+    $.get("/tables/" + table + "/chat.txt?" + new Date().getTime(), function(data) {
         data = data.split("\n");
         var s = "";
+        var color = "";
+        var uid = "";
         for (var i = 0; i < data.length; i++)
         {
             if (data[i] == "")
@@ -192,18 +196,32 @@ function refreshChat()
                 continue;
             }
             var t = data[i].split("\t");
-            var color = "red";
+
+            if (t[2] == 'dm')
+                color = "red"
+            else {
+                uid = t[0];
+                for (var j = 0; j < units.length; j++)
+                {
+                    if (uid == units[j][1])
+                    {
+                        color = units[j][6];
+                    }
+                }
+
+            }
+
             s += "<div><div style='color: " + color + "; display:inline'>"
-            if (t[1] == 'dm')
+            if (t[2] == 'dm')
             {
                 s += 'DM: ';
             }
             else
             {
-                s += t[0] + ': ';
+                s += t[1] + ': ';
             }
-            s += "</div>" + t[2];
-            s += "</div>"
+            s += "</div>" + t[3];
+            s += "</div>";
         }
         $_('chat-messages').innerHTML = s;
     });
@@ -219,11 +237,7 @@ function fillUnitsList(data)
             continue
         var u = data[i].split(';');
         //var k=t[0];
-        if (u[0] == 'player')
-            t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], u[6]);
-        else
-            t = new Array(u[0], u[1], u[2], u[3], u[4], u[5], "#000000");
-        units[i] = t;
+        units[i] = u;
     }
 
     var s = "";
@@ -237,22 +251,36 @@ function fillUnitsList(data)
                 $_("battle-container").removeChild($_(units[i][1]));
             u.setAttribute('id', units[i][1]);
             u.style.backgroundColor = units[i][6];
-            $_("battle-container").appendChild(u);
+            if (units[i][0] == 'player' && units[i][3] == ['2']) {
+            }
+            else
+                $_("battle-container").appendChild(u);
+            if (units[i][0] == 'monster')
+            {
+                u.style.padding = units[i][3] * 5 + 'px';
+                u.innerHTML = "<div style='position: absolute; left: " + (u.offsetWidth / 2 - 5) + "px; top: "
+                        + (u.offsetHeight / 2 - 8) + "px;'>" + units[i][7] + "</div>";
+                u.style.borderRadius = units[i][3] * 5 + 'px';
+            }
             u.style.top = units[i][5] - u.offsetHeight / 2 + 'px';
             u.style.left = units[i][4] - u.offsetWidth / 2 + 'px';
             var folder = "";
             units[i][0] == "player" ? folder = "characters" : folder = 'monsters';
             var c = "";
             units[i][0] == "player" ? c = 'black' : c = 'white';
-            if (units[i][3]== '2'&&units[i][0]=='player') units[i][6] = '#c0c0c0';
+            if (units[i][3] == '2' && units[i][0] == 'player')
+                units[i][6] = '#c0c0c0';
             s += "<div class='unit-in-list' style='color: " + c + "' id='" + units[i][1] + "-in-list'>";
 
-            s += "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>" + units[i][2] + "</div>";
+            s += "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>";
+            if (units[i][0] == 'monster')
+                s += units[i][7] + " ";
+            s += units[i][2] + "</div>";
             s += "<img ";
-            if (units[i][3]=='2'&&units[i][0]=='player')
-                s+= "style='-webkit-filter: grayscale(100%); -webkit-filter: grayscale(1);\n\
+            if (units[i][3] == '2' && units[i][0] == 'player')
+                s += "style='-webkit-filter: grayscale(100%); -webkit-filter: grayscale(1);\n\
 filter: grayscale(100%); filter: gray; '";
-            s+= " src='/images/" + folder + "/" + units[i][1] + ".jpg' class='avatar-thumbnail'>";
+            s += " src='/images/" + folder + "/" + units[i][1] + ".jpg' class='avatar-thumbnail'>";
             if (curPlayerType == 'dm') {
                 s += "\
 <img class='up-arrow' src='/images/up_arrow.png'>\n\
@@ -272,7 +300,11 @@ filter: grayscale(100%); filter: gray; '";
                     else if (units[i][3] == '2')
                         s += "<div class='enable-player'>&#x2713;</div>";
 
-
+                    if (units[i][7] > parseInt(new Date().getTime()/1000) - 10)
+                        s += "<div class='status-online'>online</div>";
+                    else
+                        s += "<div class='status-offline'>offline</div>";
+ 
                 }
             }
             s += "</div>";
@@ -283,8 +315,29 @@ filter: grayscale(100%); filter: gray; '";
 
 function refreshUnitsList()
 {
-    $.get("/tables/" + table + "/players.txt", function(data)
+    $.get("/tables/" + table + "/players.txt?" + new Date().getTime(), function(data)
     {
         fillUnitsList(data);
     });
+}
+
+function refreshStatus()
+{
+    $.get("/ajax/refresh_status.php?tid=" + table, function(data)
+    {
+        console.log(data);
+    });
+}
+
+function refreshScroll()
+{
+    $.get("/tables/" + table + "/scroll.txt?" + new Date().getTime(), function(data)
+    {
+        $_("scroll-content").innerHTML = data;
+    });
+}
+
+function refreshQueue()
+{
+
 }

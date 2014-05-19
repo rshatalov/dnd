@@ -8,7 +8,7 @@ $js .= "<script src='js/site.js'></script>";
 
 if (isset($_GET['a']) && $_GET['a'] == 'logout') {
     session_destroy();
-    header("Location: index.php");
+    header("Location: index.php?tab=login");
     exit();
 }
 
@@ -42,13 +42,14 @@ if (isset($_SESSION['uid'])) {
                     $p = $t;
                     $p[3] = 1;
                 }
-                if (isset($t[6]))
+                if (isset($t[6])&& $t[0] == 'player')
                     $c++;
                 if ($t[2] != $email)
                     $s.= $players[$i] . "\n";
             }
             $p[6] = $colors[$c];
-            $s.=$p[0] . ";" . $p[1] . ";" . $p[2] . ";" . $p[3] . ";" . $p[4] . ";" . $p[5] . ";" . $p[6] . "\n";
+            $p[7] = time()-100;
+            $s.=$p[0] . ";" . $p[1] . ";" . $p[2] . ";" . $p[3] . ";" . $p[4] . ";" . $p[5] . ";" . $p[6] .";".$p[7]. "\n";
 
             $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'wb');
             fwrite($fh, $s);
@@ -167,17 +168,15 @@ M;
             foreach ($tables as $t) {
                 $user = preg_split("/;/", $t);
 
-                if ($user[2] == $_SESSION['email']) {
+                if ($user[1] == $_SESSION['uid']) {
                     $is_part = true;
+                    if ($user[3] == '1')
+                        $content .= "<a href='battle.php?table=$tid'>Entra</a><br/>";
+                    else
+                        $content .= "DM is not added you to this table yet";
                 }
             }
-            if ($is_part == true) {
-                if ($user[3] == 1) {
-                    $content .= "<a href='battle.php?table=$tid'>Entra</a><br/>";
-                } else {
-                    $content .= "DM is not added you to this table yet";
-                }
-            } else {
+            if ($is_part != true) {
                 $content .= "<a href='?a=ask_for_enter&table=$tid'>Ask for enter</a>";
             }
             $content .= "<br/>";
@@ -221,8 +220,9 @@ function dm_create_table($db) {
         exit();
     }
     mkdir("tables/$tid");
+    mkdir("tables/$tid/scroll");
+    fopen("tables/$tid/scroll.txt", 'w');
     fopen("tables/$tid/players.txt", 'w');
-    fopen("tables/$tid/monsters.txt", 'w');
     fopen("tables/$tid/battle_grid.txt", 'w');
     fopen("tables/$tid/chat.txt", 'w');
     $r = $db->exec("INSERT INTO `tables` SET dm='$dm', tid='$tid';");

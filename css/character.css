@@ -1,5 +1,43 @@
+
+#character{
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+.c{
+    clear: both;
+}
 #avatar{
     width: 150px;
     height: 150px;
     border: 1px solid white;
+}
+.string{
+    margin-bottom: 5px;
+}
+.tall{
+    height: 35px;
+   
+}
+.narrow{
+    width: 50px;
+    
+}
+.medium{
+    width: 100px;
+}
+.black{
+    background-color: black;
+    color: white;
+   
+}
+#basic input{
+  width: 100px;
+  height: 35px;
+}
+.block{
+    float: left;
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 5px;
 }

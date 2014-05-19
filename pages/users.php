@@ -184,10 +184,9 @@ M;
             }
             $content .= "<br/>";
         }
-        $ch_info['avatar'] = "";
-        $image = 'images/characters/' . $_SESSION['uid'] . '.png';
-        if (file_exists($image))
-            $ch_info['avatar'] = $image;
+        //$ch_info = array();
+        $character = new Character($_SESSION['email']);
+        $ch_info = $character->template();
     }
 } else if (isset($_POST['a'])) {
     $a = $_POST['a'];

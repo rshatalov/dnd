@@ -156,7 +156,7 @@ user-select: none;
 
 #scroll-content{
     text-align: left;
-    height: 200px;
+    height: 300px;
     overflow-y: auto;
 }
 

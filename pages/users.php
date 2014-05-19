@@ -42,16 +42,16 @@ if (isset($_SESSION['uid'])) {
                     $p = $t;
                     $p[3] = 1;
                 }
-                if (isset($t[6])&& $t[0] == 'player')
+                if (isset($t[6]) && $t[0] == 'player')
                     $c++;
                 if ($t[2] != $email)
                     $s.= $players[$i] . "\n";
             }
             $p[6] = $colors[$c];
-            $p[7] = time()-100;
-            $s.=$p[0] . ";" . $p[1] . ";" . $p[2] . ";" . $p[3] . ";" . $p[4] . ";" . $p[5] . ";" . $p[6] .";".$p[7]. "\n";
+            $p[7] = time() - 100;
+            $s.=$p[0] . ";" . $p[1] . ";" . $p[2] . ";" . $p[3] . ";" . $p[4] . ";" . $p[5] . ";" . $p[6] . ";" . $p[7] . "\n";
 
-            $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'wb');
+            $fh = fopen($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", 'w');
             fwrite($fh, $s);
             fclose($fh);
 
@@ -65,8 +65,9 @@ if (isset($_SESSION['uid'])) {
                     echo "Error: " . $_FILES["file"]["error"] . "<br>";
                 } else {
                     $mid = $_POST['mid'];
-                    $ext = pathinfo($_FILES["file"]['name'], PATHINFO_EXTENSION);
-                    move_uploaded_file($_FILES["file"]["tmp_name"], "images/monsters/" . $mid . "." . $ext);
+                    $to = "images/monsters/" . $mid . ".png";
+                    $from = "images/monsters/" . $_FILES['file']['name'];
+                    convert_to_png($from, $to);
                     $size = $_POST['size'];
 
                     $name = $_POST['name'];
@@ -150,8 +151,10 @@ M;
             if ($_FILES["file"]["error"] > 0) {
                 echo "Error: " . $_FILES["file"]["error"] . "<br>";
             } else {
-                $ext = pathinfo($_FILES["file"]['name'], PATHINFO_EXTENSION);
-                move_uploaded_file($_FILES["file"]["tmp_name"], "images/characters/" . $_SESSION['uid'] . "." . $ext);
+                 $to = "images/characters/" . $_SESSION['uid'] . ".png";
+                    $from = "images/characters/" . $_FILES['file']['name'];
+                    convert_to_png($from, $to);
+               
             }
         }
 
@@ -182,7 +185,7 @@ M;
             $content .= "<br/>";
         }
         $ch_info['avatar'] = "";
-        $image = 'images/characters/' . $_SESSION['uid'] . '.jpg';
+        $image = 'images/characters/' . $_SESSION['uid'] . '.png';
         if (file_exists($image))
             $ch_info['avatar'] = $image;
     }

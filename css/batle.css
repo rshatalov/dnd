@@ -156,6 +156,8 @@ user-select: none;
 
 #scroll-content{
     text-align: left;
+    height: 200px;
+    overflow-y: auto;
 }
 
 .image-in-scroll {

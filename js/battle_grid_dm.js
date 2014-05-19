@@ -116,6 +116,9 @@ function loadBattleFromServer(table)
             contentType: false,   // tell jQuery not to set contentType
             success: function(data){
                 console.log(data);
+        $_("insert-image-in-scroll").style.display = 'block';
+        $_("insert-image-in-scroll2").style.display = 'none';
+        $_("send-image-for-scroll").style.display = 'none';
             }
         });
 

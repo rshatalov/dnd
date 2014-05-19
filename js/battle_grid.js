@@ -15,7 +15,10 @@ var draggedPlayer = "";
 var units = new Array();
 var curPlayer = "";
 var curPlayerType = "";
+var curPlayerId = "";
 var chat = new Array();
+var unitsLocked = false;
+var scrollIndex = 0;
 
 window.onload = function()
 {
@@ -85,6 +88,12 @@ function moveUnitStart(e)
     e.preventDefault();
     e.stopPropagation();
     unitType = e.target.className;
+    if (curPlayerType=="player" && curPlayerId != e.target.id)
+    {
+        console.log(curPlayerId);
+        return;
+    }
+    unitsLocked = true;
     $_('layer-for-moving').style.display = 'block';
     draggedPlayer = e.target;
 }
@@ -110,14 +119,15 @@ function moveUnitFinish(e)
         draggedPlayer.style.top = y - draggedPlayer.offsetHeight / 2 + 'px';
         var u = draggedPlayer.getAttribute('id');
         $.get('/ajax/change_unit_position.php?uid=' + u + '&x=' + x + '&y=' + y + '&tid=' + table, function(data) {
-            console.log(data);
         });
         $_('layer-for-moving').style.display = 'none';
         draggedPlayer = "";
+        unitsLocked = false;
     }
 }
 function moveUnitCancel(e)
 {
+    unitsLocked = false;
     $_('layer-for-moving').style.display = 'none';
 }
 
@@ -138,6 +148,7 @@ function getPlayer()
         data = data.split(';');
         curPlayer = data[0];
         curPlayerType = data[1];
+        curPlayerId = data[2];
         $.get("/tables/" + table + "/players.txt?" + new Date().getTime(), function(data)
         {
             fillUnitsList(data);
@@ -146,12 +157,7 @@ function getPlayer()
                 if (e.target.className == 'player' || e.target.className == 'monster')
                     moveUnitStart(e);
             }, false);
-
-            if (curPlayerType == 'player')
-            {
-                var p = $_(curPlayer);
-                //p.addEventListener('mousedown', moveUnitStart, false);
-            }
+            
             $_('chat-send').addEventListener('click', function()
             {
                 var message = $_('chat-input').value;
@@ -208,18 +214,12 @@ function refreshChat()
                         color = units[j][6];
                     }
                 }
-
             }
-
             s += "<div><div style='color: " + color + "; display:inline'>"
             if (t[2] == 'dm')
-            {
                 s += 'DM: ';
-            }
             else
-            {
                 s += t[1] + ': ';
-            }
             s += "</div>" + t[3];
             s += "</div>";
         }
@@ -229,6 +229,8 @@ function refreshChat()
 
 function fillUnitsList(data)
 {
+    if (unitsLocked == true)
+        return;
     data = data.split('\n');
     units = new Array();
     for (var i = 0; i < data.length; i++)
@@ -280,7 +282,7 @@ function fillUnitsList(data)
             if (units[i][3] == '2' && units[i][0] == 'player')
                 s += "style='-webkit-filter: grayscale(100%); -webkit-filter: grayscale(1);\n\
 filter: grayscale(100%); filter: gray; '";
-            s += " src='/images/" + folder + "/" + units[i][1] + ".jpg' class='avatar-thumbnail'>";
+            s += " src='/images/" + folder + "/" + units[i][1] + ".png' class='avatar-thumbnail'>";
             if (curPlayerType == 'dm') {
                 s += "\
 <img class='up-arrow' src='/images/up_arrow.png'>\n\
@@ -333,7 +335,17 @@ function refreshScroll()
 {
     $.get("/tables/" + table + "/scroll.txt?" + new Date().getTime(), function(data)
     {
-        $_("scroll-content").innerHTML = data;
+        data = data.split("\n");
+        if (scrollIndex < data.length-1)
+        {
+            for (var i = scrollIndex; i < data.length-1;i++)
+            {
+        $_("scroll-content").innerHTML += data[i];
+            }
+        
+        scrollIndex = data.length-1;
+    }
+        
     });
 }
 

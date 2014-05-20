@@ -1,1 +1,0 @@
-monster;5379a97464c97;river goblin;2;25;25;#000000;1

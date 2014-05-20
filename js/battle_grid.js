@@ -27,6 +27,9 @@ window.onload = function()
     context = $_('battle-grid').getContext('2d');
     var c = $_('grid').getContext('2d');
     drawGrid(c);
+
+$("#scroll-container").perfectScrollbar();
+    
     loadBattleFromServer(table);
     $_('layer-for-moving').addEventListener('mousemove', moveUnit, false);
     $_('layer-for-moving').addEventListener('mouseup', moveUnitFinish, false);
@@ -152,6 +155,7 @@ function getPlayer()
         $.get("/tables/" + table + "/players.txt?" + new Date().getTime(), function(data)
         {
             fillUnitsList(data);
+            
 
             $_('battle-container').addEventListener("mousedown", function(e) {
                 if (e.target.className == 'player' || e.target.className == 'monster')
@@ -183,6 +187,7 @@ function getPlayer()
             if (curPlayerType == 'player')
                 window.setInterval(refreshStatus, 5000);
             window.setInterval(refreshScroll, 3000);
+            
         });
 
     });
@@ -313,6 +318,10 @@ filter: grayscale(100%); filter: gray; '";
         }
     }
     $_("users-list").innerHTML = s;
+    $("#users-list").perfectScrollbar("update");
+    //$("users-list").resize();
+    //$("#users-list").mCustomScrollbar("update");
+    
 }
 
 function refreshUnitsList()
@@ -345,7 +354,7 @@ function refreshScroll()
         
         scrollIndex = data.length-1;
     }
-        
+        $("#scroll-container").perfectScrollbar("update");
     });
 }
 

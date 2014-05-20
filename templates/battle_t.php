@@ -38,7 +38,8 @@
             <div id="settings">#</div>
         </div>
         <div id="scroll">
-            <div id='scroll-content'></div>
+            <div id="scroll-container">
+                <div id='scroll-content'></div></div>
             <?php if ($_SESSION['type'] == 'dm'): ?>
                 <div id="scroll-form">
                     <textarea id='scroll-message'></textarea>

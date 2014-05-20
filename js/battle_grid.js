@@ -282,7 +282,7 @@ function fillUnitsList(data)
             s += "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>";
             if (units[i][0] == 'monster')
                 s += units[i][7] + " ";
-            s += units[i][2] + "</div>";
+            s += "<div class='unit-name'>"+units[i][2] + "</div></div>";
             s += "<img ";
             if (units[i][3] == '2' && units[i][0] == 'player')
                 s += "style='-webkit-filter: grayscale(100%); -webkit-filter: grayscale(1);\n\

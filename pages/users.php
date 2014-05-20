@@ -185,7 +185,7 @@ M;
             $content .= "<br/>";
         }
         //$ch_info = array();
-        $character = new Character($_SESSION['email']);
+        $character = new Character($_SESSION['uid'],$_SESSION['uid'],$db);
         $ch_info = $character->template();
     }
 } else if (isset($_POST['a'])) {

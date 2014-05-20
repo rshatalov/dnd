@@ -1,20 +1,49 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+
 
 class Character {
-
+    public $db;
+    public $disabled;
+    public $email;
     public $name;
     public $avatar;
     public $uid;
     public $i;
 
-    public function __construct($uid) {
+    public function __construct($uid,$reader,$db) {
         $this->uid = $uid;
-        $this->name = "!!!";
+        $this->db = $db;
+       $r = $db->query("select * from users where uid='$uid'");
+       $r = $r->fetch();
+       $this->email=$r['email'];
+       $r = $db->query("select * from characters where uid='$uid'");
+       $r = $r->fetch();
+       $this->disabled="";
+       if ($r != NULL){
+           if($uid==$reader)
+               $this->disabled="disabled";
+        $this->i['name']=$r['name'];
+        $this->i['size']=$r['size'];
+         $this->i['cur_hp']=$r['cur_hp'];
+       }
+      
+       
     }
     public function process($a){
     $this->i =$a; 
+    if (count($this->i)!=3)return;
+    
+    $q =<<<QUERY
+insert into characters set
+    uid='{$this->uid}',
+    cid='{$this->uid}',
+    name='{$this->i['name']}',
+    size='{$this->i['size']}',
+    cur_hp='{$this->i['cur_hp']}'
+QUERY;
+      $this->db->exec($q);
+    
     //$this->name=$a['name'];
     }
     public function debug() {
@@ -27,14 +56,14 @@ class Character {
 <div id="character">
                 <form method="post" action="/character.php">
 <div id="basic">
-    <input name="name" type="text" id="name" placeholder="NOME PERSONAGGIO">
-    <input type="text" id="email" placeholder="email">
+    <input name="name" type="text" id="name" placeholder="NOME PERSONAGGIO" value="{$this->i['name']}" {$this->disabled}>
+    <input type="text" id="email" placeholder="email" value="{$this->email}" disabled>
     <input type="text" id="" placeholder="RAZZA">
     <input type="text" id="" placeholder="ALLINEAMENTO">
     <input type="text" id="" placeholder="'DIVINITA'"><br/>
     <input type="text" id="class" placeholder="classe">
     <input type="text" id="level" placeholder="LIV.">
-    <input name="size" type="text" id="size" placeholder="TAGLIA">
+    <input name="size" type="text" id="size" placeholder="TAGLIA" value="{$this->i['size']}" {$this->disabled}>
     <input type="text" id="" placeholder="ETA'">
     <input type="text" id="" placeholder="SESSO">
     <input type="text" id="" placeholder="ALTEZZA"><br/>
@@ -55,7 +84,7 @@ class Character {
         <div class="tall narrow block"></div>
                  <div class="tall narrow black block"></div>
                 <input name="" class="tall narrow block" placeholder="TOT">
-                <input name="cur-hp" class="tall medium block" placeholder="ATTUALI">
+                <input name="cur_hp" class="tall medium block" placeholder="ATTUALI" value="{$this->i['cur_hp']}" {$this->disabled}>
                  <div class="tall medium block black">'RIDUZIONE DANNO</div>
                  <div class="tall narrow block"></div>
                  <div class="tall medium block black">'VELOCITA'</div>
@@ -105,9 +134,35 @@ class Character {
         
         <input type="text" pattern="[0-9]*" class="tall narrow block">
         <div class="tall narrow block"></div>
+         <div class="tall medium block black">CONTATTO</div>
+                <div class="tall narrow block"></div>
+             
     </div>
     <div style="clear:both"></div>
   
+                  <div class="string tall">
+        <div class="tall narrow black block">
+            <div class="first">SAG</div>
+            <div class="second"></div>
+        </div>
+        
+        <input type="text" pattern="[0-9]*" class="tall narrow block">
+        <div class="tall narrow block"></div>
+                 <div class="tall medium block black">SPROVVISTA</div>
+                <div class="tall narrow block"></div>
+    </div>
+    <div style="clear:both"></div>
+                
+                  <div class="string tall">
+        <div class="tall narrow black block">
+            <div class="first">CAR</div>
+            <div class="second"></div>
+        </div>
+        
+        <input type="text" pattern="[0-9]*" class="tall narrow block">
+        <div class="tall narrow block"></div>
+    </div>
+    <div style="clear:both"></div>
                   
 </div>
                 <div id="basic2">

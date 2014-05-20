@@ -182,6 +182,15 @@ function loadBattleFromServer(table)
 
             })
         }
+        if (c=="unit-name")
+        {
+            console.log(e.target.parentNode.parentNode)
+           var uid = e.target.parentNode.parentNode.id.split("-")[0];
+           $_('popup-container').style.display="block";
+           $.get("/ajax/get_character.php?tid="+table+"&uid="+uid,function(data){
+               $_("popup").innerHTML=data;
+           })
+        }
     }, false);
 
     $_('popup').addEventListener('click', function(e) {

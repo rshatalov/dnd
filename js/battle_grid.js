@@ -29,6 +29,8 @@ window.onload = function()
     drawGrid(c);
 
 $("#scroll-container").perfectScrollbar();
+$("#units-list-container").perfectScrollbar();
+$("#chat-messages-container").perfectScrollbar();
     
     loadBattleFromServer(table);
     $_('layer-for-moving').addEventListener('mousemove', moveUnit, false);
@@ -229,6 +231,7 @@ function refreshChat()
             s += "</div>";
         }
         $_('chat-messages').innerHTML = s;
+        $("#chat-messages-container").perfectScrollbar("update");
     });
 }
 
@@ -318,9 +321,7 @@ filter: grayscale(100%); filter: gray; '";
         }
     }
     $_("users-list").innerHTML = s;
-    $("#users-list").perfectScrollbar("update");
-    //$("users-list").resize();
-    //$("#users-list").mCustomScrollbar("update");
+    $("#units-list-container").perfectScrollbar("update");
     
 }
 

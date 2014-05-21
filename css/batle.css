@@ -109,10 +109,16 @@ user-select: none;
     margin-top: 10px;
     position: relative;
 }
+#chat-messages-container {
+    overflow: hidden;
+    height:  160px; 
+    position: relative;
+    border-bottom: 1px solid red;
+}
 #chat-messages{
     text-align: left;
-   overflow: auto;
-    height:  200px;
+    position: relative;
+   
 }
 #dices{
     position: absolute;
@@ -233,10 +239,13 @@ user-select: none;
     width: 200px;
     height: 500px;     
 }
-#users-list{
-
+#units-list-container{
  overflow: hidden;
  height: 500px;
+ position: relative;
+}
+#users-list{
+ position: relative;
 }
 
 .unit-in-list{
@@ -255,6 +264,10 @@ user-select: none;
     border-top-right-radius: 5px;
     height: 25px;
     padding-left: 5px;
+}
+.unit-name {
+    display: inline;
+    cursor: pointer;
 }
 
 .avatar-thumbnail{

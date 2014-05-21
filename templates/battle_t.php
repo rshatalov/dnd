@@ -20,7 +20,8 @@
         <?php endif; ?>
         <div id="ads"></div>
         <div id="chat">
-            <div id="chat-messages"></div>
+            <div id="chat-messages-container">
+                <div id="chat-messages"></div></div>
             <div id="dices">
                 <img id="dise4" src="/images/dice4.png" class="dice">
                 <img id="dise6" src="/images/dice6.png" class="dice">
@@ -32,8 +33,9 @@
             <div id="chat-send">Send</div>          
 
         </div>
-        <div id="right-column"> 
-            <div id="users-list"></div>
+        <div id="right-column">
+            <div id="units-list-container">
+                <div id="users-list"></div></div>
             <div id="add-monster">+</div>
             <div id="settings">#</div>
         </div>

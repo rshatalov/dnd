@@ -168,7 +168,6 @@ function loadBattleFromServer(table)
             var uid = e.target.parentNode.id.split('-')[0];
             $.get("/ajax/disable_player.php?tid=" + table + "&uid=" + uid, function(data) {
                 refreshUnitsList();
-                console.log(data);
             });
         }
 
@@ -184,8 +183,9 @@ function loadBattleFromServer(table)
         }
         if (c=="unit-name")
         {
-            console.log(e.target.parentNode.parentNode)
            var uid = e.target.parentNode.parentNode.id.split("-")[0];
+           $_('popup').style.innerHTML="";
+           $_('popup').style.width="700px";
            $_('popup-container').style.display="block";
            $.get("/ajax/get_character.php?tid="+table+"&uid="+uid,function(data){
                $_("popup").innerHTML=data;

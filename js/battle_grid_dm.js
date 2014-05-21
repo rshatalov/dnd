@@ -185,7 +185,7 @@ function loadBattleFromServer(table)
         {
            var uid = e.target.parentNode.parentNode.id.split("-")[0];
            $_('popup').style.innerHTML="";
-           $_('popup').style.width="700px";
+           $_('popup').style.width="900px";
            $_('popup-container').style.display="block";
            $.get("/ajax/get_character.php?tid="+table+"&uid="+uid,function(data){
                $_("popup").innerHTML=data;

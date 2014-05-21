@@ -80,7 +80,8 @@ QUERY;
             <div class="second"></div>
         </div>
         
-        <input type="text" pattern="[0-9]*" class="tall narrow block">
+    <div class="rel block tall narrow"><div class="above narrow">'PUNTI</div><input type="text" pattern="[0-9]*" class=""></div>
+        
         <div class="tall narrow block"></div>
                  <div class="tall narrow black block"></div>
                 <input name="" class="tall narrow block" placeholder="TOT">

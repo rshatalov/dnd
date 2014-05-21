@@ -1,4 +1,10 @@
 
+input{
+    border:none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 #character{
     background-color: white;
     color: black;
@@ -15,12 +21,22 @@
 .string{
     margin-bottom: 5px;
 }
+.rel{
+    position: relative;
+}
+.above{
+    position: absolute;
+    top: -13px;
+    left: 0;
+    font-size: 0.7em;
+}
 .tall{
     height: 35px;
    
 }
 .narrow{
     width: 50px;
+     text-align: center;
     
 }
 .medium{
@@ -35,9 +51,13 @@
   width: 100px;
   height: 35px;
 }
+#props{
+    margin-top: 10px;
+}
 .block{
     float: left;
     border: 1px solid black;
     display: inline-block;
     margin-right: 5px;
+   
 }

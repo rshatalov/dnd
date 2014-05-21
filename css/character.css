@@ -23,6 +23,7 @@ input{
 }
 .rel{
     position: relative;
+    box-sizing: border-box;
 }
 .above{
     position: absolute;
@@ -32,15 +33,21 @@ input{
 }
 .tall{
     height: 35px;
-   
+}
+.small {
+    height: 18px;
 }
 .narrow{
     width: 50px;
-     text-align: center;
-    
+    text-align: center;
 }
+
 .medium{
     width: 100px;
+}
+.half-medium{
+    width: 75px;
+    text-align: center;
 }
 .black{
     background-color: black;
@@ -53,11 +60,13 @@ input{
 }
 #props{
     margin-top: 10px;
+    
 }
 .block{
     float: left;
     border: 1px solid black;
-    display: inline-block;
+    //display: inline-block;
     margin-right: 5px;
+    box-sizing: border-box;
    
 }

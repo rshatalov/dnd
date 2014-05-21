@@ -9,6 +9,7 @@ input{
     background-color: white;
     color: black;
     padding: 5px;
+    position: relative;
 }
 .c{
     clear: both;
@@ -31,8 +32,17 @@ input{
     left: 0;
     font-size: 0.7em;
 }
+.below{
+   position: absolute;
+    bottom:-13px;
+    left: 0;
+    font-size: 0.7em;  
+}
 .tall{
     height: 35px;
+}
+.tall2{
+    height: 53px;
 }
 .small {
     height: 18px;
@@ -45,6 +55,9 @@ input{
 .medium{
     width: 100px;
 }
+.wide{
+    width: 125px;
+}
 .half-medium{
     width: 75px;
     text-align: center;
@@ -52,6 +65,16 @@ input{
 .black{
     background-color: black;
     color: white;
+   
+}
+#avatar-container{
+      position: absolute;
+      right: 0;
+}
+#character-avatar{
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
    
 }
 #basic input{

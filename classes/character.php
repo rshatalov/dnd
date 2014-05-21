@@ -50,11 +50,36 @@ QUERY;
         $d= $this->i;
       return $d;  
     }
+/*
+$ch_info['avatar'] = "";
+        $image = 'images/characters/' . $_SESSION['uid'] . '.png';
+        if (file_exists($image))
+            $ch_info['avatar'] = $image;
+        
+        
+$ch = $_SESSION['email'];
+$ch .= <<<m
+        <hr/>
+    <div id="avatar"><img height="150" width="150" src="{$ch_info['avatar']}"></div>
+    <form enctype="multipart/form-data" method="post">
+        <input type="file" name="file">
+    <input type="submit">
+    <input type="hidden" name="a" value="file_upload">
+    </form>
 
+m;
+
+*/
     public function template() {
 $t = <<<TEMPLATE
 <div id="character">
                 <form method="post" action="/character.php">
+        
+<div id="avatar-container">
+  <img id="character-avatar" height="150" width="150" src="">
+      <div>Choose</div>  
+          <div>Upload</div>
+</div>
 <div id="basic">
     <input name="name" type="text" id="name" placeholder="NOME PERSONAGGIO" value="{$this->i['name']}" {$this->disabled}>
     <input type="text" id="email" placeholder="email" value="{$this->email}" disabled>
@@ -180,10 +205,66 @@ $t = <<<TEMPLATE
         <div class='rel small narrow block'><div class='above narrow'>VARI</div><div class=''></div></div>
         <div class='rel small narrow block'><div class='above narrow'>TEMP</div><div class=''></div></div>
     </div>
+                
+    <div class='string small'>
+        <div class='small half-medium block black'>RIFLESSI</div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+    </div>
+                
+    <div class='string small'>
+        <div class='small half-medium block black'>VOLONTA'</div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+    </div>
+                
+    <div class='string small'>
+        <div class='small half-medium block black'>ATTACCO BASE</div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+        <div class='small narrow block'></div>
+    </div>
+                
+    <div class='string small'>
+        <div class='rel small half-medium block'><div class='black'>TEMPRA</div></div>
+        <div class='rel small narrow block'><div class='below narrow'>'TOT</div><div class=''></div></div>
+        <div class='rel small narrow block'><div class='below narrow'>'ATTACCO<br/>BASE</div><div class=''></div></div>
+        <div class='rel small narrow block'><div class='below narrow'>'FOR.</div><div class=''></div></div>
+        <div class='rel small narrow block'><div class='below narrow'>'TAGLIA</div><div class=''></div></div>
+        <div class='rel small narrow block'><div class='below narrow'>'VARI</div><div class=''></div></div>
+    </div>
 </div>
 <div style="clear:both"></div>
 
-
+<div style="border:1px solid black; display:inline-block;">
+    <div class='string tall2'>
+        <div class="block wide">
+            <div class="black small">'ATTACCO MISCHIA 1</div>
+            <div class="tall"></div>
+        </div>
+                <div class="block narrow">
+            <div class="black small">BONUS</div>
+            <div class="tall"></div>
+        </div>
+                 <div class="block wide">
+            <div class="black small">DANNI</div>
+            <div class="tall"></div>
+        </div>
+                 <div class="block narrow">
+            <div class="black small">CRITICO</div>
+            <div class="tall"></div>
+        </div>
+    </div>    
+</div>
+                <div style="clear:both"></div>
    <div class="tall medium">Send</div></form>
 </div>             
 {$this->uid} {$this->name}
@@ -195,23 +276,3 @@ TEMPLATE;
 }
 
 ;
-/*
-$ch_info['avatar'] = "";
-        $image = 'images/characters/' . $_SESSION['uid'] . '.png';
-        if (file_exists($image))
-            $ch_info['avatar'] = $image;
-        
-        
-$ch = $_SESSION['email'];
-$ch .= <<<m
-        <hr/>
-    <div id="avatar"><img height="150" width="150" src="{$ch_info['avatar']}"></div>
-    <form enctype="multipart/form-data" method="post">
-        <input type="file" name="file">
-    <input type="submit">
-    <input type="hidden" name="a" value="file_upload">
-    </form>
-
-m;
-
-*/

@@ -14,14 +14,56 @@ input{
 .c{
     clear: both;
 }
+
+#avatar-container{
+      position: absolute;
+      right: 0;
+}
+#character-avatar{
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+   
+}
+
 #avatar{
     width: 150px;
     height: 150px;
     border: 1px solid white;
 }
+
+.unit-avatar {
+        width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+#choose-avatar-image {
+    cursor:pointer;
+}
+#upload-avatar-image {
+    cursor:pointer;
+    display: none;
+}
+#hidden-avatar-uploader {
+    display: none;
+}
+
+#post-unit {
+    position: absolute;
+    right: 0;
+    top: 200px;
+    border: 1px solid green;
+    padding: 30px;
+    width: 150px;
+    height: 150px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
 .string{
     margin-bottom: 5px;
 }
+
 .rel{
     position: relative;
     box-sizing: border-box;
@@ -67,16 +109,7 @@ input{
     color: white;
    
 }
-#avatar-container{
-      position: absolute;
-      right: 0;
-}
-#character-avatar{
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-   
-}
+
 #basic input{
   width: 100px;
   height: 35px;
@@ -88,7 +121,6 @@ input{
 .block{
     float: left;
     border: 1px solid black;
-    //display: inline-block;
     margin-right: 5px;
     box-sizing: border-box;
    

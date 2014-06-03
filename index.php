@@ -22,6 +22,7 @@ else
 //$debug .= "Address: $path<br/>";
 $content = "";
 require_once("pages/" .$path);
+
 require_once 'templates/template.php';
 
 ?>

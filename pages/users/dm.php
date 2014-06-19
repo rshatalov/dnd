@@ -63,7 +63,11 @@ $content .= "";
     $query = "SELECT * FROM units WHERE user_id='{$_SESSION['uid']}'";
     foreach ($db->query($query) as $unit)
     {
-        $mt .= "<div>!!!<span><a href='users.php?tab=editMonster&a=monster_form_edit&uid={$unit['uid']}'>edit</a></span></div>";
+        if ($unit['name'] != NULL)
+            $name = $unit['name'];
+        else
+            $name = "n/a";
+        $mt .= "<div>$name <span><a href='users.php?tab=editMonster&a=monster_form_edit&uid={$unit['uid']}'>edit</a></span></div>";
     }
 $nt = ""; // new tab
 
@@ -85,7 +89,7 @@ if (isset($_GET['a']) && $_GET['a'] == 'monster_form_create') {
     $nt = "edit_monster";
     $ch = new Unit($db);
     $uid = $_GET['uid'];
-    $ch->load_monster($uid);
+    $ch->load_unit($uid);
 }
 
 

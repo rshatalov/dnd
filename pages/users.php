@@ -5,7 +5,6 @@ $inner_template = "users/users_t.php";
 $css .= "<link rel='stylesheet' href='/css/site.css'>";
 $css .= "<link rel='stylesheet' href='/css/character.css'>";
 $js .= "<script src='js/site.js'></script>";
-$js .= "<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>";
 $js .= "<script src='js/unit.js'></script>";
 
 if (isset($_GET['a']) && $_GET['a'] == 'logout') {

@@ -18,7 +18,7 @@ body{
     text-align: center;
     cursor: arrow;
     position: relative;
-    margin-left: 400px;
+    margin-left: 410px;
     margin-right: 200px;
 }
 #battle-container{
@@ -31,6 +31,29 @@ user-select: none;
 background-color:  white;
 }
 
+#grid-letters {
+    position: absolute;
+    top: 25px;
+    width: 25px;
+    text-align: center;
+}
+#grid-numbers {
+    left: 25px;
+    position: absolute;
+    top: 3px;
+}
+.grid-letter {
+    display: block;
+    height: 25px;
+    text-align: center;
+}
+.grid-number {
+    width: 25px;
+    text-align: center;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
 
 .player {
     background-color: black;
@@ -94,20 +117,30 @@ user-select: none;
     background-color: white;
     float:left;
 }
+
+#clear-all {
+    position: absolute;
+    bottom: 0;
+}
+
 #ads{
-    border: 1px solid black;
-    width: 100%;
+    width: 775px;
     height: 40px;
-    margin-top: 50px;
+    margin-top: 8px;
     background-color: white;
 }  
 #chat{
     background-color: white;
-    border: 1px solid black;
-    width: 100%;
+    width: 775px;
     height: 250px;
-    margin-top: 10px;
+    margin-top: 8px;
     position: relative;
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
 }
 #chat-messages-container {
     overflow: hidden;
@@ -137,10 +170,11 @@ user-select: none;
     
 }
 #chat-input{
-    width: 80%;
+    width: 735px;
+    border: 1px solid black;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 10px;
+    left: 20px;
     
 }
 #chat-send{
@@ -152,12 +186,16 @@ user-select: none;
 }
 
 #scroll{
-    background-color:coral;
+    background-image: url(/images/scroll_bg.png);
     position: absolute;
-    left: -400px;
+    left: 10px;
     top: 0;
-    width: 390px;
-    height: 500px;
+    width: 400px;
+    height: 553px;
+    box-sizing: border-box;
+    padding-top: 65px;
+    padding-left: 50px;
+    padding-right: 25px;
     
 }
 
@@ -192,9 +230,9 @@ user-select: none;
 
 #scroll-form {
     position: absolute;
-    bottom: 10px;
-    width: 90%;
-    left: 5%;
+    bottom: 40px;
+    width: 80%;
+    left: 10%;
 }
 
 #scroll-form textarea {

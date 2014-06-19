@@ -290,7 +290,7 @@ function fillUnitsList(data)
             if (units[i][3] == '2' && units[i][0] == 'player')
                 s += "style='-webkit-filter: grayscale(100%); -webkit-filter: grayscale(1);\n\
 filter: grayscale(100%); filter: gray; '";
-            s += " src='/images/" + folder + "/" + units[i][1] + ".png' class='avatar-thumbnail'>";
+            s += " src='/images/units/" + units[i][1] + ".png' class='avatar-thumbnail'>";
             if (curPlayerType == 'dm') {
                 s += "\
 <img class='up-arrow' src='/images/up_arrow.png'>\n\

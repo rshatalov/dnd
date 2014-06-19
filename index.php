@@ -7,6 +7,8 @@ require_once("config.php");
 require_once("functions.php");
 require_once("classes/character.php");
 $js = "";
+$js .= "<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>";
+//$js .= "<script src='/jquery-min.js'></script>";
 $css = "";
 $debug = "";
 

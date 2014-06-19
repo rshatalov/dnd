@@ -174,10 +174,10 @@ function loadBattleFromServer(table)
         if (c == 'delete-monster')
         {
             var t = e.target.parentNode;
-            var mid = e.target.parentNode.id.split('-')[0];
-            console.log(mid);
+            var uid = e.target.parentNode.id.split('-')[0];
+            console.log(uid);
             t.parentNode.removeChild(t);
-            $.get("/ajax/delete_monster.php?tid=" + table + "&mid=" + mid, function(data) {
+            $.get("/ajax/delete_monster.php?tid=" + table + "&uid=" + uid, function(data) {
 
             })
         }
@@ -195,8 +195,8 @@ function loadBattleFromServer(table)
 
     $_('popup').addEventListener('click', function(e) {
         if (e.target.className == 'add-monster-from-stack') {
-            var mid = e.target.id.split('-')[0];
-            $.get("/ajax/add_monster.php?tid=" + table + "&mid=" + mid, function(data) {
+            var uid = e.target.id.split('-')[0];
+            $.get("/ajax/add_monster.php?tid=" + table + "&uid=" + uid, function(data) {
                 console.log(data);
             })
         }

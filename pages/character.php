@@ -9,8 +9,7 @@ if (isset($_POST['a'])) {
             exit();
             break;
         case "edit_unit";
-            print_r($_POST);
-            //echo "!!!";
+            $ch->process_input($_POST);
             exit();
             break;
     }

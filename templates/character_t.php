@@ -17,16 +17,17 @@
     <form id='unit-form' method="post" action="/character.php">
         <input type='hidden' id='uid' name='uid' value='<?php echo $this->uid; ?>'>
         <input type='hidden' name='a' value='edit_unit'>
+        <input type='hidden' name='type' value='<?php echo $this->type; ?>'>
 
         <div id="basic">
-            <input type="text" id="name" name="name" placeholder="NOME PERSONAGGIO" value="<?php $this->i['name'];?>" <?php echo $this->disabled;?>>
+            <input type="text" id="name" name="name" placeholder="NOME PERSONAGGIO" value="<?php echo $this->basic['name'];?>" <?php echo $this->disabled;?>>
             <input type="text" id="user_name" placeholder="email" value="<?php echo $this->user_name ?>" disabled>
             <input type="text" id="" placeholder="RAZZA">
             <input type="text" id="" placeholder="ALLINEAMENTO">
             <input type="text" id="" placeholder="'DIVINITA'"><br/>
             <input type="text" id="class" placeholder="classe">
             <input type="text" id="level" placeholder="LIV.">
-            <input type="text" id="size" name="size" placeholder="TAGLIA" value="<?php echo $this->i['size']?>" <?php echo $this->disabled?>>
+            <input type="text" id="size" name="size" placeholder="TAGLIA" value="<?php echo $this->basic['size']?>" <?php echo $this->disabled?>>
             <input type="text" id="" placeholder="ETA'">
             <input type="text" id="" placeholder="SESSO">
             <input type="text" id="" placeholder="ALTEZZA"><br/>
@@ -47,8 +48,8 @@
 
                 <div class="rel block tall narrow"><div class="above narrow">MOD.</div></div>
                 <div class="tall narrow black block">PF</div>
-                <input name="max_hp" class="tall narrow block" placeholder="TOT" value="<?php echo $this->i['max_hp']?>" <?php echo $this->disabled?>>
-                <input name="actual_hp" class="tall medium block" placeholder="ATTUALI" value="<?php echo $this->i['actual_hp']?>" <?php echo $this->disabled?>>
+                <input name="max_hp" class="tall narrow block" placeholder="TOT" value="<?php echo $this->props['max_hp']?>" <?php echo $this->disabled?>>
+                <input name="actual_hp" class="tall medium block" placeholder="ATTUALI" value="<?php echo $this->props['actual_hp']?>" <?php echo $this->disabled?>>
                 <div class="tall medium block black">'RIDUZIONE DANNO</div>
                 <div class="tall narrow block"></div>
                 <div class="tall medium block black">'VELOCITA'</div>

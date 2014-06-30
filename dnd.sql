@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2014 at 06:45 AM
+-- Generation Time: Jun 30, 2014 at 06:26 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -27,8 +27,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tables` (
-  `dm` varchar(30) DEFAULT NULL,
+  `dm_uid` varchar(13) DEFAULT NULL,
+  `dm_user_name` varchar(30) DEFAULT NULL,
   `tid` varchar(13) NOT NULL DEFAULT '',
+  `table_name` varchar(30) DEFAULT NULL,
+  `table_desc` text,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `units` (
 --
 
 INSERT INTO `units` (`uid`, `status`, `type`, `user_id`, `monster_id`, `user_name`, `name`, `size`, `max_hp`, `actual_hp`) VALUES
-('53b20181407e7', '0', 'monster', '53b1fd5a3e6d2', NULL, 'vasilenin@mail.ru', NULL, NULL, NULL, NULL);
+('53b20181407e7', '0', 'monster', '53b1fd5a3e6d2', NULL, 'vasilenin@mail.ru', 'dsfas', 'S', 34, 434);
 
 -- --------------------------------------------------------
 

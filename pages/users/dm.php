@@ -96,7 +96,7 @@ if (isset($_GET['a']) && $_GET['a'] == 'monster_form_create') {
 
 function dm_create_table($db) {
     $tid = uniqid();
-    $dm = $_SESSION['email'];
+    $dm = $_SESSION['user_name'];
     $type = $_SESSION['type'];
     if ($type != "dm") {
         header("Location: users.php?tab=tables");

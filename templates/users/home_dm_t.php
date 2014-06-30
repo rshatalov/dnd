@@ -1,6 +1,7 @@
 <div id='tabs'>
 <div class="tab" id="tables-tab">Tavoli</div>
 <div class="tab" id="monsters-tab">Mostri & PNG</div>
+<div class="tab" id="newTable-tab">Create table</div>
 <?php if ($nt != "")
 {
     if ($nt == "create_monster")
@@ -35,6 +36,16 @@
     <?php 
         echo $mt; /* monsters-tab */
      ?>
+   
+</div>
+
+<div class='tab-content' id="newTable-content">
+    <form action='?tab=tables' method='post'>
+        <input type='hidden'>
+        <input type="text" placeholder="Table's name">
+        <textarea>Table's description</textarea>
+        <input type="submit">
+    </form>
    
 </div>
 

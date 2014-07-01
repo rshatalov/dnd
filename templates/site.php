@@ -1,7 +1,7 @@
 <div id="header">
-    <?php if (isset($_SESSION['email'])): ?>
+    <?php if (isset($_SESSION['uid'])): ?>
     <div id='user-bar'>sei loggato come:<br/>
-    <?php echo $_SESSION['email'] . " - " . $_SESSION['type'] ?><br/>
+    <?php echo $_SESSION['user_name'] . " - " . $_SESSION['type'] ?><br/>
     <a href='users.php?a=logout'>logout</a></div>
     <?php endif; ?>
     
@@ -11,7 +11,7 @@
         <li><a href='/'>Home</a></li>
         <li>How it works</li>
         <li>
-            <?php if(isset($_SESSION['email'])): ?>
+            <?php if(isset($_SESSION['uid'])): ?>
             <a href='/users.php?tables=tables'>User's page</a>
             <?php else: ?>
             <a href='/users.php?tab=login'>Login</a>/<a href='/users.php?tab=register'>Register</a>

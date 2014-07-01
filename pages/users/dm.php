@@ -24,8 +24,8 @@ switch ($a) {
 
 
 $tables = "";
-$email = $_SESSION['email'];
-$query = "SELECT * FROM `tables` WHERE dm='$email';";
+$user_name = $_SESSION['user_name'];
+$query = "SELECT * FROM `tables` WHERE dm_user_name='$user_name';";
 
 $tables_list = "";
 foreach ($db->query($query) as $r) {
@@ -96,7 +96,8 @@ if (isset($_GET['a']) && $_GET['a'] == 'monster_form_create') {
 
 function dm_create_table($db) {
     $tid = uniqid();
-    $dm = $_SESSION['user_name'];
+    $dm_user_name = $_SESSION['user_name'];
+    $dm_uid = $_SESSION['uid'];
     $type = $_SESSION['type'];
     if ($type != "dm") {
         header("Location: users.php?tab=tables");
@@ -108,7 +109,7 @@ function dm_create_table($db) {
     fopen("tables/$tid/players.txt", 'w');
     fopen("tables/$tid/battle_grid.txt", 'w');
     fopen("tables/$tid/chat.txt", 'w');
-    $r = $db->exec("INSERT INTO `tables` SET dm='$dm', tid='$tid';");
+    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', dm_user_name='$dm', tid='$tid', table_name='$table_name', table;");
     header("Location: users.php?tab=tables");
     exit();
 }

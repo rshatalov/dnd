@@ -18,7 +18,6 @@
 <div style="clear: both"></div>
 </div>
 <div class='tab-content' id="tables-content">
-    <a href='?a=create_table' id='create-table-button'>Crea nuovo tavolo</a>
     
     <table>
         <tr>
@@ -41,9 +40,9 @@
 
 <div class='tab-content' id="newTable-content">
     <form action='?tab=tables' method='post'>
-        <input type='hidden'>
-        <input type="text" placeholder="Table's name">
-        <textarea>Table's description</textarea>
+        <input type='hidden' name='a' value='create_table'>
+        <input type="text" name='table_name' placeholder="Table's name">
+        <textarea name='table_desc' placeholder="Table's description"></textarea>
         <input type="submit">
     </form>
    

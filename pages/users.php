@@ -36,7 +36,7 @@ if (isset($_SESSION['uid'])) {
         $st = $st->fetch();
         $debug .= $st['type'];
         $_SESSION['uid'] = $st['uid'];
-        $_SESSION['email'] = $email;
+        $_SESSION['user_name'] = $st['user_name'];
         $_SESSION['type'] = $st['type'];
         header("Location: users.php?tab=tables");
     }

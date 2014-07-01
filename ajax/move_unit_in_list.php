@@ -73,6 +73,7 @@ for($i=0; $i<count($players); $i++)
             array_push($players, "");
            
         }
+        
     }
 for($i=0;$i<count($players);$i++)
 {

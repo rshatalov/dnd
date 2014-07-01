@@ -24,9 +24,10 @@ if (isset($_SESSION['uid'])) {
     if ($a == 'register') {
         $uid = uniqid();
         $email = $_POST['email'];
+        $user_name = $_POST['user_name'];
         $pswd = $_POST['pswd'];
         $type = $_POST['type'];
-        $r = $db->exec("INSERT INTO users SET uid='$uid', email='$email', pswd='" . md5($pswd) . "', type='$type';");
+        $r = $db->exec("INSERT INTO users SET uid='$uid', email='$email', pswd='" . md5($pswd) . "', type='$type', user_name='$user_name';");
         header("Location: users.php?tab=login");
     } else if ($a == 'login') {
         $email = $_POST['email'];

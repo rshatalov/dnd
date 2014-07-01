@@ -28,6 +28,9 @@
             <tr><td>E-mail</td>
                 <td>
                     <input type='text' name='email'></td></tr>
+                        <tr><td>User name</td>
+                <td>
+                    <input type='text' name='user_name'></td></tr>
             <tr><td>Password</td>
                 <td>
                     <input type='password' name='pswd'></td></tr>

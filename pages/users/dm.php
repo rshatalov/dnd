@@ -30,6 +30,9 @@ $query = "SELECT * FROM `tables` WHERE dm_user_name='$user_name';";
 $tables_list = "";
 foreach ($db->query($query) as $r) {
     $tid = $r['tid'];
+    $table_name = $r['table_name'];
+    $table_desc = $r['table_desc'];
+   
     $tables_list.= "<option>$tid</option>";
     $players = file($_SERVER['DOCUMENT_ROOT'] . "/tables/$tid/players.txt", FILE_IGNORE_NEW_LINES);
     $s = "";
@@ -50,9 +53,9 @@ foreach ($db->query($query) as $r) {
         }
     }
     $content .= "<tr><td>";
-    $content .= $r['tid'] .
+    $content .= $r['table_name'] .
             "<a href='battle.php?table={$r['tid']}'>Entra</a></td>" .
-            "<td>Description</td>" . "<td>$participants</td>" .
+            "<td>$table_desc</td>" . "<td>$participants</td>" .
             "<td>$candidates</td>" .
             "<td><a href='?a=remove_table&tid={$r['tid']}'>Remove</a></td>";
     $content .= "</tr>";
@@ -111,7 +114,7 @@ function dm_create_table($db) {
     fopen("tables/$tid/players.txt", 'w');
     fopen("tables/$tid/battle_grid.txt", 'w');
     fopen("tables/$tid/chat.txt", 'w');
-    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', dm_user_name='$dm', tid='$tid', table_name='$table_name', table_desc='$table_desc';");
+    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', dm_user_name='$dm_user_name', tid='$tid', table_name='$table_name', table_desc='$table_desc';");
     header("Location: users.php?tab=tables");
     exit();
 }

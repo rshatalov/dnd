@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2014 at 06:26 PM
+-- Generation Time: Jul 01, 2014 at 08:02 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -35,6 +35,13 @@ CREATE TABLE IF NOT EXISTS `tables` (
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tables`
+--
+
+INSERT INTO `tables` (`dm_uid`, `dm_user_name`, `tid`, `table_name`, `table_desc`) VALUES
+('53b1fd5a3e6d2', 'olga', '53b248bef3c71', '1st battle', 'battle desc');
+
 -- --------------------------------------------------------
 
 --
@@ -61,7 +68,10 @@ CREATE TABLE IF NOT EXISTS `units` (
 --
 
 INSERT INTO `units` (`uid`, `status`, `type`, `user_id`, `monster_id`, `user_name`, `name`, `size`, `max_hp`, `actual_hp`) VALUES
-('53b20181407e7', '0', 'monster', '53b1fd5a3e6d2', NULL, 'vasilenin@mail.ru', 'dsfas', 'S', 34, 434);
+('53b20181407e7', '1', 'monster', '53b1fd5a3e6d2', NULL, 'vasilenin@mail.ru', 'troll', 'S', 34, 434),
+('53b233c28061d', '1', 'monster', '53b1fd5a3e6d2', NULL, '', 'Orc', 'G', 89, 898),
+('53b24bf1a9883', '1', 'monster', '53b1fd5a3e6d2', '53b20181407e7', 'vasilenin@mail.ru', 'troll', 'S', 34, 434),
+('53b24bf266259', '1', 'monster', '53b1fd5a3e6d2', '53b233c28061d', '', 'Orc', 'G', 89, 898);
 
 -- --------------------------------------------------------
 

@@ -99,6 +99,8 @@ function dm_create_table($db) {
     $dm_user_name = $_SESSION['user_name'];
     $dm_uid = $_SESSION['uid'];
     $type = $_SESSION['type'];
+    $table_name = $_POST['table_name'];
+    $table_desc = $_POST['table_desc'];
     if ($type != "dm") {
         header("Location: users.php?tab=tables");
         exit();
@@ -109,7 +111,7 @@ function dm_create_table($db) {
     fopen("tables/$tid/players.txt", 'w');
     fopen("tables/$tid/battle_grid.txt", 'w');
     fopen("tables/$tid/chat.txt", 'w');
-    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', dm_user_name='$dm', tid='$tid', table_name='$table_name', table;");
+    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', dm_user_name='$dm', tid='$tid', table_name='$table_name', table_desc='$table_desc';");
     header("Location: users.php?tab=tables");
     exit();
 }

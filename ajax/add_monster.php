@@ -3,7 +3,7 @@ require_once '../config.php';
 require_once '../classes/character.php';
 $uid = $_GET['uid'];
 $tid = $_GET['tid'];
- $query = "SELECT * FROM `monsters` where uid='$uid';";
+$query = "SELECT * FROM `monsters` where uid='$uid';";
 $ch = new Unit ($db);
 $ch->load_unit($uid);
 
@@ -22,9 +22,9 @@ for($i=0; $i<count($players); $i++)
 {
     if ($players[$i] == "") continue;
     $p=preg_split("/;/",$players[$i]);
-    if($p[0] == 'monster')
+    if($p[0] == 'monster' && $p[9] >= $n)
     {
-        $n++;
+        $n = $p[9]+1;
     }
 }
 $s = "monster;" . $uid . ";" . $name . ';' . $size . ";25;25;#000000;$max_hp;$actual_hp;$n\n";

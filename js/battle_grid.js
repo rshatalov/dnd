@@ -269,7 +269,7 @@ function fillUnitsList(data)
             {
                 u.style.padding = units[i][3] * 5 + 'px';
                 u.innerHTML = "<div style='position: absolute; left: " + (u.offsetWidth / 2 - 5) + "px; top: "
-                        + (u.offsetHeight / 2 - 8) + "px;'>" + units[i][7] + "</div>";
+                        + (u.offsetHeight / 2 - 8) + "px;'>" + units[i][9] + "</div>";
                 u.style.borderRadius = units[i][3] * 5 + 'px';
             }
             u.style.top = units[i][5] - u.offsetHeight / 2 + 'px';
@@ -284,7 +284,7 @@ function fillUnitsList(data)
 
             s += "<div style='background-color: " + units[i][6] + ";' class='unit-in-list-head'>";
             if (units[i][0] == 'monster')
-                s += units[i][7] + " ";
+                s += units[i][9] + " ";
             s += "<div class='unit-name'>"+units[i][2] + "</div></div>";
             s += "<img ";
             if (units[i][3] == '2' && units[i][0] == 'player')

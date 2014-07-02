@@ -63,7 +63,7 @@ foreach ($db->query($query) as $r) {
 $content .= "";
 
     $mt = "<a href='users.php?tab=createMonster&a=monster_form_create'>Create monster</a>";
-    $query = "SELECT * FROM units WHERE user_id='{$_SESSION['uid']}'";
+    $query = "SELECT * FROM units WHERE user_id='{$_SESSION['uid']}' AND monster_id IS NULL;";
     foreach ($db->query($query) as $unit)
     {
         if ($unit['name'] != NULL)
@@ -82,7 +82,7 @@ if (isset($_GET['a']) && $_GET['a'] == 'monster_form_create') {
     if ($rows == 0)
     {
     $ch = new Unit($db);
-    $ch->create_monster($_SESSION['uid'],$_SESSION['email']);
+    $ch->create_monster($_SESSION['uid'],$_SESSION['user_name']);
     $nt = "create_monster";
     }
     else
@@ -114,7 +114,7 @@ function dm_create_table($db) {
     fopen("tables/$tid/players.txt", 'w');
     fopen("tables/$tid/battle_grid.txt", 'w');
     fopen("tables/$tid/chat.txt", 'w');
-    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', dm_user_name='$dm_user_name', tid='$tid', table_name='$table_name', table_desc='$table_desc';");
+    $r = $db->exec("INSERT INTO `tables` SET dm_uid='$dm_uid', user_name='$dm_user_name', tid='$tid', table_name='$table_name', table_desc='$table_desc';");
     header("Location: users.php?tab=tables");
     exit();
 }

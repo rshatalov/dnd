@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2014 at 08:02 AM
+-- Generation Time: Jul 02, 2014 at 06:19 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `units` (
 --
 
 INSERT INTO `units` (`uid`, `status`, `type`, `user_id`, `monster_id`, `user_name`, `name`, `size`, `max_hp`, `actual_hp`) VALUES
-('53b20181407e7', '1', 'monster', '53b1fd5a3e6d2', NULL, 'vasilenin@mail.ru', 'troll', 'S', 34, 434),
-('53b233c28061d', '1', 'monster', '53b1fd5a3e6d2', NULL, '', 'Orc', 'G', 89, 898),
-('53b24bf1a9883', '1', 'monster', '53b1fd5a3e6d2', '53b20181407e7', 'vasilenin@mail.ru', 'troll', 'S', 34, 434),
-('53b24bf266259', '1', 'monster', '53b1fd5a3e6d2', '53b233c28061d', '', 'Orc', 'G', 89, 898);
+('53b3501ecf5ce', '1', 'monster', '53b1fd5a3e6d2', NULL, 'olga', 'Orc', 'S', 56, 565),
+('53b350543c212', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', 56, 565),
+('53b35054dfcb1', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', 56, 565),
+('53b35055243fe', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', 56, 565);
 
 -- --------------------------------------------------------
 

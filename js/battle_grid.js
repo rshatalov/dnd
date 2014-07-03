@@ -261,13 +261,32 @@ function fillUnitsList(data)
                 $_("battle-container").removeChild($_(units[i][1]));
             u.setAttribute('id', units[i][1]);
             u.style.backgroundColor = units[i][6];
-            if (units[i][0] == 'player' && units[i][3] == ['2']) {
+            $_("battle-container").appendChild(u);
+            switch (units[i][3])
+            {
+                case "P":
+                    units[i][3] = 10;
+                    break;
+                case "M":
+                    units[i][3] = 20;
+                    break;
+                case "G":
+                    units[i][3] = 30;
+                    break;
+                case "E":
+                    units[i][3] = 40;
+                    break;
+                case "S":
+                    units[i][3] = 50;
+                    break;
+                case "C":
+                    units[i][3] = 60;
+                    break;
             }
-            else
-                $_("battle-container").appendChild(u);
+            u.style.padding = units[i][3] + 'px';
             if (units[i][0] == 'monster')
             {
-                u.style.padding = units[i][3] * 5 + 'px';
+            //    u.style.padding = units[i][3] * 5 + 'px';
                 u.innerHTML = "<div style='position: absolute; left: " + (u.offsetWidth / 2 - 5) + "px; top: "
                         + (u.offsetHeight / 2 - 8) + "px;'>" + units[i][9] + "</div>";
                 u.style.borderRadius = units[i][3] * 5 + 'px';

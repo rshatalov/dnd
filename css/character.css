@@ -1,3 +1,9 @@
+div {
+    //box-sizing: border-box;
+    //font-size: 12pt;
+    //text-align: center;
+    font-family: Arial;
+}
 
 input{
     border:none;
@@ -11,10 +17,195 @@ input{
     padding: 5px;
     position: relative;
 }
+
+.r {
+    position: relative;
+}
 .c{
     clear: both;
 }
 
+.cn {
+    text-align: center;
+}
+
+.cb {
+    box-sizing: content-box;
+}
+.ac {
+    text-align: center;
+}
+
+.al {
+    text-align: left;
+}
+.bl {
+    border-left: 1px solid black;
+}
+
+.br {
+    border-right: 1px solid black;
+}
+.bt {
+    border-top: 1px solid black;
+}
+.bb {
+    border-bottom: 1px solid black;
+}
+
+.bf {
+    border: 1px solid black;
+}
+
+.fl {
+    float: left;
+}
+
+.blocki {
+    display: inline-block;
+}
+.left {
+    text-align: left;
+}
+
+.fz10 {
+    font-size: 10pt;
+}
+.fs10 {
+    font-size: 10pt;
+}
+.fs9 {
+    font-size: 9pt;
+}
+.fs8 {
+    font-size: 8pt;
+}
+.fs6 {
+    font-size: 6pt;
+}
+
+.w01{
+    width: 9px;
+}
+
+.w11 {
+    width: 45px;
+}
+.width1_1 {
+    width: 44px;
+}
+
+.w12 {
+    width: 62px;
+}
+
+.w13 {
+    width: 36px;
+}
+
+.width2_3 {
+    width: 170px;
+}
+.width2_2 {
+    width: 98px;
+}
+.w31 {
+    width: 170px;
+}
+
+.w34 {
+    width: 153px;
+}
+.w35 {
+    width: 191px;
+}
+.w37 {
+    width: 145px;
+}
+.w36 {
+    width: 151px;
+}
+.w41 {
+    width: 244px;
+}
+
+.w42 {
+    width: 222px;
+}
+
+.w43 {
+    width: 430px;
+}
+
+.w21 {
+    width: 116px;
+}
+.w23 {
+    width: 125px;
+}
+.w22{
+    width: 99px;
+}
+.h11 {
+    height: 15px;
+}
+.h12 {
+    height: 17px;
+}
+.h13 {
+    height: 19px;
+}
+.h21 {
+    height: 22px;
+}
+
+.h31 {
+    height: 89px;
+}
+.height1_1 {
+    height: 15px
+}
+.height2_1 {
+    height: 22px;
+}
+
+.h31 {
+    height: 37px;
+}
+
+.mr {
+    margin-right: 7px;
+}
+.mr7 {
+    margin-right: 7px;
+}
+.mr8 {
+    margin-right: 8px;
+}
+.mr9 {
+    margin-right: 9px;
+}
+.mr48 {
+    margin-right: 48px;
+}
+.mr61 {
+    margin-right: 61px;
+}
+.ml52 {
+    margin-left: 52px;
+}
+.ml50 {
+    margin-left: 50px;
+    //38
+}
+
+.mb {
+    margin-bottom: 7px;
+}
+
+.mt7 {
+    margin-top: 7px;
+}
 #avatar-container{
       position: absolute;
       right: 0;
@@ -72,13 +263,16 @@ input{
     position: absolute;
     top: -13px;
     left: 0;
-    font-size: 0.7em;
 }
 .below{
    position: absolute;
     bottom:-13px;
     left: 0;
-    font-size: 0.7em;  
+}
+.below2{
+   position: absolute;
+    bottom:-24px;
+    left: 0;
 }
 .tall{
     height: 35px;
@@ -116,12 +310,42 @@ input{
 }
 #props{
     margin-top: 10px;
+    margin-bottom: 17px;
     
 }
+
+#salvation {
+    margin-bottom: 30px;
+}
+
+.melee_attack {
+    border:1px solid black;
+    display:inline-block;
+}
+
 .block{
     float: left;
     border: 1px solid black;
     margin-right: 5px;
     box-sizing: border-box;
    
+}
+
+
+#abilities_head {
+    height: 69px;
+    margin-bottom: 7px;
+    
+}
+#abilities {
+    top: 329px;
+}
+#vertical {
+    -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+  filter: none; /*Mandatory for IE9 to show the vertical text correctly*/
+  height: 69px;
 }

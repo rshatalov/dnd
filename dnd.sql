@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2014 at 08:31 AM
+-- Generation Time: Jul 12, 2014 at 06:47 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -57,6 +57,30 @@ CREATE TABLE IF NOT EXISTS `units` (
   `user_name` varchar(30) DEFAULT NULL,
   `name` varchar(30) DEFAULT NULL,
   `size` varchar(3) DEFAULT NULL,
+  `race` varchar(30) DEFAULT NULL,
+  `alignment` varchar(30) DEFAULT NULL,
+  `divinity` varchar(30) DEFAULT NULL,
+  `class` text,
+  `level` varchar(30) DEFAULT NULL,
+  `age` varchar(30) DEFAULT NULL,
+  `sex` varchar(30) DEFAULT NULL,
+  `height` varchar(30) DEFAULT NULL,
+  `weight` varchar(30) DEFAULT NULL,
+  `eyes_color` varchar(30) DEFAULT NULL,
+  `hair_color` varchar(30) DEFAULT NULL,
+  `skin_color` varchar(30) DEFAULT NULL,
+  `strength` varchar(30) DEFAULT NULL,
+  `dexterity` varchar(30) DEFAULT NULL,
+  `force` varchar(30) DEFAULT NULL,
+  `intelligence` varchar(30) DEFAULT NULL,
+  `wisdom` varchar(30) DEFAULT NULL,
+  `charism` varchar(30) DEFAULT NULL,
+  `resistance_at_damage` varchar(30) DEFAULT NULL,
+  `speed` varchar(30) DEFAULT NULL,
+  `var_initiative` varchar(30) DEFAULT NULL,
+  `natural_armor` varchar(30) DEFAULT NULL,
+  `deflection_armor` varchar(30) DEFAULT NULL,
+  `var_armor` varchar(30) DEFAULT NULL,
   `max_hp` int(11) DEFAULT NULL,
   `actual_hp` int(11) DEFAULT NULL,
   PRIMARY KEY (`uid`),
@@ -67,11 +91,12 @@ CREATE TABLE IF NOT EXISTS `units` (
 -- Dumping data for table `units`
 --
 
-INSERT INTO `units` (`uid`, `status`, `type`, `user_id`, `monster_id`, `user_name`, `name`, `size`, `max_hp`, `actual_hp`) VALUES
-('53b3501ecf5ce', '1', 'monster', '53b1fd5a3e6d2', NULL, 'olga', 'Orc', 'S', 56, 565),
-('53b350543c212', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', 56, 565),
-('53b35054dfcb1', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', 56, 565),
-('53b35055243fe', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', 56, 565);
+INSERT INTO `units` (`uid`, `status`, `type`, `user_id`, `monster_id`, `user_name`, `name`, `size`, `race`, `alignment`, `divinity`, `class`, `level`, `age`, `sex`, `height`, `weight`, `eyes_color`, `hair_color`, `skin_color`, `strength`, `dexterity`, `force`, `intelligence`, `wisdom`, `charism`, `resistance_at_damage`, `speed`, `var_initiative`, `natural_armor`, `deflection_armor`, `var_armor`, `max_hp`, `actual_hp`) VALUES
+('53b3501ecf5ce', '1', 'monster', '53b1fd5a3e6d2', NULL, 'olga', 'Orc', 'S', 'fds', 'lkj', 'jl', 'klj', '89', 'lkj', 'lkj', 'ljk', 'l;h', 'hklh', 'khl', 'khlkhklh', '10', NULL, NULL, NULL, NULL, NULL, '8', '88', NULL, NULL, NULL, NULL, 56, 565),
+('53b350543c212', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56, 565),
+('53b35054dfcb1', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56, 565),
+('53b35055243fe', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56, 565),
+('53bc6f84566e0', '0', 'monster', '53b1fd5a3e6d2', NULL, 'olga', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

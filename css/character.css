@@ -32,6 +32,10 @@ input{
 .cb {
     box-sizing: content-box;
 }
+
+.bsbb {
+    box-sizing: border-box;
+}
 .ac {
     text-align: center;
 }
@@ -87,14 +91,12 @@ input{
 .w01{
     width: 9px;
 }
-
 .w11 {
     width: 45px;
 }
 .width1_1 {
     width: 44px;
 }
-
 .w12 {
     width: 62px;
 }
@@ -102,41 +104,6 @@ input{
 .w13 {
     width: 36px;
 }
-
-.width2_3 {
-    width: 170px;
-}
-.width2_2 {
-    width: 98px;
-}
-.w31 {
-    width: 170px;
-}
-
-.w34 {
-    width: 153px;
-}
-.w35 {
-    width: 191px;
-}
-.w37 {
-    width: 145px;
-}
-.w36 {
-    width: 151px;
-}
-.w41 {
-    width: 244px;
-}
-
-.w42 {
-    width: 222px;
-}
-
-.w43 {
-    width: 430px;
-}
-
 .w21 {
     width: 116px;
 }
@@ -146,6 +113,50 @@ input{
 .w22{
     width: 99px;
 }
+.width2_3 {
+    width: 170px;
+}
+.width2_2 {
+    width: 98px;
+}
+.w31 {
+    width: 170px;
+}
+.w32 {
+    width: 171px;
+}
+.w34 {
+    width: 153px;
+}
+.w35 {
+    width: 191px;
+}
+.w36 {
+    width: 151px;
+}
+.w37 {
+    width: 145px;
+}
+.w40 {
+    width: 207px;
+}
+.w41 {
+    width: 244px;
+}
+.w42 {
+    width: 222px;
+}
+.w43 {
+    width: 430px;
+}
+.wf {
+    width: 100%;
+}
+
+
+
+
+
 .h11 {
     height: 15px;
 }

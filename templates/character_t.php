@@ -203,7 +203,7 @@
         </div>
         <div style="clear:both"></div>
 
-        <div class='bt br bb bl blocki cn fs8'>
+        <div class='bf blocki cn fs8 mb'>
             <div class='mb h31'>
                 <div class="br bb w31 fl mr">
                     <div class="black height1_1 fs10">ATTACCO MISCHIA 1</div>
@@ -270,6 +270,72 @@
             </div>
         </div>
         <div style="clear:both"></div>
+        
+        
+        
+        <!--################# THINGS ##########################-->
+        
+        <div class='bf blocki cn fs8 mb'>
+            <div class='mb h31'>
+                <div class="br bb w31 fl mr">
+                    <div class="black height1_1 fs10">ARMATURA / TUNICA</div>
+                    <input class="height2_1">
+                </div>
+                <div class="w11 fl mr br bb bl">
+                    <div class="black height1_1">BONUS</div>
+                    <div class="height2_1 fs10">6</div>
+                </div>
+                <div class="w11 fl mr br bb bl">
+                    <div class="black height1_1">DES. MAX</div>
+                    <div class="height2_1 fs10">6</div>
+                </div>
+                <div class="w11 fl mr8 br bb bl">
+                    <div class="black height1_1">PENAL</div>
+                    <div class="height2_1 fs10">6</div>
+                </div>
+                <div class="w11 fl bb bl">
+                    <div class="black height1_1">VEL</div>
+                    <div class="height2_1"></div>
+                </div>
+            </div>
+            <div class='h31'>
+                <div class="h31 w32 mr7 fl">
+                    <div class="h11 w32 br bb bt mb bsbb">
+                    </div>
+                    <div class="h11 w32 br bt bsbb">
+                    </div>
+                </div>
+                <div class="w11 fl mr7 br bt bl">
+                    <div class="black height1_1">MAG</div>
+                    <div class="height2_1 fs10">6</div>
+                </div>
+                <div class="w11 fl mr7 br bt bl">
+                    <div class="black height1_1">FAL.INC.</div>
+                    <div class="height2_1 fs10">6</div>
+                </div>
+                <div class="h31 w22 fl">
+                    <div class="h11 bl bb bt mb bsbb">
+                    </div>
+                    <div class="h11 bl bt bsbb">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        
+        <div class='bf blocki cn fs8 mb'>
+            <div class="fl h11 bb br mr7 mb">COPRICAPO
+            </div>
+            <div class="fl h11 bl bb mb w40">
+            </div>
+            <div class="">
+            </div>
+        </div>
+        
+        
+        
+        
+        <!--################# RIGHT COLUMN ##########################-->
 
         <div style='top: 250px; position: absolute; left: 408px;
              width: 469px;'>

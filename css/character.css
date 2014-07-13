@@ -104,8 +104,14 @@ input{
 .w13 {
     width: 36px;
 }
+.w14 {
+    width: 61px;
+}
 .w21 {
     width: 116px;
+}
+.w24 {
+    width: 125px;
 }
 .w23 {
     width: 125px;
@@ -149,13 +155,28 @@ input{
 .w43 {
     width: 430px;
 }
+.w44 {
+    width: 226px;
+}
+.w51 {
+    width: 70px;
+}
+.w52 {
+    width: 315px;
+}
+.w53 {
+    width: 340px;
+}
+
 .wf {
     width: 100%;
 }
 
 
 
-
+.h01 {
+    height: 14px;
+}
 
 .h11 {
     height: 15px;
@@ -169,10 +190,13 @@ input{
 .h21 {
     height: 22px;
 }
-
+.h22 {
+    height: 23px;
+}
 .h31 {
     height: 89px;
 }
+
 .height1_1 {
     height: 15px
 }
@@ -315,10 +339,6 @@ input{
    
 }
 
-#basic input{
-  width: 100px;
-  height: 35px;
-}
 #props{
     margin-top: 10px;
     margin-bottom: 17px;
@@ -359,4 +379,10 @@ input{
   transform: rotate(270deg);
   filter: none; /*Mandatory for IE9 to show the vertical text correctly*/
   height: 69px;
+}
+
+#class-container {
+    height: 66px;
+    overflow: hidden;
+    position: relative;
 }

@@ -1,4 +1,7 @@
 window.addEventListener('load', function() {
+    $("#class-container").perfectScrollbar({
+        suppressScrollX: true
+    });
     console.log($_("choose-avatar-image"));
     //return;
     if (!$_("choose-avatar-image")){

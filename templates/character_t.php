@@ -20,22 +20,80 @@
         <input type='hidden' name='type' value='<?php echo $this->type; ?>'>
 
         <div id="basic">
-            <input type="text" id="name" name="name" placeholder="NOME PERSONAGGIO" value="<?php echo $this->basic['name']; ?>" <?php echo $this->disabled; ?>>
-            <input type="text" id="user_name" placeholder="email" value="<?php echo $this->user_name ?>" disabled>
-            <input type="text" id="" name="race" placeholder="RAZZA" value="<?php echo $this->basic['race']; ?>">
-            <input type="text" id="" name="alignment" placeholder="ALLINEAMENTO" value="<?php echo $this->basic['alignment']; ?>">
-            <input type="text" id="" name="divinity" placeholder="'DIVINITA'" value="<?php echo $this->basic['divinity']; ?>"><br/>
-            <input type="text" id="class" name="class" placeholder="classe" value="<?php echo $this->basic['class']; ?>">
-            <input type="text" id="level" name="level" placeholder="LIV." value="<?php echo $this->basic['level']; ?>">
-            <input type="text" id="size" name="size" placeholder="TAGLIA" value="<?php echo $this->basic['size'] ?>" <?php echo $this->disabled ?>>
-            <input type="text" id="" name="age" placeholder="ETA'" value="<?php echo $this->basic['age']; ?>">
-            <input type="text" id="" name="sex" placeholder="SESSO" value="<?php echo $this->basic['sex']; ?>">
-            <input type="text" id="" name="height" placeholder="ALTEZZA" value="<?php echo $this->basic['height']; ?>"><br/>
-            <input type="text" id="" name="weight" placeholder="PESO" value="<?php echo $this->basic['weight']; ?>">
-            <input type="text" id="" name="eyes_color" placeholder="OCCHI" value="<?php echo $this->basic['eyes_color']; ?>">
-            <input type="text" id="" name="hair_color" placeholder="CAPELLI" value="<?php echo $this->basic['hair_color']; ?>">
-            <input type="text" id="" name="skin_color" placeholder="PELLE" value="<?php echo $this->basic['skin_color']; ?>">
+            <div class="w44 fl mr">
+                <input type="text" id="name" name="name" class="w44 h22" value="<?php echo $this->basic['name']; ?>" <?php echo $this->disabled; ?>>
+                <div class="fs8 h01">NOME PERSONAGGIO</div>
+            </div>
+            <div class="fl mr w22">
+                <input type="text" class="h22 w22" id="user_name" name="email" value="<?php echo $this->user_name ?>" disabled>
+                <div class="fs8 h01">USER</div>
+            </div>
+            <div class="fl mr w22">
+                <input type="text" class="h22 w22" id="" name="race" value="<?php echo $this->basic['race']; ?>">
+                <div class="fs8 h01">RAZZA</div>
+            </div>
+            <div class="fl mr w22">
+                <input type="text" class="h22 w22" id="" name="alignment" placeholder="ALLINEAMENTO" value="<?php echo $this->basic['alignment']; ?>">
+                <div class="fs8 h01">ALLINEAMENTO</div>
+            </div>
+            <div class="fl mr w22">
+                <input type="text" class="h22 w22" id="" name="divinity" placeholder="'DIVINITA'" value="<?php echo $this->basic['divinity']; ?>">
+                <div class="fs8 h01">DIVINITA</div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="fl mr">
+            <div id="class-container" class="ps-container w44">
+                <div id="class-content">
+                    <div class="">
+                    <input type="text" id="class" class="w32 fl mr" name="class" value="<?php echo $this->basic['class']; ?>">
+                    <input type="text" id="level" class="w11" name="level" value="<?php echo $this->basic['level']; ?>">
+                    </div>
+                </div>
+            </div>
+                <div class="fl w32 mr fs8">CLASSE</div>
+                <div class="w11 fl fs8">LIV.</div>
+            </div>
+
+
+            <div class="fl">
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="size" name="size" placeholder="TAGLIA" value="<?php echo $this->basic['size'] ?>" <?php echo $this->disabled ?>>
+                    <div class="fs8 h01">TAGLIA</div>
+                </div>
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="age" value="<?php echo $this->basic['age']; ?>">
+                    <div class="fs8 h01">ETA</div>
+                </div>
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="sex" value="<?php echo $this->basic['sex']; ?>">
+                    <div class="fs8 h01">SESSO</div>
+                </div>
+
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="height" value="<?php echo $this->basic['height']; ?>">
+                    <div class="fs8 h01">ALTEZZA</div>
+                </div>
+                <div style="clear:both"></div>
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="weight" value="<?php echo $this->basic['weight']; ?>">
+                    <div class="fs8 h01">PESO</div>
+                </div>
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="eyes_color" value="<?php echo $this->basic['eyes_color']; ?>">
+                    <div class="fs8 h01">OCCHI</div>
+                </div>
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="hair_color" value="<?php echo $this->basic['hair_color']; ?>">
+                    <div class="fs8 h01">CAPELLI</div>
+                </div>
+                <div class="fl mr w22">
+                    <input type="text" class="h22 w22" id="" name="skin_color" value="<?php echo $this->basic['skin_color']; ?>">
+                    <div class="fs8 h01">PELLE</div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
         </div>
+        <div style="clear:both"></div>
 
         <div id="props" class='ac'>
             <div class="mb h31">
@@ -270,11 +328,11 @@
             </div>
         </div>
         <div style="clear:both"></div>
-        
-        
-        
+
+
+
         <!--################# THINGS ##########################-->
-        
+
         <div class='bf blocki cn fs8 mb'>
             <div class='mb h31'>
                 <div class="br bb w31 fl mr">
@@ -322,19 +380,56 @@
             </div>
         </div>
         <div style="clear:both"></div>
-        
+
         <div class='bf blocki cn fs8 mb'>
-            <div class="fl h11 bb br mr7 mb">COPRICAPO
+            <div class="fl h11 bb br mr7 mb w31 black">COPRICAPO
             </div>
             <div class="fl h11 bl bb mb w40">
             </div>
-            <div class="">
+            <div style="clear:both"></div>
+            <div class="fl bt br h11 w51">PROPRIETA'
+            </div>
+            <div class="fl bt h11 w52"></div>
+        </div>
+        <div style="clear:both"></div>
+
+        <div class="bf blocki cn">
+            <div class="bb br black w53 h11 fl">EQUIPAGGIAMENTO INDOSSATO</div>
+            <div class="bb black w11 h11 fl">PESO</div>
+            <div style="clear:both"></div>
+            <div class="bb br w53 h11 fl">0</div>
+            <div class="bb w11 h11 fl"></div>
+            <div style="clear:both"></div>
+            <div class="bb br black w53 h11 fl">'ZAINO/BORSA</div>
+            <div class="bb black w11 h11 fl">PESO</div>
+            <div style="clear:both"></div>
+            <div class="br w53 h11 fl">0</div>
+            <div class="bw11 h11 fl"></div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+        <div class="fl w31 bl br bb mr">
+            <div class="w24 fl black">DENARO
+            </div>
+            <div class="w11 fl black ">PESO
+            </div>
+            <div style="clear:both"></div>
+            <div class="w12 fl br">MR
+            </div>
+            <div class="w14 fl br">h
+            </div>
+            <div class="w11 fl">0
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="fl w40 bl br bb">
+            <div>adlkf
             </div>
         </div>
-        
-        
-        
-        
+        <div style="clear:both"></div>
+
+
+
         <!--################# RIGHT COLUMN ##########################-->
 
         <div style='top: 250px; position: absolute; left: 408px;
@@ -351,47 +446,47 @@
             <div id="abilities" style='' class="bf mb">
                 dsflkjasd
             </div>
-           
-                <div class='black w41 fl bf ac'>
+
+            <div class='black w41 fl bf ac'>
                 TALENTI
-                </div>
-                <div class='black w42 fl bb bt bl ac'>CAPACITA' SPECIALI
-                </div>
-                <input class='fl bl br bb w41'>
-                <input class='fl br bb w42'>
-                
-                <div class='c'></div>
-                <div class='mt7'>
-                    <div class='black ac'>
+            </div>
+            <div class='black w42 fl bb bt bl ac'>CAPACITA' SPECIALI
+            </div>
+            <input class='fl bl br bb w41'>
+            <input class='fl br bb w42'>
+
+            <div class='c'></div>
+            <div class='mt7'>
+                <div class='black ac'>
                     INCANTESIMI
-                    </div>
-                    <div class='w41 fl fs9'>DOMINI / SCUOLE DI SPECIALIZZAZIONE:</div>
-                    <div class='w42 fl'>fd</div>
-                    <div class='w13 fl bf black'>1&deg;</div>
-                    <div class='h31 w43 fl br'>sdfasf</div>
-                    <div class='c'></div>
-                    <div class='w13 fl bf black'>2&deg;</div>
-                    <div class='h31 w43 fl br bt'>sdfasf</div>
                 </div>
+                <div class='w41 fl fs9'>DOMINI / SCUOLE DI SPECIALIZZAZIONE:</div>
+                <div class='w42 fl'>fd</div>
+                <div class='w13 fl bf black'>1&deg;</div>
+                <div class='h31 w43 fl br'>sdfasf</div>
                 <div class='c'></div>
-                
-                <div class='w35 black fl fs10 ac mr7'>SALVEZZA INCANTESIMI</div>
-                <div class='w11 bf fl mr7'></div>
-                <div class='w34 black fl fs10 ac mr7'>FALLIMENTO ARCANI</div>
-                <div class='w11 bf fl fs10 ac'>10%</div>
-                <div class='c'></div>
-                
-                <div class='w37 fs8 ac fl'>INC. CONOSCIUTI</div>
-                <div class='w11 fs8 ac fl mr9'>CD</div>
-                <div class='w11 fs8 ac fl mr9'>LIVELLO</div>
-                <div class='w34 fs8 ac fl mr7'>INC. AL GIORNO</div>
-                <div class='w11 fs8 ac fl'>BONUS</div>
-                
-                <div class='fl w11 bf ac ml50 mr48'>k</div>
-                <div class='fl w11 bf ac mr8'>k</div>
-                <div class='fl w11 ac mr9'>k</div>
-                <div class='fl w11 bf ac ml52 mr61'>k</div>
-                <div class='fl w11 ac'>k</div>
+                <div class='w13 fl bf black'>2&deg;</div>
+                <div class='h31 w43 fl br bt'>sdfasf</div>
+            </div>
+            <div class='c'></div>
+
+            <div class='w35 black fl fs10 ac mr7'>SALVEZZA INCANTESIMI</div>
+            <div class='w11 bf fl mr7'></div>
+            <div class='w34 black fl fs10 ac mr7'>FALLIMENTO ARCANI</div>
+            <div class='w11 bf fl fs10 ac'>10%</div>
+            <div class='c'></div>
+
+            <div class='w37 fs8 ac fl'>INC. CONOSCIUTI</div>
+            <div class='w11 fs8 ac fl mr9'>CD</div>
+            <div class='w11 fs8 ac fl mr9'>LIVELLO</div>
+            <div class='w34 fs8 ac fl mr7'>INC. AL GIORNO</div>
+            <div class='w11 fs8 ac fl'>BONUS</div>
+
+            <div class='fl w11 bf ac ml50 mr48'>k</div>
+            <div class='fl w11 bf ac mr8'>k</div>
+            <div class='fl w11 ac mr9'>k</div>
+            <div class='fl w11 bf ac ml52 mr61'>k</div>
+            <div class='fl w11 ac'>k</div>
 
         </div>
 

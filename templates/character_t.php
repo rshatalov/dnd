@@ -42,15 +42,16 @@
             </div>
             <div style="clear:both"></div>
             <div class="fl mr">
-            <div id="class-container" class="ps-container w44">
-                <div id="class-content">
-                    <div class="">
-                    <input type="text" id="class" class="w32 fl mr" name="class" value="<?php echo $this->basic['class']; ?>">
-                    <input type="text" id="level" class="w11" name="level" value="<?php echo $this->basic['level']; ?>">
+                <div id="class-container" class="ps-container w44">
+                    <div id="class-content">
+                        <div class="">
+                            <input type="text" id="class" class="w32 fl mr" name="class" value="<?php echo $this->basic['class']; ?>">
+                            <input type="text" id="level" class="w11" name="level" value="<?php echo $this->basic['level']; ?>">
+                        </div>
                     </div>
                 </div>
-            </div>
-                <div class="fl w32 mr fs8">CLASSE</div>
+                <div class="fl w22 mr fs8">CLASSE</div>
+                <div class="fl w25 fs8 bf">Add class</div>
                 <div class="w11 fl fs8">LIV.</div>
             </div>
 

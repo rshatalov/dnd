@@ -389,3 +389,7 @@ input{
     overflow: hidden;
     position: relative;
 }
+
+#add-class {
+    cursor: pointer;
+}

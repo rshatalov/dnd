@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2014 at 06:47 AM
+-- Generation Time: Jul 21, 2014 at 04:27 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `units` (
 --
 
 INSERT INTO `units` (`uid`, `status`, `type`, `user_id`, `monster_id`, `user_name`, `name`, `size`, `race`, `alignment`, `divinity`, `class`, `level`, `age`, `sex`, `height`, `weight`, `eyes_color`, `hair_color`, `skin_color`, `strength`, `dexterity`, `force`, `intelligence`, `wisdom`, `charism`, `resistance_at_damage`, `speed`, `var_initiative`, `natural_armor`, `deflection_armor`, `var_armor`, `max_hp`, `actual_hp`) VALUES
-('53b3501ecf5ce', '1', 'monster', '53b1fd5a3e6d2', NULL, 'olga', 'Orc', 'S', 'fds', 'lkj', 'jl', 'klj', '89', 'lkj', 'lkj', 'ljk', 'l;h', 'hklh', 'khl', 'khlkhklh', '10', NULL, NULL, NULL, NULL, NULL, '8', '88', NULL, NULL, NULL, NULL, 56, 565),
+('53b3501ecf5ce', '1', 'monster', '53b1fd5a3e6d2', NULL, 'olga', 'Orc', 'S', 'fds', 'lkj', 'jl', 'klj', '1', 'lkj', 'lkj', 'ljk', 'l;h', 'hklh', 'khl', 'khlkhklh', '10', NULL, NULL, NULL, NULL, NULL, '8', '88', NULL, NULL, NULL, NULL, 56, 565),
 ('53b350543c212', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56, 565),
 ('53b35054dfcb1', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56, 565),
 ('53b35055243fe', '1', 'monster', '53b1fd5a3e6d2', '53b3501ecf5ce', 'olga', 'Orc', 'S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56, 565),

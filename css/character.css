@@ -10,12 +10,14 @@ input{
     width: 100%;
     margin: 0;
     padding: 0;
+    cursor: pointer;
 }
 #character{
     background-color: white;
     color: black;
     padding: 5px;
     position: relative;
+    height: 2500px;
 }
 
 .r {
@@ -107,6 +109,9 @@ input{
 .w14 {
     width: 61px;
 }
+.w15 {
+    width: 38px;
+}
 .w21 {
     width: 116px;
 }
@@ -121,6 +126,9 @@ input{
 }
 .w25 {
     width: 70px;
+}
+.w127 {
+    width: 127px;
 }
 .width2_3 {
     width: 170px;
@@ -175,6 +183,19 @@ input{
     width: 100%;
 }
 
+.w57 {
+    width: 57px;
+}
+.w58 {
+    width: 58px;
+}
+.w70 {
+    width: 70px;
+}
+
+.w196 {
+    width: 196px;
+}
 
 
 .h01 {
@@ -223,11 +244,20 @@ input{
 .mr9 {
     margin-right: 9px;
 }
+.mr10 {
+    margin-right: 10px;
+}
+.mr11 {
+    margin-right: 11px;
+}
 .mr48 {
     margin-right: 48px;
 }
 .mr61 {
     margin-right: 61px;
+}
+.mr80 {
+    margin-right: 80px;
 }
 .ml52 {
     margin-left: 52px;
@@ -241,8 +271,15 @@ input{
     margin-bottom: 7px;
 }
 
+.mb12 {
+    margin-bottom: 12px;
+}
+
 .mt7 {
     margin-top: 7px;
+}
+.mt12 {
+    margin-top: 12px;
 }
 #avatar-container{
       position: absolute;

@@ -103,11 +103,9 @@
                     <div class="second fs6">FORZA</div>
                 </div>
 
-                <div class="r fl mr7 bf h31 w11"><div class="above w11 fs6">PUNTI</div><input type="text" pattern="[0-9]*" name="strength" value="<?php echo $this->props['strength']; ?>" class="h31 ac"></div>
+                <div class="r fl mr7 bf h31 w11"><div class="above w11 fs6">PUNTI</div><input type="text" pattern="[0-9]*" name="strength" value="<?php echo $this->props['strength']; ?>" id="strength-points" class="h31 ac"></div>
 
-                <div class="r fl mr7 bf h31 w11"><div class="above w11 fs6">MOD.</div>
-                    4
-                </div>
+                <div class="r fl mr7 bf h31 w11"><div class="above w11 fs6">MOD.</div><div id="strength-mod"></div></div>
                 <div class="h31 w11 black fl bf mr7">
                     <div class="first">PF</div>
                     <div class="second fs6">P.FERITA</div>
@@ -133,17 +131,17 @@
                     <div class="second fs6">DESTREZZA</div>
                 </div>
 
-                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="dexterity" value="<?php echo $this->props['dexterity'] ?>">
-                <div class="fl mr7 bf h31 w11">4</div>
+                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="dexterity" id="dexterity-points" value="<?php echo $this->props['dexterity'] ?>">
+                <div class="fl mr7 bf h31 w11" id="dexterity-mod"></div>
                 <div class="h31 w11 black fl bf mr7">
                     CA
                 </div>
-                <div class="r fl mr8 bf h31 w11"><div class='below fs6 w11'>TOT</div>4</div>
+                <div class="r fl mr8 bf h31 w11"><div class='below fs6 w11'>TOT</div></div>
                 <div class="r fl mr8 h31 w11"><div class='below fs6 w11'>BASE</div>10</div>
-                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>ARMATURA</div>4</div>
-                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>SCUDO</div>0</div>
-                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>DESTREZZA</div>4</div>
-                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>TAGLIA</div>4</div>
+                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>ARMATURA</div></div>
+                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>SCUDO</div></div>
+                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>DESTREZZA</div><div id="dexterity-armor"></div></div>
+                <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>TAGLIA</div><div id="size-armor"></div></div>
                 <div class="r fl mr7 bf h31 w11"><div class='below fs6 w11'>NATURALE</div>
                     <input class="h31 w11 ac cb" name="natural_armor" value="<?php echo $this->props['natural_armor'] ?>"> 
                 </div>
@@ -163,8 +161,8 @@
                     <div class="first">COS</div>
                     <div class="second fs6">COSTITUZIONE</div>
                 </div>
-                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="force" value="<?php echo $this->props['force'] ?>">
-                <div class="fl mr7 bf h31 w11">4</div>
+                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="force" id="force-points" value="<?php echo $this->props['force'] ?>">
+                <div class="fl mr7 bf h31 w11" id="force-mod">4</div>
             </div>
             <div class="c"></div>
             <div class="h31 ac mb">
@@ -173,8 +171,8 @@
                     <div class="second fs6">INTELLIGENZA</div>
                 </div>
 
-                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="intelligence" value="<?php echo $this->props['intelligence'] ?>">
-                <div class="fl mr7 bf h31 w11"></div>
+                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="intelligence" id="intelligence-points" value="<?php echo $this->props['intelligence'] ?>">
+                <div class="fl mr7 bf h31 w11" id="intelligence-mod"></div>
                 <div class="h31 w22 black bf fl mr7">CONTATTO</div>
                 <div class="fl mr7 bf h31 w11"></div>
 
@@ -187,8 +185,8 @@
                     <div class="second fs6">SAGGEZZA</div>
                 </div>
 
-                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="wisdom" value="<?php echo $this->props['wisdom'] ?>">
-                <div class="fl mr7 bf h31 w11"></div>
+                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="wisdom" id="wisdom-points" value="<?php echo $this->props['wisdom'] ?>">
+                <div class="fl mr7 bf h31 w11" id="wisdom-mod"></div>
                 <div class="h31 w22 black bf fl mr7">SPROVVISTA</div>
                 <div class="fl mr7 bf h31 w11"></div>
             </div>
@@ -199,14 +197,17 @@
                     <div class="first">CAR</div>
                     <div class="second">CARISMA</div>
                 </div>
-                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="charism" value="<?php echo $this->props['charism'] ?>">
-                <div class="fl mr7 bf h31 w11"></div>
+                <input type="text" pattern="[0-9]*" class="fl mr7 bf w11 h31 ac cb" name="charism" id="charism-points" value="<?php echo $this->props['charism'] ?>">
+                <div class="fl mr7 bf h31 w11" id="charism-mod"></div>
                 <div class="h31 w11 black bf fl mr7">INIZ.</div>
                 <div class="r fl mr7 bf h13 w11"><div class='below fs6 w11'>TOT</div>
+                    <div id="tot-initiative"></div>
                 </div>
                 <div class="r fl mr7 bf h13 w11"><div class='below fs6 w11'>DES</div>
+                    <div id="dexterity-initiative"></div>
                 </div>
                 <div class="r fl mr7 bf h13 w11"><div class='below fs6 w11'>VARI</div>
+                    <input type="text" name="var_initiative" id="var-initiative" value="<?php echo $this->props['var_initiative'] ?>">
                 </div>
             </div>
             <div style="clear:both"></div>
@@ -217,47 +218,47 @@
         <div id="salvation" class='ac'>
             <div class='mb h11'>
                 <div class='r bf fl h11 mr7 fs9 w12'><div class='above ac w12 fs6'>SALVEZZA</div><div class='black'>TEMPRA</div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>TOT</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>BASE</div><input class='h11'></div>
-                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>MOD</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>MAGIA</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>VARI</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>TEMP</div><div class=''></div></div>
+                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>TOT</div><div id='tempra-tot'></div></div>
+                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>BASE</div><input class='h11' name="tempra_base" id="tempra-base" value="<?php echo $this->salvezza['tempra_base'] ?>"></div>
+                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>MOD</div><div id="tempra-mod"></div></div>
+                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>MAGIA</div><input class='h11' name="tempra_magia" id="tempra-magia" value="<?php echo $this->salvezza['tempra_magia'] ?>"></div>
+                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>VARI</div><input class='h11' name="tempra_vari" id="tempra-vari" value="<?php echo $this->salvezza['tempra_vari'] ?>"></div>
+                <div class='r h11 fl bf w11 mr7'><div class='above w11 ac fs6'>TEMP</div><input class='h11' name="tempra_temp" id="tempra-temp" value="<?php echo $this->salvezza['tempra_temp'] ?>"></div>
             </div>
             <div class='mb h11'>
                 <div class='bf fl h11 mr7 fs9 w12 black'>RIFLESSI</div>
-                <div class='h11 fl bf w11 mr7'></div>
-                <input class='h11 fl bf w11 mr7 cb'>
-                <div class='h11 fl bf w11 mr7'></div>
-                <input class='h11 fl bf w11 mr7 cb'>
-                <input class='h11 fl bf w11 mr7 cb'>
-                <input class='h11 fl bf w11 mr7 cb'>
+                <div class='h11 fl bf w11 mr7' id='riflessi-tot'></div>
+                <input class='h11 fl bf w11 mr7 cb' name="riflessi_base" id="riflessi-base" value="<?php echo $this->salvezza['riflessi_base'] ?>">
+                <div class='h11 fl bf w11 mr7' id="riflessi-mod"></div>
+                <input class='h11 fl bf w11 mr7 cb' name="riflessi_magia" id="riflessi-magia" value="<?php echo $this->salvezza['riflessi_magia'] ?>">
+                <input class='h11 fl bf w11 mr7 cb' name="riflessi_vari" id="riflessi-vari" value="<?php echo $this->salvezza['riflessi_vari'] ?>">
+                <input class='h11 fl bf w11 mr7 cb' name="riflessi_temp" id="riflessi-temp" value="<?php echo $this->salvezza['riflessi_temp'] ?>">
             </div>
             <div class='mb h11'>
                 <div class='bf fl h11 mr7 fs9 w12 black'>VOLONTA</div>
-                <div class='h11 fl bf w11 mr7'></div>
-                <input class='h11 fl bf w11 mr7 cb'>
-                <div class='h11 fl bf w11 mr7'></div>
-                <input class='h11 fl bf w11 mr7 cb'>
-                <input class='h11 fl bf w11 mr7 cb'>
-                <input class='h11 fl bf w11 mr7 cb'>
+                <div class='h11 fl bf w11 mr7' id='volonta-tot'></div>
+                <input class='h11 fl bf w11 mr7 cb' name="volonta_base" id="volonta-base" value="<?php echo $this->salvezza['volonta_base'] ?>">
+                <div class='h11 fl bf w11 mr7' id="volonta-mod"></div>
+                <input class='h11 fl bf w11 mr7 cb' name="volonta_magia" id="volonta-magia" value="<?php echo $this->salvezza['volonta_magia'] ?>">
+                <input class='h11 fl bf w11 mr7 cb' name="volonta_vari" id="volonta-vari" value="<?php echo $this->salvezza['volonta_vari'] ?>">
+                <input class='h11 fl bf w11 mr7 cb' name="volonta_temp" id="volonta-temp" value="<?php echo $this->salvezza['volonta_temp'] ?>">
             </div>
 
             <div class='mb h11'>
                 <div class='bf fl h11 mr7 fs9 w21 black'>ATTACCO BASE</div>
-                <input class='h11 fl bf w11 mr7 cb'>
+                <input class='h11 fl bf w11 mr7 cb' name='attaco_base' id='attaco-base' value="<?php echo $this->salvezza['attaco_base'] ?>">
                 <div class='fl h11 w11 mr9'></div>
                 <div class='w22 bf fl h11 mr7 fs9 black'>RES. INC.</div>
-                <input class='h11 fl bf w11 mr7 cb'>
+                <input class='h11 fl bf w11 mr7 cb' name="res_inc" id="res-inc" value="<?php echo $this->salvezza['res_inc'] ?>">
             </div>
 
             <div class='mb h11'>
                 <div class='bf fl h11 mr7 fs9 w12 black'>LOTTA</div>
                 <div class='r h11 fl bf w11 mr7'><div class='below ac w11 fs6'>TOT</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='below2 ac w11 fs6'>ATTACCO<br/>BASE</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='below ac w11 fs6'>FOR.</div><div class=''></div></div>
+                <div class='r h11 fl bf w11 mr7'><div class='below2 ac w11 fs6'>ATTACCO<br/>BASE</div><div id='lotta-attaco-base'></div></div>
+                <div class='r h11 fl bf w11 mr7'><div class='below ac w11 fs6'>FOR.</div><div id="lotta-for"></div></div>
                 <div class='r h11 fl bf w11 mr7'><div class='below ac w11 fs6'>TAGLIA</div><div class=''></div></div>
-                <div class='r h11 fl bf w11 mr7'><div class='below ac w11 fs6'>VARI</div><div class=''></div></div>
+                <div class='r h11 fl bf w11 mr7'><div class='below ac w11 fs6'>VARI</div><input name="lotta_vari" id="lotta-vari" value="<?php echo $this->salvezza['lotta_vari'] ?>"></div>
             </div>
         </div>
         <div style="clear:both"></div>
@@ -266,65 +267,65 @@
             <div class='mb h31'>
                 <div class="br bb w31 fl mr">
                     <div class="black height1_1 fs10">ATTACCO MISCHIA 1</div>
-                    <input class="height2_1">
+                    <input class="height2_1" name="attacco_mischia_1" id="attacco-mischia-1" value="<?php echo $this->mischia['attacco_mischia_1'] ?>">
                 </div>
                 <div class="w11 fl mr br bb bl">
-                    <div class="black height1_1">BONUS</div>
+                    <div class="black height1_1 fs8">BONUS</div>
                     <div class="height2_1 fs10">6</div>
                 </div>
                 <div class="w22 fl mr br bb bl">
                     <div class="black height1_1">DANNI</div>
                     <div class="height2_1">
-                        <input class='w11 fl h21'>
+                        <input class='w11 fl h21 ac' name="danni_mischia_1" id="danni-mischia-1" value="<?php echo $this->mischia['danni_mischia_1'] ?>">
                         <div class='fl w01 fs10'>+</div>
                         <div class='fl width1_1 fs10'>4</div>
                     </div>
                 </div>
                 <div class="w11 fl bb bl">
                     <div class="black height1_1">CRITICO</div>
-                    <div class="height2_1"></div>
+                    <input class="height2_1 ac" name="critico_mischia_1" id="critico-mischia-1" value="<?php echo $this->mischia['critico_mischia_1'] ?>">
                 </div>
             </div>
             <div class='mb h12 al'>
                 <div class='br bb bt fl mr7 w31'>
                     <div class='fl mr9 w21'>POTENZ. MAGICO</div>
-                    <input class='w11 fl'>
+                    <input class='w11 fl ac' name="magico_mischia_1" id="magico-mischia-1" value="<?php echo $this->mischia['magico_mischia_1'] ?>">
                 </div>
                 <div class='br bb bt bl fl mr7 w22'>
                     <div class='fl mr w11'>MANI</div>
-                    <input class='w11'>
+                    <input class='w11 ac' name="mani_mischia_1" id="mani-mischia-1" value="<?php echo $this->mischia['mani_mischia_1'] ?>">
                 </div>
                 <div class='bb bt bl fl w22'>
                     <div class='fl mr w11'>GITTATA</div>
-                    <input class='w11'>
+                    <input class='w11 ac' name="gittata_mischia_1" id="gittata-mischia-1" value="<?php echo $this->mischia['gittata_mischia_1'] ?>">
                 </div>
             </div>
             <div class='mb h12 al'>
                 <div class='br bb bt fl mr7 w31'>
                     <div class='fl w23'>MALUS COMB.2 ARMI</div>
-                    <input class='w11 fl'>
+                    <input class='w11 fl ac' name="malus_mischia_1" id="malus-mischia-1" value="<?php echo $this->mischia['malus_mischia_1'] ?>">
                 </div>
                 <div class='br bb bt bl fl mr7 w22'>
                     <div class='fl mr w11'>PERFETTO</div>
-                    <input class='w11'>
+                    <input class='w11 ac' name="perfetto_mischia_1" id="perfetto-mischia-1" value="<?php echo $this->mischia['perfetto_mischia_1'] ?>">
                 </div>
                 <div class='bb bt bl fl w22'>
                     <div class='fl mr w11'>TIPO</div>
-                    <input class='w11'>
+                    <input class='w11 ac' name="tipo_mischia_1" id="tipo-mischia-1" value="<?php echo $this->mischia['tipo_mischia_1'] ?>">
                 </div>
             </div>
             <div class='h12 al'>
                 <div class='br bt fl mr7 w31'>
                     <div class='fl w11 mr9'>NOTE</div>
-                    <input class='w21 fl'>
+                    <input class='w21 fl' name="note_mischia_1" id="note-mischia-1" value="<?php echo $this->mischia['note_mischia_1'] ?>">
                 </div>
                 <div class='br bt bl fl mr7 w22'>
                     <div class='fl mr w11'>B / M</div>
-                    <input class='w11'>
+                    <input class='w11 ac' name="bm_mischia_1" id="bm-mischia-1" value="<?php echo $this->mischia['bm_mischia_1'] ?>">
                 </div>
                 <div class=' bt bl fl w22'>
                     <div class='fl mr w11'>TAGLIA</div>
-                    <input class='w11'>
+                    <input class='w11 ac' name="taglia_mischia_1" id="taglia-mischia-1" value="<?php echo $this->mischia['taglia_mischia_1'] ?>">
                 </div>
             </div>
         </div>
@@ -434,7 +435,7 @@
         <!--################# RIGHT COLUMN ##########################-->
 
         <div style='top: 250px; position: absolute; left: 408px;
-             width: 469px;'>
+             width: 602px;'>
             <div id="abilities_head" class="black bf">
                 <div id="vertical" class="fs9" style="position: absolute; left: 5px; top: 0;">DI CLASSE</div>
                 <div style='position: absolute; top: 0; left: 50px; font-size: 20pt;'>ABILITIES</div>
@@ -445,7 +446,497 @@
                 <div style='position: absolute; left: 180px; top: 50px;'>CAR</div>
             </div>
             <div id="abilities" style='' class="bf mb">
-                dsflkjasd
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='acrobazia_check' <?php echo $this->abil['acrobazia_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Acrobazia</div>
+                    <div class='fl w58 fs8 mr10'>DES*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='acrobazia_gradi' value="<?php echo $this->abil['acrobazia_gradi'] ?>">
+                    <input type='text' class='w58 h13 fl' name='acrobazia_vari' value="<?php echo $this->abil['acrobazia_vari'] ?>">
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='add_animali_check' <?php echo $this->abil['add_animali_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Add. Animali</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='add_animali_gradi' value="<?php echo $this->abil['add_animali_gradi'] ?>">
+                    <input type='text' class='w58 h13 fl' name='add_animali_vari' value="<?php echo $this->abil['add_animali_vari'] ?>">
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='artigianato1_check' <?php echo $this->abil['artigianato1_check'] ?>></div>
+                    <div class='fl w127 fs9'>Artigianato</div>
+                    <div class='w70 fl mr10'><input class='h13 w70' name='artigianato1_name' value="<?php echo $this->abil['artigianato1_name'] ?>"></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='artigianato1_gradi' value="<?php echo $this->abil['artigianato1_gradi'] ?>">
+                    <input type='text' class='w58 h13 fl' name='artigianato1_vari' value="<?php echo $this->abil['artigianato1_vari'] ?>">
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='artigianato2_check' <?php echo $this->abil['artigianato2_check'] ?>></div>
+                    <div class='fl w127 fs9'>Artigianato</div>
+                    <div class='w70 fl mr10'><input class='h13 w70' name='artigianato2_name' value="<?php echo $this->abil['artigianato2_name'] ?>"></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='artigianato2_gradi' value="<?php echo $this->abil['artigianato2_gradi'] ?>">
+                    <input type='text' class='w58 h13 fl' name='artigianato2_vari' value="<?php echo $this->abil['artigianato2_vari'] ?>">
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='artigianato3_check' <?php echo $this->abil['artigianato3_check'] ?>></div>
+                    <div class='fl w127 fs9'>Artigianato</div>
+                    <div class='w70 fl mr10'><input class='h13 w70' name='artigianato3_name' value="<?php echo $this->abil['artigianato3_name'] ?>"></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='artigianato3_gradi' value="<?php echo $this->abil['artigianato3_gradi'] ?>">
+                    <input type='text' class='w58 h13 fl' name='artigianato3_vari' value="<?php echo $this->abil['artigianato3_vari'] ?>">
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Artista della fuga</div>
+                    <div class='fl w58 fs8 mr10'>DES*</div>
+                    <div class='w57 bf fl ac fs10 mr10'></div>
+                    <div class='w58 fl ac fs10 mr11'></div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Ascoltare</div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Camuffare</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Cavalcare</div>
+                    <div class='fl w58 fs8 mr10'>DES</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Cercare</div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Concentrazione</div>
+                    <div class='fl w58 fs8 mr10'>COS</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Conoscenze</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Conoscenze</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Conoscenze</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Conoscenze</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Conoscenze</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Decifrare scritture</div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Diplomazia</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Disattivare congegni</div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Equilibrio</div>
+                    <div class='fl w58 fs8 mr10'>DES*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Falsificare</div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Guarire</div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Intimidre</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                
+                
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Intrattenere</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Intrattenere</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Intrattenere</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Muoversi silenziosamente</div>
+                    <div class='fl w58 fs8 mr10'>DES*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Nascondersi</div>
+                    <div class='fl w58 fs8 mr10'>DES*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Nuotare</div>
+                    <div class='fl w58 fs8 mr10'>FOR*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Osservare</div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Percepire intenzioni</div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                
+                
+                
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Professione</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 fs9'>Professione</div>
+                    <div class='w70 fl mr10'><input class='h13 w70'></div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Raccogliere informazioni</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Raggirare</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Rapidità di mano</div>
+                    <div class='fl w58 fs8 mr10'>DES*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Saltare</div>
+                    <div class='fl w58 fs8 mr10'>FOR*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Sapienza magica</div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Scalare</div>
+                    <div class='fl w58 fs8 mr10'>FOR*</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Scassinare serrature</div>
+                    <div class='fl w58 fs8 mr10'>DES</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Sopravvivenza</div>
+                    <div class='fl w58 fs8 mr10'>SAG</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Utilizzare corde</div>
+                    <div class='fl w58 fs8 mr10'>DES</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Utilizzare oggetti magici</div>
+                    <div class='fl w58 fs8 mr10'>CAR</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w127 mr80 fs9'>Valutare</div>
+                    <div class='fl w58 fs8 mr10'>INT</div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                
+                
+                
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w196 mr10 fs9'><input class='w196 h13'></div>
+                    <div class='fl w58 fs8 mr11'><input class='h13 w58'></div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w196 mr10 fs9'><input class='w196 h13'></div>
+                    <div class='fl w58 fs8 mr11'><input class='h13 w58'></div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
+                <div class='h13 mt12 mb12'>
+                    <div class='w15 fl mr11'><input type='checkbox' name='_check' <?php echo $this->abil['_check'] ?>></div>
+                    <div class='fl w196 mr10 fs9'><input class='w196 h13'></div>
+                    <div class='fl w58 fs8 mr11'><input class='h13 w58'></div>
+                    <div class='w57 bf fl ac fs10 mr10'>t</div>
+                    <div class='w58 fl ac fs10 mr11'>b</div>
+                    <input type='text' class='w58 h13 fl mr11' name='_gradi'>
+                    <input type='text' class='w58 h13 fl' name='_vari'>
+                </div>
+                <div style="clear:both"></div>
             </div>
 
             <div class='black w41 fl bf ac'>

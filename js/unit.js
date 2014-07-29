@@ -32,13 +32,13 @@ window.addEventListener('load', function() {
             }
         });
     };
-    $_("add-class").addEventListener("click",function(){
+    $_("add-class").addEventListener("click", function() {
         $_("classes-and-levels").innerHTML += "<input type='text'class='w32 fl mr' name='class' placeholder='CLASS'>";
         $_("classes-and-levels").innerHTML += "<input type='text' class='w11' name='level' placeholder='LEVEl'>";
         console.log('add class');
         $('#class-container').perfectScrollbar('update');
-  
-    },false);
+
+    }, false);
 
     $_("post-unit").addEventListener("click", function() {
 
@@ -47,4 +47,58 @@ window.addEventListener('load', function() {
             console.log(data);
         });
     }, false);
+
+
+    function recompute()
+    {
+        $_('strength-mod').innerHTML = parseInt(($_('strength-points').value - 10) / 2);
+        $_('force-mod').innerHTML = parseInt(($_('force-points').value - 10) / 2);
+        $_('dexterity-mod').innerHTML = parseInt(($_('dexterity-points').value - 10) / 2);
+        $_('intelligence-mod').innerHTML = parseInt(($_('intelligence-points').value - 10) / 2);
+        $_('wisdom-mod').innerHTML = parseInt(($_('wisdom-points').value - 10) / 2);
+        $_('charism-mod').innerHTML = parseInt(($_('charism-points').value - 10) / 2);
+        $_('dexterity-armor').innerHTML = $_('dexterity-mod').innerHTML;
+        $_('dexterity-initiative').innerHTML = $_('dexterity-mod').innerHTML;
+        $_('tot-initiative').innerHTML = parseInt($_('dexterity-initiative').innerHTML) + parseInt($_('var-initiative').value);
+        switch ($_('size').value)
+        {
+            case 'P':
+                $_('size-armor').innerHTML = '1';
+                break;
+            case 'M':
+                $_('size-armor').innerHTML = '0';
+                break;
+            case 'G':
+                $_('size-armor').innerHTML = '-1';
+                break;
+            case 'E':
+                $_('size-armor').innerHTML = '-2';
+                break;
+            case 'S':
+                $_('size-armor').innerHTML = '-3';
+                break;
+            case 'C':
+                $_('size-armor').innerHTML = '-4';
+                break;
+            default:
+                $_('size-armor').innerHTML = '';
+        }
+        
+        
+        $_('tempra-mod').innerHTML = $_('force-mod').innerHTML;
+        $_('riflessi-mod').innerHTML = $_('dexterity-mod').innerHTML;
+        $_('volonta-mod').innerHTML = $_('wisdom-mod').innerHTML;
+        $_('lotta-for').innerHTML = $_('strength-mod').innerHTML;
+        $_('tempra-tot').innerHTML = parseInt($_('tempra-base').value) + parseInt($_('tempra-mod').innerHTML)+ parseInt($_('tempra-magia').value)+ parseInt($_('tempra-vari').value) + parseInt($_('tempra-temp').value);
+        
+        $_('riflessi-tot').innerHTML = parseInt($_('riflessi-base').value) + parseInt($_('riflessi-mod').innerHTML)+ parseInt($_('riflessi-magia').value)+ parseInt($_('riflessi-vari').value) + parseInt($_('riflessi-temp').value);
+       
+        $_('volonta-tot').innerHTML = parseInt($_('volonta-base').value) + parseInt($_('volonta-mod').innerHTML)+ parseInt($_('volonta-magia').value)+ parseInt($_('volonta-vari').value) + parseInt($_('volonta-temp').value);
+        
+        $_('riflessi-mod').innerHTML = $_('dexterity-mod').innerHTML;
+        $_('volonta-mod').innerHTML = $_('wisdom-mod').innerHTML;
+        $_('lotta-for').innerHTML = $_('strength-mod').innerHTML;
+        $_('lotta-attaco-base').innerHTML = $_('attaco-base').value;
+    }
+    recompute();
 }, false);

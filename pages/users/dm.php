@@ -125,6 +125,7 @@ function dm_remove_table($db) {
     $db->exec("DELETE FROM `tables` WHERE tid='$tid'");
     header("Location: users.php?tab=tables");
     exit();
+    
 }
 
 function dm_accept_player($db) {

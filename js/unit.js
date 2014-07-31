@@ -33,9 +33,11 @@ window.addEventListener('load', function() {
         });
     };
     $_("add-class").addEventListener("click", function() {
-        $_("classes-and-levels").innerHTML += "<input type='text'class='w32 fl mr' name='class' placeholder='CLASS'>";
-        $_("classes-and-levels").innerHTML += "<input type='text' class='w11' name='level' placeholder='LEVEl'>";
-        console.log('add class');
+        var NoClasses = parseInt($_("NoClasses").value) + 1;
+        $_("NoClasses").value = NoClasses;
+        var t = document.createElement('div');
+        t.innerHTML = "<div class='bb'><input type='text' id='class"+NoClasses+"' class='w219 h28 fl mr9' name='class"+NoClasses+"' placeholder='CLASSE'><input type='text' id='level"+NoClasses+"' class='w60 h28 ac' name='level"+NoClasses+"' placeholder='LIV.'></div>";
+        $_("classes-and-levels").appendChild(t);
         $('#class-container').perfectScrollbar('update');
 
     }, false);

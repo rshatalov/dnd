@@ -46,13 +46,11 @@
                     <div id="class-content">
                         <div class="" id="classes-and-levels">
                             <?php
-                            if (isset($this->basic['classes']))
-                            {
+                            if (isset($this->basic['classes'])) {
                                 $t = $this->basic['classes'];
                                 $t = preg_split("/\n/", $t);
                                 $count = 0;
-                                foreach ($t as $class)
-                                {
+                                foreach ($t as $class) {
                                     if ($class == "")
                                         continue;
                                     $c = preg_split("/\t/", $class);
@@ -64,19 +62,17 @@
                             </div>
                         
                         ";
-
                                 }
                                 echo "<input type='hidden' id='NoClasses' name='NoClasses' value='$count'>";
-                                
                             }
                             else {
-                            ?>
-                            <input type="hidden" id="NoClasses" name="NoClasses" value="1">
-                            <div class="bb">
-                                <input type="text" id="class1" class="w219 h28 fl mr9" placeholder="CLASSE" name="class1"  value="<?php echo $this->basic['class']; ?>">
-                                <input type="text" id="level1" class="w60 h28 ac" placeholder="LIV." name="level1" value="<?php echo $this->basic['level']; ?>">
-                            </div>
-                            <?php
+                                ?>
+                                <input type="hidden" id="NoClasses" name="NoClasses" value="1">
+                                <div class="bb">
+                                    <input type="text" id="class1" class="w219 h28 fl mr9" placeholder="CLASSE" name="class1"  value="<?php echo $this->basic['class']; ?>">
+                                    <input type="text" id="level1" class="w60 h28 ac" placeholder="LIV." name="level1" value="<?php echo $this->basic['level']; ?>">
+                                </div>
+                                <?php
                             }
                             ?>
                         </div>
@@ -319,45 +315,46 @@
             <div style="clear:both"></div>
             <div class='mb9 al'>
                 <div class='mb9 br bb bt fl h19 mr9 w218'>
-                    <div class='fl mr9 w158'>POTENZ. MAGICO</div>
+                    <div class='fl w159'>POTENZ. MAGICO</div>
                     <input class='w58 fl ac h19' name="magico_mischia_1" id="magico-mischia-1" value="<?php echo $this->mischia['magico_mischia_1'] ?>">
                 </div>
                 <div class='br bb bt bl fl mr9 w127 h19'>
                     <div class='fl mr9 w58'>MANI</div>
-                    <input class='w58 ac' name="mani_mischia_1" id="mani-mischia-1" value="<?php echo $this->mischia['mani_mischia_1'] ?>">
+                    <input class='w58 h19 ac' name="mani_mischia_1" id="mani-mischia-1" value="<?php echo $this->mischia['mani_mischia_1'] ?>">
                 </div>
                 <div class='bb bt bl fl h19 w127'>
                     <div class='fl mr9 w58'>GITTATA</div>
-                    <input class='w58 ac' name="gittata_mischia_1" id="gittata-mischia-1" value="<?php echo $this->mischia['gittata_mischia_1'] ?>">
+                    <input class='w58 h19 ac' name="gittata_mischia_1" id="gittata-mischia-1" value="<?php echo $this->mischia['gittata_mischia_1'] ?>">
                 </div>
             </div>
             <div style="clear:both"></div>
             <div class='mb9 h19 al'>
                 <div class='br bb bt fl mr9 mb9 w218'>
-                    <div class='fl mr9 w159'>MALUS COMB.2 ARMI</div>
+                    <div class='fl w159'>MALUS COMB.2 ARMI</div>
                     <input class='w58 h19 fl ac' name="malus_mischia_1" id="malus-mischia-1" value="<?php echo $this->mischia['malus_mischia_1'] ?>">
                 </div>
-                <div class='br bb bt bl fl mr7 w22'>
-                    <div class='fl mr w11'>PERFETTO</div>
-                    <input class='w11 ac' name="perfetto_mischia_1" id="perfetto-mischia-1" value="<?php echo $this->mischia['perfetto_mischia_1'] ?>">
+                <div class='br bb bt bl fl mr7 w127 h19'>
+                    <div class='fl mr9 w58'>PERFETTO</div>
+                    <input class='w58 h19 ac' name="perfetto_mischia_1" id="perfetto-mischia-1" value="<?php echo $this->mischia['perfetto_mischia_1'] ?>">
                 </div>
-                <div class='bb bt bl fl w22'>
-                    <div class='fl mr w11'>TIPO</div>
-                    <input class='w11 ac' name="tipo_mischia_1" id="tipo-mischia-1" value="<?php echo $this->mischia['tipo_mischia_1'] ?>">
+                <div class='bb bt bl fl w127 h19'>
+                    <div class='fl mr9 w58'>TIPO</div>
+                    <input class='w58 h19 ac' name="tipo_mischia_1" id="tipo-mischia-1" value="<?php echo $this->mischia['tipo_mischia_1'] ?>">
                 </div>
             </div>
-            <div class='h12 al'>
-                <div class='br bt fl mr7 w31'>
-                    <div class='fl w11 mr9'>NOTE</div>
-                    <input class='w21 fl' name="note_mischia_1" id="note-mischia-1" value="<?php echo $this->mischia['note_mischia_1'] ?>">
+            <div style="clear:both"></div>
+            <div class='h19 al'>
+                <div class='br bt h19 fl mr9 w218'>
+                    <div class='fl w58 mr9'>NOTE</div>
+                    <input class='w150 h19 fl' name="note_mischia_1" id="note-mischia-1" value="<?php echo $this->mischia['note_mischia_1'] ?>">
                 </div>
-                <div class='br bt bl fl mr7 w22'>
-                    <div class='fl mr w11'>B / M</div>
-                    <input class='w11 ac' name="bm_mischia_1" id="bm-mischia-1" value="<?php echo $this->mischia['bm_mischia_1'] ?>">
+                <div class='br bt bl fl mr9 w127'>
+                    <div class='fl mr9 w58'>B / M</div>
+                    <input class='w58 h19 ac' name="bm_mischia_1" id="bm-mischia-1" value="<?php echo $this->mischia['bm_mischia_1'] ?>">
                 </div>
-                <div class=' bt bl fl w22'>
-                    <div class='fl mr w11'>TAGLIA</div>
-                    <input class='w11 ac' name="taglia_mischia_1" id="taglia-mischia-1" value="<?php echo $this->mischia['taglia_mischia_1'] ?>">
+                <div class='bt bl fl h19 w127'>
+                    <div class='fl mr9 w58'>TAGLIA</div>
+                    <input class='w58 h19 ac' name="taglia_mischia_1" id="taglia-mischia-1" value="<?php echo $this->mischia['taglia_mischia_1'] ?>">
                 </div>
             </div>
         </div>
@@ -369,99 +366,305 @@
 
         <div class='bf blocki cn fs8 mb'>
             <div class='mb h31'>
-                <div class="br bb w31 fl mr">
-                    <div class="black height1_1 fs10">ARMATURA / TUNICA</div>
-                    <input class="height2_1" name='tunica_armatura'>
+                <div class="mb9 br bb w218 fl mr9">
+                    <div class="black fs10 h19 w218">ARMATURA / TUNICA</div>
+                    <input class="h29" name='tunica_armatura'>
                 </div>
-                <div class="w11 fl mr br bb bl">
-                    <div class="black height1_1">BONUS</div>
-                    <div class="height2_1 fs10"><input type='text' name='tunica_bonus'></div>
+                <div class="w58 fl mr9 br bb bl">
+                    <div class="black h19">BONUS</div>
+                    <div class=""><input class="h29 w58 ac fs10" type='text' name='tunica_bonus'></div>
                 </div>
-                <div class="w11 fl mr br bb bl">
-                    <div class="black height1_1">DES. MAX</div>
-                    <div class="height2_1 fs10"><input type='text' name='tunica_des'></div>
+                <div class="w58 fl mr9 br bb bl">
+                    <div class="black h19">DES. MAX</div>
+                    <div class="h29 fs10"><input class="h29 fs10 ac w58" type='text' name='tunica_des'></div>
                 </div>
-                <div class="w11 fl mr8 br bb bl">
-                    <div class="black height1_1">PENAL</div>
-                    <div class="height2_1 fs10"><input type='text' name='tunica_penal'></div>
+                <div class="w58 fl mr9 br bb bl">
+                    <div class="black h19">PENAL</div>
+                    <div class="h29 fs10"><input class="h29 fs10 ac w58" type='text' name='tunica_penal'></div>
                 </div>
-                <div class="w11 fl bb bl">
-                    <div class="black height1_1">VEL</div>
-                    <div class="height2_1"><input type='text' name='tunica_vel'></div>
+                <div class="w58 fl bb bl">
+                    <div class="black h19">VEL</div>
+                    <div class="h29"><input class="h29 fs10 ac w58" type='text' name='tunica_vel'></div>
                 </div>
             </div>
-            <div class='h31'>
-                <div class="h31 w32 mr7 fl">
-                    <div class="h11 w32 br bb bt mb bsbb">
-                        <div class='fl'>PROPRIETA</div>
-                        <input class='fl w11' type='text' name='tunica_proprieta'>
+            <div style="clear:both"></div>
+            <div class=''>
+                <div class="w218 mr9 fl">
+                    <div class="h19 w218 br bb bt mb9">
+                        <div class='fl w70 mr9'>PROPRIETA</div>
+                        <input class='fl w139 h19' type='text' name='tunica_proprieta'>
                     </div>
-                    <div class="h11 w32 br bt bsbb">
+                    <input type="text" class="h19 w218 br bt cb">
+                </div>
+                <div class="w58 fl mr9 br bt bl">
+                    <div class="black h19 bb">MAG</div>
+                    <div class="h29 fs10"><input class="h29 fs10 ac" type='text' name='tunica_mag'></div>
+                </div>
+                <div class="w58 fl mr9 br bt bl">
+                    <div class="black h19 bb">FAL.INC.</div>
+                    <div class="h29 fs10"><input class="h29 fs10 ac" type='text' name='tunica_fal'></div>
+                </div>
+                <div class="h31 bt w127 fl">
+                    <div class="h19 bl bb mb9">
+                        <div class="fl mr9 al w58">TIPO</div>
+                        <input class="fl w58 h19" type='text' name='tunica_tipo'>
                     </div>
-                </div>
-                <div class="w11 fl mr7 br bt bl">
-                    <div class="black height1_1">MAG</div>
-                    <div class="height2_1 fs10"><input type='text' name='tunica_mag'></div>
-                </div>
-                <div class="w11 fl mr7 br bt bl">
-                    <div class="black height1_1">FAL.INC.</div>
-                    <div class="height2_1 fs10"><input type='text' name='tunica_fal'></div>
-                </div>
-                <div class="h31 w22 fl">
-                    <div class="h11 bl bb bt mb bsbb">
-                        <input type='text' name='tunica_tipo'>
-                    </div>
-                    <div class="h11 bl bt bsbb">
+                    <div class="h19 bl bt">
+                        <div class="fl w58 mr9 al">PESO</div>
+                        <div class="fl w58">T</div>
                     </div>
                 </div>
             </div>
         </div>
         <div style="clear:both"></div>
 
-        <div class='bf blocki cn fs8 mb'>
-            <div class="fl h11 bb br mr7 mb w31 black">COPRICAPO
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">COPRICAPO
             </div>
-            <div class="fl h11 bl bb mb w40">
-            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
             <div style="clear:both"></div>
-            <div class="fl bt br h11 w51">PROPRIETA'
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
             </div>
-            <div class="fl bt h11 w52"></div>
-        </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
         <div style="clear:both"></div>
 
-        <div class="bf blocki cn">
-            <div class="bb br black w53 h11 fl">EQUIPAGGIAMENTO INDOSSATO</div>
-            <div class="bb black w11 h11 fl">PESO</div>
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">OCCHI
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
             <div style="clear:both"></div>
-            <div class="bb br w53 h11 fl">0</div>
-            <div class="bb w11 h11 fl"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">COLLANA
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
             <div style="clear:both"></div>
-            <div class="bb br black w53 h11 fl">'ZAINO/BORSA</div>
-            <div class="bb black w11 h11 fl">PESO</div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">VESTE
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
             <div style="clear:both"></div>
-            <div class="br w53 h11 fl">0</div>
-            <div class="bw11 h11 fl"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">CINTURA
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">MANTELLO
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">BRACCIALI
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">GUANTI
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">ANELLO 1
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">ANELLO 2
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class='bf mb9 blocki cn'>
+            <div class="fl h19 bb br mr9 mb9 w218 black">STIVALI
+            </div>
+            <input class="fl h19 bl bb cb w265" id="" name="" value="<?php echo $this->items[''] ?>">
+            <div style="clear:both"></div>
+            <div class="fl bt br h19 w70 fs8">PROPRIETA
+            </div>
+            <input class="h19 fl bt cb w421" id="-proprieta" name="_proprieta" value="<?php echo $this->items['_proprieta'] ?>"></div>
+        <div style="clear:both"></div>
+
+        <div class="bf w494">
+            <div class="bb br black w435 h19 fl ac">EQUIPAGGIAMENTO INDOSSATO</div>
+            <div class="bb black w58 h19 fl ac fs8">PESO</div>
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+            <div class="bb br w435 h19 fl" id="-peso">T</div>
+            <input type="text" class="cb bb w58 h19 fl" name="_peso" id="-peso" value="<?php echo $this->items['_peso']; ?>">
+            <div style="clear:both"></div>
+
+            <div class="bb br black w435 h19 fl ac">ZAINO/BORSA</div>
+            <div class="bb black w58 h19 fl fs8 ac">PESO</div>
+            <div style="clear: both"></div>
+            <div class="fl mr9">
+                <div id="borsa-container" class="ps-container w494 h100">
+                    <div id="borsa-content">
+                        <div class="" id="borsas">
+                            <?php
+                            if (isset($this->items['borsas'])) {
+                                $t = $this->items['borsas'];
+                                $t = preg_split("/\n/", $t);
+                                $count = 0;
+                                foreach ($t as $class) {
+                                    if ($class == "")
+                                        continue;
+                                    $c = preg_split("/\t/", $class);
+                                    $count++;
+                                    echo "                                   
+                            <input type='text' id='borsa$count' class='cb w435 bb br h19 fl' placeholder='Item' name='borsa$count' value='{$c[0]}'>
+                                    <input type='text' class='cb bb w58 h19 fl' id='borsa$count-peso' placeholder='Peso' name='borsa{$count}_peso' value='{$c[1]}'>
+                                <div style='clear: both'></div>
+                        
+                        ";
+                                }
+                                echo "<input type='hidden' id='zaino' name='zaino' value='$count'>";
+                            }
+                            else {
+                                ?>
+                                <input type='hidden' id='zaino' name='zaino' value='1'>
+
+                                <input type='text' id='borsa1' class='cb w435 bb br h19 fl' placeholder='Item' name='borsa1'>
+                                <input type='text' id='borsa1-peso' class='cb bb w58 h19 fl' id='borsa1-peso' placeholder='Peso' name='borsa1_peso'>
+                                <div style='clear: both'></div>
+
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="fl w494 fs12 h19 ac" id="add-borsa">Add item</div>
+            </div>
             <div style="clear:both"></div>
         </div>
         <div style="clear:both"></div>
-        <div class="fl w31 bl br bb mr">
-            <div class="w24 fl black">DENARO
+        <div class="fl w218 bl br bb mr9">
+            <div class="w161 fl br black fs11 h19">DENARO
             </div>
-            <div class="w11 fl black ">PESO
+            <div class="w56 fl black h19 fs8 ac">PESO
             </div>
             <div style="clear:both"></div>
-            <div class="w12 fl br">MR
-            </div>
-            <div class="w14 fl br">h
-            </div>
-            <div class="w11 fl">0
-            </div>
+            <div class="w80 fl br bb h19 fs10">MR</div>
+            <input class="w80 fl bb cb h19 ac">
+            <div class="w56 bb bl fl h19">T</div>
+            <div style="clear:both"></div>
+            <div class="w80 fl br bb h19 fs10">MA</div>
+            <input class="w80 fl bb cb h19 ac">
+            <div class="w56 bb bl fl h19">T</div>
+            <div style="clear:both"></div>
+            <div class="w80 fl br bb h19 fs10">MO</div>
+            <input class="w80 fl bb cb h19 ac">
+            <div class="w56 bb bl fl h19">T</div>
+            <div style="clear:both"></div>
+            <div class="w80 fl br h19 fs10">MP</div>
+            <input class="w80 fl cb h19 ac">
+            <div class="w56 bl fl h19">T</div>
             <div style="clear:both"></div>
         </div>
-        <div class="fl w40 bl br bb">
-            <div>adlkf
-            </div>
+        <div class="fl w bl br bb w265">
+            <div class="h39 w208 fl black bb ac"><div class="mt9">PESO TOTALE</div></div>
+            <div class="w56 fl h39 ac bb"><div class="fs13 mt9">T</div></div>
+            <div style="clear:both"></div>
+            <div class="ac h19 w80 fl br bb fs8">S.TESTA</div>
+            <div class="ac h19 w45 fl br bb"></div>
+            <div class="ac h19 w80 fl br bb fs8">LEGGERO</div>
+            <div class="h19 w56 fl bb">T</div>
+            <div style="clear:both"></div>
+            <div class="ac w80 fl br bb">S.TESTA</div>
         </div>
         <div style="clear:both"></div>
 
@@ -469,7 +672,7 @@
 
         <!--################# RIGHT COLUMN ##########################-->
 
-        <div style='top: 280px; position: absolute; left: 500px;
+        <div style='top: 280px; position: absolute; left: 550px;
              width: 602px;'>
             <div id="abilities_head" class="black bf">
                 <div id="vertical" class="fs9" style="position: absolute; left: 5px; top: 0;">DI CLASSE</div>

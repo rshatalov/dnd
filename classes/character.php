@@ -99,6 +99,16 @@ class Unit {
             if ($u['class'.$i] || $u['level'.$i] )
                 $basic['classes'].= $u['class'.$i] . "\t". $u['level'.$i]. "\n";
         }
+        
+        $zaino = $u['zaino'];
+        $items['borsas'] = "";
+        for ($i = 1; $i <= $zaino;$i++)
+        {
+            if ($u['borsa'.$i] || $u['borsa'.$i."_peso"] )
+                $items['borsas'].= $u['borsa'.$i] . "\t". $u['borsa'.$i."_peso"]. "\n";
+        }
+        $items['borsas']!= "" ? $query .= "borsas='{$items['borsas']}'," : $query .= "borsas=NULL,";
+        
         if ($u['a'] == 'edit_unit')
             $query = "UPDATE units SET ";
         else
@@ -114,8 +124,6 @@ class Unit {
         if ($basic['divinity'])
             $query .= "divinity='{$basic['divinity']}',";
         $basic['classes']!= "" ? $query .= "classes='{$basic['classes']}'," : $query .= "classes=NULL,";
-        if ($basic['level'])
-            $query .= "level='{$basic['level']}',";
         if ($basic['age'])
             $query .= "age='{$basic['age']}',";
         if ($basic['sex'])
@@ -231,6 +239,8 @@ class Unit {
         if ($mischia['taglia_mischia_1'])
             $query .= "taglia_mischia_1='{$mischia['taglia_mischia_1']}',";
 
+            
+        $items['borsas']!= "" ? $query .= "borsas='{$items['borsas']}'," : $query .= "borsas=NULL,";
         $abil['acrobazia_check'] = $u['acrobazia_check'];
         $abil['acrobazia_gradi'] = $u['acrobazia_gradi'];
         $abil['acrobazia_vari'] = $u['acrobazia_vari'];
@@ -624,7 +634,6 @@ class Unit {
         $this->basic['alignment'] = $u['alignment'];
         $this->basic['divinity'] = $u['divinity'];
         $this->basic['classes'] = $u['classes'];
-        $this->basic['level'] = $u['level'];
         $this->basic['age'] = $u['age'];
         $this->basic['sex'] = $u['sex'];
         $this->basic['height'] = $u['height'];
@@ -677,6 +686,8 @@ class Unit {
         $this->mischia['note_mischia_1'] = $u['note_mischia_1'];
         $this->mischia['bm_mischia_1'] = $u['bm_mischia_1'];
         $this->mischia['taglia_mischia_1'] = $u['taglia_mischia_1'];
+        
+        $this->items['borsas'] = $u['borsas'];
         $this->abil['acrobazia_check'] = $u['acrobazia_check'];
         $this->abil['acrobazia_gradi'] = $u['acrobazia_gradi'];
         $this->abil['acrobazia_vari'] = $u['acrobazia_vari'];

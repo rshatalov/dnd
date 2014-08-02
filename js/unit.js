@@ -41,6 +41,15 @@ window.addEventListener('load', function() {
         $('#class-container').perfectScrollbar('update');
 
     }, false);
+    
+    $_("add-borsa").addEventListener("click", function() {
+        var b = parseInt($_("zaino").value) + 1;
+        $_("zaino").value = b;
+        var t = document.createElement('div');
+        t.innerHTML = "<input type='text' id='borsa"+b+"' class='cb w435 bb br h19 fl' placeholder='Item' name='borsa"+b+"'><input type='text' id='borsa"+b+"-peso' class='cb bb w58 h19 fl' id='borsa"+b+"-peso' placeholder='Peso' name='borsa"+b+"_peso'><div style='clear: both'></div>";
+        $_("borsas").appendChild(t);
+
+    }, false);
 
     $_("post-unit").addEventListener("click", function() {
 

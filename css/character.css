@@ -17,7 +17,7 @@ input{
     color: black;
     padding: 5px;
     position: relative;
-    height: 2500px;
+    height: 3500px;
 }
 
 .r {
@@ -85,11 +85,19 @@ input{
     width: 100%;
 }
 
+
+.w36 {
+    width: 36px;
+}
 .w40 {
     
 }
+
 .w45 {
     width: 45px;
+}
+.w46 {
+    width: 46px;
 }
 .w56 {
     width: 56px;
@@ -142,6 +150,12 @@ input{
 .w159 {
     width: 159px;
 }
+.w160 {
+    width: 160px;
+}
+.w169 {
+    width: 169px;
+}
 .w171 {
     width: 171px;
 }
@@ -157,11 +171,26 @@ input{
 .w219 {
     width: 219px;
 }
+.w225 {
+    width: 225px;
+}
 .w265 {
     width: 265px;
 }
 .w289 {
     width: 289px;
+}
+.w299 {
+    width: 299px;
+}
+.w300 {
+    width: 300px;
+}
+.w360 {
+    width: 360px;
+}
+.w369 {
+    width: 369px;
 }
 .w421 {
     width: 423px;
@@ -172,6 +201,12 @@ input{
 .w494 {
     width: 494px;
 }
+.w554 {
+    width: 554px;
+}
+.w600 {
+    width: 600px;
+}
 
 .h16 {
     height: 16px;
@@ -181,6 +216,9 @@ input{
 }
 .h19 {
     height: 19px;
+}
+.h21 {
+    height: 21px;
 }
 .h24 {
     height: 24px;
@@ -199,6 +237,9 @@ input{
 }
 .h39 {
     height: 39px;
+}
+.h49 {
+    height: 49px;
 }
 .h85 {
     height: 85px;
@@ -230,6 +271,9 @@ input{
 }
 .mr80 {
     margin-right: 80px;
+}
+.ml46 {
+    margin-left: 46px;
 }
 .ml52 {
     margin-left: 52px;
@@ -268,6 +312,11 @@ input{
 .mt12 {
     margin-top: 12px;
 }
+
+.ma {
+    margin: auto;
+}
+
 #avatar-container{
       position: absolute;
       right: 0;
@@ -303,12 +352,13 @@ input{
 
 #post-unit {
     position: absolute;
-    right: 0;
+    right: 7;
     top: 200px;
     border: 1px solid green;
-    padding: 30px;
-    width: 150px;
-    height: 150px;
+    width: 43px;
+    height: 100px;
+    text-align: center;
+    font-size: 15pt;
     box-sizing: border-box;
     cursor: pointer;
 }

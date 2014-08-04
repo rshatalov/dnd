@@ -95,7 +95,8 @@ window.addEventListener('load', function() {
                 $_('size-armor').innerHTML = '';
         }
         
-        
+        $_('gradi-max-classe').innerHTML = parseInt($_("level1").value)+3;
+        $_('gradi-max-nonclasse').innerHTML = parseInt(parseInt($_('gradi-max-classe').innerHTML) /2);
         $_('tempra-mod').innerHTML = $_('force-mod').innerHTML;
         $_('riflessi-mod').innerHTML = $_('dexterity-mod').innerHTML;
         $_('volonta-mod').innerHTML = $_('wisdom-mod').innerHTML;
@@ -112,4 +113,12 @@ window.addEventListener('load', function() {
         $_('lotta-attaco-base').innerHTML = $_('attaco-base').value;
     }
     recompute();
+    
+    window.addEventListener('scroll',function() {
+        if ((window.pageYOffset || document.documentElement.scrollTop) > 400)
+            $_('post-unit').style.top = (window.pageYOffset || document.documentElement.scrollTop) - 200 + 'px';
+        else
+            $_('post-unit').style.top = '200px';
+    },false);
+
 }, false);

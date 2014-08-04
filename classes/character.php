@@ -15,8 +15,10 @@ class Unit {
     public $basic;
     public $props;
     public $salvezza;
-    public $mischia;
+    public $mischia; //attack
     public $abil;
+    public $items;
+    public $s; //spells
 
     public function __construct($db, $uid = 0, $reader = 0) {
         $this->db = $db;
